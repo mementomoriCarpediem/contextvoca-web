@@ -2,9 +2,14 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslation } from "@/lib/i18n/LanguageContext";
+import LanguageSelector, {
+  MobileLanguageSelector,
+} from "./LanguageSelector";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
@@ -17,27 +22,28 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           <Link
             href="/#features"
             className="text-sm font-medium text-gray-600 transition-colors hover:text-primary-600"
           >
-            기능
+            {t.header.features}
           </Link>
           <Link
             href="/#pricing"
             className="text-sm font-medium text-gray-600 transition-colors hover:text-primary-600"
           >
-            요금제
+            {t.header.pricing}
           </Link>
           <Link
             href="/support"
             className="text-sm font-medium text-gray-600 transition-colors hover:text-primary-600"
           >
-            지원
+            {t.header.support}
           </Link>
+          <LanguageSelector />
           <a href="#download" className="btn-primary !py-2 !text-sm">
-            다운로드
+            {t.header.download}
           </a>
         </div>
 
@@ -81,28 +87,31 @@ export default function Header() {
               className="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
               onClick={() => setMobileMenuOpen(false)}
             >
-              기능
+              {t.header.features}
             </Link>
             <Link
               href="/#pricing"
               className="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
               onClick={() => setMobileMenuOpen(false)}
             >
-              요금제
+              {t.header.pricing}
             </Link>
             <Link
               href="/support"
               className="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
               onClick={() => setMobileMenuOpen(false)}
             >
-              지원
+              {t.header.support}
             </Link>
+            <div className="px-3 py-2">
+              <MobileLanguageSelector />
+            </div>
             <a
               href="#download"
               className="btn-primary !text-sm"
               onClick={() => setMobileMenuOpen(false)}
             >
-              다운로드
+              {t.header.download}
             </a>
           </div>
         </div>
