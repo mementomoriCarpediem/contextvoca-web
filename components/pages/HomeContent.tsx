@@ -266,7 +266,21 @@ export default function HomeContent({ locale }: { locale: Locale }) {
               <ol className="mt-4 space-y-2">
                 {t.science.references.map((reference) => (
                   <li key={reference} className="text-xs leading-relaxed text-gray-500">
-                    {reference}
+                    {reference.split(/(https?:\/\/\S+)/g).map((part, i) =>
+                      /^https?:\/\//.test(part) ? (
+                        <a
+                          key={i}
+                          href={part}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary-600 underline-offset-2 hover:underline"
+                        >
+                          {part}
+                        </a>
+                      ) : (
+                        <span key={i}>{part}</span>
+                      )
+                    )}
                   </li>
                 ))}
               </ol>
