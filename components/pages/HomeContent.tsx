@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import JsonLd from "@/components/JsonLd";
-import PageHead from "@/components/PageHead";
-import { useTranslation } from "@/lib/i18n/LanguageContext";
+import { getDictionary, Locale } from "@/lib/i18n";
 
 const featureIcons = [
   // AI 핵심 단어 추출
@@ -106,35 +104,13 @@ const featureIcons = [
   </svg>,
 ];
 
-export default function Home() {
-  const { t } = useTranslation();
+export default function HomeContent({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
   const [billingYearly, setBillingYearly] = useState(false);
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "ContextVoca",
-    applicationCategory: "EducationalApplication",
-    operatingSystem: "iOS, Android",
-    description: t.meta.description,
-    offers: [
-      { "@type": "Offer", price: "0", priceCurrency: "USD", name: "Free" },
-      { "@type": "Offer", price: "5.00", priceCurrency: "USD", name: "Basic" },
-      { "@type": "Offer", price: "10.00", priceCurrency: "USD", name: "Pro" },
-      {
-        "@type": "Offer",
-        price: "99.00",
-        priceCurrency: "USD",
-        name: "Lifetime",
-      },
-    ],
-  };
 
   return (
     <>
-      <PageHead title={t.meta.title} description={t.meta.description} keywords={t.meta.keywords} />
-      <JsonLd data={jsonLd} />
-      <Header />
+      <Header locale={locale} />
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden bg-gradient-to-br from-primary-800 via-primary-700 to-primary-600 pt-32 pb-20">
@@ -154,9 +130,7 @@ export default function Home() {
                   </span>
                 ))}
               </p>
-              <div
-                className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
-              >
+              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <a
                   href="https://apps.apple.com/app/id6758887227"
                   target="_blank"
@@ -298,16 +272,6 @@ export default function Home() {
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {t.pricing.plans.map((plan) => {
                 const highlighted = plan.name === "Pro";
-                const price = plan.isLifetime
-                  ? plan.monthlyPrice
-                  : billingYearly
-                    ? plan.yearlyPrice
-                    : plan.monthlyPrice;
-                const period = plan.isLifetime
-                  ? ""
-                  : billingYearly
-                    ? plan.yearlyPeriod
-                    : plan.monthlyPeriod;
 
                 return (
                   <div
@@ -331,13 +295,8 @@ export default function Home() {
                     </p>
                     <div className="mt-6">
                       <span className="text-4xl font-extrabold text-gray-900">
-                        {price}
+                        {plan.wordLimit}
                       </span>
-                      {period && (
-                        <span className="text-base text-gray-500">
-                          {period}
-                        </span>
-                      )}
                     </div>
                     {plan.isLifetime && (
                       <p className="mt-1 text-xs text-gray-400">
@@ -345,7 +304,7 @@ export default function Home() {
                       </p>
                     )}
                     <p className="mt-1 text-sm font-medium text-primary-600">
-                      {plan.wordLimit}
+                      {plan.priceNote}
                     </p>
                     <ul className="mt-6 space-y-3">
                       {plan.features.map((feature) => (
@@ -395,8 +354,8 @@ export default function Home() {
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
                 href="https://apps.apple.com/app/id6758887227"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl bg-white px-8 py-4 text-base font-semibold text-primary-700 shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
               >
                 <svg
@@ -410,8 +369,8 @@ export default function Home() {
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=com.contextvoca.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20"
               >
                 <svg
@@ -427,7 +386,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

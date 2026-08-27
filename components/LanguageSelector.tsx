@@ -1,11 +1,22 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { useTranslation } from "@/lib/i18n/LanguageContext";
+import { usePathname } from "next/navigation";
 import { locales, localeNames, localeFlags, Locale } from "@/lib/i18n";
 
-export default function LanguageSelector() {
-  const { locale, setLocale } = useTranslation();
+/**
+ * Computes the href for switching the current page from `current` to
+ * `target` locale, preserving whatever comes after the locale segment
+ * (e.g. `/ko/support` -> `/en/support`).
+ */
+function hrefForLocale(pathname: string, current: Locale, target: Locale): string {
+  const withoutLocale = pathname.replace(new RegExp(`^/${current}(?=/|$)`), "");
+  return `/${target}${withoutLocale}`;
+}
+
+export default function LanguageSelector({ locale }: { locale: Locale }) {
+  const pathname = usePathname() || `/${locale}`;
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -47,12 +58,10 @@ export default function LanguageSelector() {
       {open && (
         <div className="absolute right-0 top-full z-50 mt-1 min-w-[140px] overflow-hidden rounded-xl border border-gray-100 bg-white py-1 shadow-lg">
           {locales.map((l: Locale) => (
-            <button
+            <Link
               key={l}
-              onClick={() => {
-                setLocale(l);
-                setOpen(false);
-              }}
+              href={hrefForLocale(pathname, locale, l)}
+              onClick={() => setOpen(false)}
               className={`flex w-full items-center gap-2.5 px-3.5 py-2 text-sm transition-colors ${
                 l === locale
                   ? "bg-primary-50 font-medium text-primary-700"
@@ -74,7 +83,7 @@ export default function LanguageSelector() {
                   />
                 </svg>
               )}
-            </button>
+            </Link>
           ))}
         </div>
       )}
@@ -82,15 +91,15 @@ export default function LanguageSelector() {
   );
 }
 
-export function MobileLanguageSelector() {
-  const { locale, setLocale } = useTranslation();
+export function MobileLanguageSelector({ locale }: { locale: Locale }) {
+  const pathname = usePathname() || `/${locale}`;
 
   return (
     <div className="flex gap-1 rounded-lg bg-gray-100 p-1">
       {locales.map((l: Locale) => (
-        <button
+        <Link
           key={l}
-          onClick={() => setLocale(l)}
+          href={hrefForLocale(pathname, locale, l)}
           className={`flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-colors ${
             l === locale
               ? "bg-white font-medium text-primary-700 shadow-sm"
@@ -99,7 +108,7 @@ export function MobileLanguageSelector() {
         >
           <span className="text-base leading-none">{localeFlags[l]}</span>
           <span>{localeNames[l]}</span>
-        </button>
+        </Link>
       ))}
     </div>
   );

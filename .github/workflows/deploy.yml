@@ -1,3 +1,6 @@
+# 구 주소(github.io/contextvoca-web)는 스토어·심사 링크가 가리키므로 유지하되,
+# 실제 사이트는 contextvoca.app(Cloudflare Worker)로 이전(2026-08-27). 이 워크플로는
+# 새 도메인으로 보내는 리다이렉트 스텁만 배포한다.
 name: Deploy to GitHub Pages
 
 on:
@@ -21,21 +24,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
 
-      - name: Enable Corepack
-        run: corepack enable
 
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Build
-        env:
-          NEXT_PUBLIC_BASE_PATH: "/contextvoca-web"
-        run: yarn build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -43,7 +33,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: legacy-redirect
 
   deploy:
     runs-on: ubuntu-latest

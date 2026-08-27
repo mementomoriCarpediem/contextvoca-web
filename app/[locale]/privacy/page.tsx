@@ -1,20 +1,35 @@
-"use client";
-
+import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import PageHead from "@/components/PageHead";
-import { useTranslation } from "@/lib/i18n/LanguageContext";
+import { getDictionary, resolveLocale } from "@/lib/i18n";
+import { buildAlternates } from "@/lib/seo/site";
 
-export default function PrivacyPage() {
-  const { t } = useTranslation();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = resolveLocale((await params).locale);
+  const t = getDictionary(locale);
+
+  return {
+    title: t.privacy.metaTitle,
+    description: t.privacy.metaDescription,
+    alternates: buildAlternates(locale, "/privacy"),
+  };
+}
+
+export default async function PrivacyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = resolveLocale((await params).locale);
+  const t = getDictionary(locale);
 
   return (
     <>
-      <PageHead
-        title={t.privacy.metaTitle}
-        description={t.privacy.metaDescription}
-      />
-      <Header />
+      <Header locale={locale} />
       <main className="pt-24 pb-20">
         <div className="section-container">
           <div className="mx-auto max-w-3xl">
@@ -47,7 +62,7 @@ export default function PrivacyPage() {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

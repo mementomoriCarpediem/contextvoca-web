@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mementomoriCarpediem.github.io/contextvoca-web/sitemap.xml
+Sitemap: https://contextvoca.app/sitemap.xml

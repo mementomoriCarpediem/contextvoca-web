@@ -2,9 +2,9 @@ import { Translations } from "./types";
 
 const zh: Translations = {
   meta: {
-    title: "ContextVoca - 通过句子学习的智能词汇本",
+    title: "语境词汇 - AI结合语境学习英语单词",
     description:
-      "不要只背单词，通过句子来理解。AI从句子中提取核心词汇，通过相似句子对比测试，帮您打造真正的实力。",
+      "不要只背单词，通过句子来理解。AI从照片和句子中提取核心词汇，并通过智能测验帮你彻底记住它们。",
     keywords: [
       "英语词汇",
       "单词本",
@@ -12,10 +12,10 @@ const zh: Translations = {
       "背单词",
       "句子学习",
       "AI词汇本",
+      "语境词汇",
       "ContextVoca",
     ],
-    ogDescription:
-      "AI从句子中提取核心词汇，通过相似句子对比测试，帮您打造真正的实力。",
+    ogDescription: "AI从照片和句子中提取核心词汇，并通过智能测验帮你彻底记住它们。",
   },
   header: {
     features: "功能",
@@ -24,7 +24,7 @@ const zh: Translations = {
     download: "下载",
   },
   footer: {
-    tagline: "通过句子学习的智能词汇本",
+    tagline: "AI结合语境学习英语单词",
     service: "服务",
     featureIntro: "功能介绍",
     pricing: "价格",
@@ -40,7 +40,7 @@ const zh: Translations = {
     titleLine1: "不要只背单词。",
     titleLine2: "通过句子来理解。",
     description:
-      "AI从句子中提取核心词汇，通过相似句子对比测试，\n帮您打造真正的实力。",
+      "AI从照片和句子中提取核心词汇，并通过智能测验，\n帮你彻底记住它们。",
     appStore: "App Store",
     googlePlay: "Google Play",
   },
@@ -96,8 +96,7 @@ const zh: Translations = {
       },
       {
         title: "OCR图片识别",
-        description:
-          "拍摄教材或试卷，自动识别文字。无需打字，直接开始学习。",
+        description: "拍摄教材或试卷，自动识别文字。无需打字，直接开始学习。",
       },
       {
         title: "标签管理",
@@ -111,7 +110,6 @@ const zh: Translations = {
     subtitle: "免费开始，需要时再升级。",
     popular: "热门",
     startButton: "开始使用",
-    upTo: "",
     monthly: "月付",
     yearly: "年付",
     yearlyDiscount: "优惠",
@@ -119,11 +117,8 @@ const zh: Translations = {
     plans: [
       {
         name: "Free",
-        monthlyPrice: "免费",
-        yearlyPrice: "免费",
-        monthlyPeriod: "",
-        yearlyPeriod: "",
         wordLimit: "100个词汇",
+        priceNote: "完全免费",
         description: "基础学习功能",
         features: [
           "存储100个词汇",
@@ -135,11 +130,8 @@ const zh: Translations = {
       },
       {
         name: "Basic",
-        monthlyPrice: "$5",
-        yearlyPrice: "$35",
-        monthlyPeriod: "/月",
-        yearlyPeriod: "/年",
         wordLimit: "1,000个词汇",
+        priceNote: "具体价格请在应用内订阅页面查看",
         description: "存储更多词汇",
         features: [
           "存储1,000个词汇",
@@ -151,34 +143,18 @@ const zh: Translations = {
       },
       {
         name: "Pro",
-        monthlyPrice: "$10",
-        yearlyPrice: "$70",
-        monthlyPeriod: "/月",
-        yearlyPeriod: "/年",
         wordLimit: "无限",
+        priceNote: "具体价格请在应用内订阅页面查看",
         description: "使用全部功能",
-        features: [
-          "无限词汇存储",
-          "所有Basic功能",
-          "详细学习统计",
-          "优先支持",
-        ],
+        features: ["无限词汇存储", "所有Basic功能", "详细学习统计", "优先支持"],
       },
       {
         name: "Lifetime",
-        monthlyPrice: "$99",
-        yearlyPrice: "$99",
-        monthlyPeriod: "",
-        yearlyPeriod: "",
-        isLifetime: true,
         wordLimit: "无限",
-        description: "终身无限使用",
-        features: [
-          "无限词汇存储",
-          "所有Pro功能",
-          "终身使用",
-          "无额外费用",
-        ],
+        priceNote: "具体价格请在应用内购买页面查看",
+        isLifetime: true,
+        description: "一次性付款，终身无限使用",
+        features: ["无限词汇存储", "所有Pro功能", "终身使用", "无额外费用"],
       },
     ],
   },
@@ -189,18 +165,21 @@ const zh: Translations = {
     googlePlay: "从Google Play下载",
   },
   support: {
+    metaTitle: "支持与常见问题",
+    metaDescription:
+      "查看关于语境词汇入门、功能使用、订阅与付款、账号管理的常见问题，或联系我们的支持团队。",
     title: "需要帮助？",
     subtitle: "查看常见问题，或通过以下方式联系我们。",
     contactTitle: "直接联系",
     contactDescription: "请通过以下方式联系我们，我们会尽快回复。",
-    contactButton: "邮件咨询: resonance.zorba@gmail.com",
+    contactButton: "邮件咨询: support@contextvoca.app",
     faqs: [
       {
         category: "入门",
         questions: [
           {
-            q: "ContextVoca是什么应用？",
-            a: "ContextVoca是一款基于AI的词汇学习应用，通过句子语境学习词汇。输入文本后，AI提取核心词汇，并通过相似句子对比测试提供深度学习。",
+            q: "语境词汇（ContextVoca）是什么应用？",
+            a: "语境词汇是一款基于AI的词汇学习应用，通过句子语境学习词汇。输入文本后，AI提取核心词汇，并通过相似句子对比测试提供深度学习。",
           },
           {
             q: "支持哪些设备？",
@@ -234,7 +213,7 @@ const zh: Translations = {
         questions: [
           {
             q: "可以免费使用吗？",
-            a: "是的，免费方案可以存储和学习100个词汇。如需存储更多词汇，请订阅Basic（1,000个，$5/月）或Pro（无限，$10/月）方案。也可选择Lifetime（$99一次性付款）永久无限使用。",
+            a: "是的，免费方案可以存储和学习100个词汇。如需存储更多词汇，请订阅Basic（1,000个）或Pro（无限）方案，具体价格请在应用内订阅页面查看。也可选择Lifetime方案，一次性付款即可终身无限使用。",
           },
           {
             q: "各方案有什么区别？",
@@ -255,7 +234,7 @@ const zh: Translations = {
         questions: [
           {
             q: "我想删除账号。",
-            a: "可以在应用设置 > 账号管理中申请删除账号。删除账号后，所有学习数据将被永久删除。也可以发送邮件至resonance.zorba@gmail.com申请删除。",
+            a: "可以在应用设置 > 账号管理中申请删除账号。删除账号后，所有学习数据将被永久删除。也可以发送邮件至support@contextvoca.app申请删除。",
           },
           {
             q: "可以在其他设备上使用吗？",
@@ -266,15 +245,15 @@ const zh: Translations = {
     ],
   },
   privacy: {
-    metaTitle: "隐私政策 - ContextVoca",
-    metaDescription: "ContextVoca的隐私政策。",
+    metaTitle: "隐私政策",
+    metaDescription: "语境词汇（ContextVoca）的隐私政策。",
     title: "隐私政策",
     lastUpdated: "最后更新：2026年2月7日",
     sections: [
       {
         title: "1. 概述",
         content:
-          'ContextVoca（以下简称"服务"）重视用户的个人信息，并根据相关法律法规保护个人信息。本隐私政策说明服务收集的信息及其使用目的。',
+          '语境词汇（ContextVoca，以下简称"服务"）重视用户的个人信息，并根据相关法律法规保护个人信息。本隐私政策说明服务收集的信息及其使用目的。',
       },
       {
         title: "2. 收集的个人信息",
@@ -341,26 +320,24 @@ const zh: Translations = {
         items: [
           "公司名称: 공명（Gongmyeong）",
           "营业执照号: 520-22-02348",
-          "邮箱: resonance.zorba@gmail.com",
+          "邮箱: support@contextvoca.app",
         ],
       },
       {
         title: "10. 联系方式",
-        content:
-          "如有个人信息相关问题，请联系 resonance.zorba@gmail.com。",
+        content: "如有个人信息相关问题，请联系 support@contextvoca.app。",
       },
     ],
   },
   terms: {
-    metaTitle: "使用条款 - ContextVoca",
-    metaDescription: "ContextVoca服务使用条款。",
+    metaTitle: "使用条款",
+    metaDescription: "语境词汇（ContextVoca）服务使用条款。",
     title: "使用条款",
     lastUpdated: "最后更新：2026年2月7日",
     sections: [
       {
         title: "第1条（目的）",
-        content:
-          '本条款旨在规定ContextVoca（以下简称"服务"）使用的基本事项。',
+        content: '本条款旨在规定语境词汇（ContextVoca，以下简称"服务"）使用的基本事项。',
       },
       {
         title: "第2条（服务内容）",
@@ -386,8 +363,8 @@ const zh: Translations = {
         title: "第4条（付费服务）",
         content: "",
         items: [
-          "服务提供免费方案和付费订阅方案（Basic、Pro）。",
-          "付费订阅通过Apple App Store或Google Play支付。",
+          "服务提供免费方案、付费订阅方案（Basic、Pro）以及一次性付款的Lifetime方案。",
+          "付费订阅及Lifetime购买通过Apple App Store或Google Play支付，价格显示在各商店的应用内页面。",
           "订阅在未取消的情况下自动续订。需在续订日前至少24小时取消，以避免下次扣费。",
           "退款按照Apple或Google的退款政策执行。",
         ],
@@ -419,8 +396,7 @@ const zh: Translations = {
       },
       {
         title: "第8条（服务变更与终止）",
-        content:
-          "服务可能因运营需要变更或终止服务内容。重大变更时将提前通知。",
+        content: "服务可能因运营需要变更或终止服务内容。重大变更时将提前通知。",
       },
       {
         title: "第9条（条款变更）",
@@ -438,13 +414,12 @@ const zh: Translations = {
         items: [
           "公司名称: 공명（Gongmyeong）",
           "营业执照号: 520-22-02348",
-          "邮箱: resonance.zorba@gmail.com",
+          "邮箱: support@contextvoca.app",
         ],
       },
       {
         title: "联系方式",
-        content:
-          "如有使用条款相关问题，请联系 resonance.zorba@gmail.com。",
+        content: "如有使用条款相关问题，请联系 support@contextvoca.app。",
       },
     ],
   },

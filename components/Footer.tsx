@@ -1,10 +1,9 @@
-"use client";
-
 import Link from "next/link";
-import { useTranslation } from "@/lib/i18n/LanguageContext";
+import { getDictionary, Locale } from "@/lib/i18n";
 
-export default function Footer() {
-  const { t } = useTranslation();
+export default function Footer({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+  const base = `/${locale}`;
 
   return (
     <footer className="border-t border-gray-100 bg-gray-50">
@@ -31,7 +30,7 @@ export default function Footer() {
             <ul className="mt-3 space-y-2">
               <li>
                 <Link
-                  href="/#features"
+                  href={`${base}/#features`}
                   className="text-sm text-gray-500 hover:text-primary-600"
                 >
                   {t.footer.featureIntro}
@@ -39,7 +38,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/#pricing"
+                  href={`${base}/#pricing`}
                   className="text-sm text-gray-500 hover:text-primary-600"
                 >
                   {t.footer.pricing}
@@ -47,7 +46,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/support"
+                  href={`${base}/support`}
                   className="text-sm text-gray-500 hover:text-primary-600"
                 >
                   {t.footer.faq}
@@ -64,7 +63,7 @@ export default function Footer() {
             <ul className="mt-3 space-y-2">
               <li>
                 <Link
-                  href="/privacy"
+                  href={`${base}/privacy`}
                   className="text-sm text-gray-500 hover:text-primary-600"
                 >
                   {t.footer.privacy}
@@ -72,7 +71,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/terms"
+                  href={`${base}/terms`}
                   className="text-sm text-gray-500 hover:text-primary-600"
                 >
                   {t.footer.terms}
@@ -89,10 +88,10 @@ export default function Footer() {
             <ul className="mt-3 space-y-2">
               <li>
                 <a
-                  href="mailto:resonance.zorba@gmail.com"
+                  href="mailto:support@contextvoca.app"
                   className="text-sm text-gray-500 hover:text-primary-600"
                 >
-                  resonance.zorba@gmail.com
+                  support@contextvoca.app
                 </a>
               </li>
             </ul>

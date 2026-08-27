@@ -1,4 +1,4 @@
-export type Locale = "ko" | "zh" | "ja";
+export type Locale = "ko" | "en" | "ja" | "zh";
 
 export interface Translations {
   meta: {
@@ -55,19 +55,17 @@ export interface Translations {
     subtitle: string;
     popular: string;
     startButton: string;
-    upTo: string;
     monthly: string;
     yearly: string;
     yearlyDiscount: string;
     oneTime: string;
     plans: Array<{
       name: string;
-      monthlyPrice: string;
-      yearlyPrice: string;
-      yearlyPeriod: string;
-      monthlyPeriod: string;
-      isLifetime?: boolean;
+      /** Headline figure shown on the card, e.g. word limit ("1,000 words"). */
       wordLimit: string;
+      /** Secondary note replacing a fixed price, e.g. "Price shown in the app's subscription screen". */
+      priceNote: string;
+      isLifetime?: boolean;
       description: string;
       features: string[];
     }>;
@@ -79,6 +77,8 @@ export interface Translations {
     googlePlay: string;
   };
   support: {
+    metaTitle: string;
+    metaDescription: string;
     title: string;
     subtitle: string;
     contactTitle: string;
