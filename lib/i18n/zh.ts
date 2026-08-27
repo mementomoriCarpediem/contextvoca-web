@@ -43,6 +43,8 @@ const zh: Translations = {
       "AI从照片和句子中提取核心词汇，并通过智能测验，\n帮你彻底记住它们。",
     appStore: "App Store",
     googlePlay: "Google Play",
+    imageAlt: "语境词汇App主页截图",
+    mascotAlt: "语境词汇的章鱼吉祥物",
   },
   howItWorks: {
     title: "学习方法",
@@ -103,6 +105,12 @@ const zh: Translations = {
         description:
           "使用标签（如托业、高考、商务）分类词汇。选择特定类别进行集中学习。",
       },
+    ],
+    screenshotAlts: [
+      "输入句子并提取核心词汇的界面",
+      "对比相似句子选出正确答案的测验界面",
+      "根据正确率设置难度和出题方式的界面",
+      "按标签分类的单词列表界面",
     ],
   },
   science: {
@@ -172,6 +180,22 @@ const zh: Translations = {
         url: "https://bjorklab.psych.ucla.edu/videos/",
       },
     ],
+    forgettingCurve: {
+      xAxisLabel: "经过天数",
+      yAxisLabel: "记忆保持率",
+      legend: [
+        "答对1次 → 7天",
+        "连续答对2次 → 14天",
+        "连续答对3次 → 30天",
+        "连续答对4次 → 90天",
+      ],
+    },
+    spacedReview: {
+      crammingLabel: "突击复习",
+      spacedLabel: "分散复习",
+    },
+    mascotAlt: "语境词汇吉祥物",
+    referencesToggle: "查看参考文献",
   },
   pricing: {
     title: "合理的价格",

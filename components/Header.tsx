@@ -14,9 +14,13 @@ export default function Header({ locale }: { locale: Locale }) {
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <nav className="section-container flex h-16 items-center justify-between">
         <Link href={`${base}/`} className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600 text-sm font-bold text-white">
-            C
-          </div>
+          <img
+            src="/images/brand/mascot.svg"
+            alt=""
+            width={32}
+            height={32}
+            className="h-8 w-8 rounded-lg"
+          />
           <span className="text-lg font-bold text-gray-900">ContextVoca</span>
         </Link>
 

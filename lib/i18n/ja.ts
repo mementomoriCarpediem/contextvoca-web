@@ -44,6 +44,8 @@ const ja: Translations = {
       "AIが写真や文章から重要な単語を抽出し、スマートクイズで\n本当の実力を身につけます。",
     appStore: "App Store",
     googlePlay: "Google Play",
+    imageAlt: "文脈単語帳アプリのホーム画面のスクリーンショット",
+    mascotAlt: "文脈単語帳のマスコット、タコのキャラクター",
   },
   howItWorks: {
     title: "学習方法",
@@ -108,6 +110,12 @@ const ja: Translations = {
         description:
           "TOEIC、受験、ビジネスなどのタグで単語を分類できます。好きなカテゴリだけ選んで集中学習できます。",
       },
+    ],
+    screenshotAlts: [
+      "文章を入力して重要単語を抽出する画面",
+      "類似文章と比較して正解を選ぶクイズ画面",
+      "正答率に合わせて難易度と出題方式を設定する画面",
+      "タグで分類された単語帳の一覧画面",
     ],
   },
   science: {
@@ -178,6 +186,22 @@ const ja: Translations = {
         url: "https://bjorklab.psych.ucla.edu/videos/",
       },
     ],
+    forgettingCurve: {
+      xAxisLabel: "経過日数",
+      yAxisLabel: "記憶保持率",
+      legend: [
+        "1回正解 → 7日",
+        "2回連続正解 → 14日",
+        "3回連続正解 → 30日",
+        "4回連続正解 → 90日",
+      ],
+    },
+    spacedReview: {
+      crammingLabel: "詰め込み",
+      spacedLabel: "分散復習",
+    },
+    mascotAlt: "文脈単語帳のマスコット",
+    referencesToggle: "参考文献を見る",
   },
   pricing: {
     title: "合理的な料金プラン",

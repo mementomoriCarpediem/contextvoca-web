@@ -44,6 +44,8 @@ const en: Translations = {
       "AI extracts the key vocabulary from your photos and sentences, then a smart\nquiz builds real, lasting recall.",
     appStore: "App Store",
     googlePlay: "Google Play",
+    imageAlt: "Screenshot of the ContextVoca app home screen",
+    mascotAlt: "ContextVoca mascot, an octopus character",
   },
   howItWorks: {
     title: "How it works",
@@ -110,6 +112,12 @@ const en: Translations = {
         description:
           "Organize words with tags like TOEIC, exam prep, or business. Pick a category and focus your study session on exactly what you need.",
       },
+    ],
+    screenshotAlts: [
+      "Screen for extracting key words from an entered sentence",
+      "Quiz screen comparing similar sentences to choose the right answer",
+      "Screen for setting quiz difficulty and mode based on your accuracy",
+      "Vocabulary list screen organized by tags",
     ],
   },
   science: {
@@ -180,6 +188,22 @@ const en: Translations = {
         url: "https://bjorklab.psych.ucla.edu/videos/",
       },
     ],
+    forgettingCurve: {
+      xAxisLabel: "Days elapsed",
+      yAxisLabel: "Retention",
+      legend: [
+        "1 correct answer → 7 days",
+        "2 in a row → 14 days",
+        "3 in a row → 30 days",
+        "4 in a row → 90 days",
+      ],
+    },
+    spacedReview: {
+      crammingLabel: "Cramming",
+      spacedLabel: "Spaced review",
+    },
+    mascotAlt: "ContextVoca mascot",
+    referencesToggle: "Show references",
   },
   pricing: {
     title: "Simple, fair pricing",
