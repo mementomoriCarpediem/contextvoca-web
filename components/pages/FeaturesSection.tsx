@@ -5,10 +5,10 @@ import { Translations } from "@/lib/i18n";
  * screenshot in the zigzag layout, paired with the screenshot file and the
  * matching entry in `t.features.screenshotAlts` (same order). */
 const ZIGZAG_FEATURES = [
-  { itemIndex: 0, altIndex: 0, src: "/images/screens/02-add-vocab.webp" },
-  { itemIndex: 2, altIndex: 1, src: "/images/screens/04-quiz.webp" },
-  { itemIndex: 3, altIndex: 2, src: "/images/screens/05-quiz-setup.webp" },
-  { itemIndex: 5, altIndex: 3, src: "/images/screens/03-vocabulary.webp" },
+  { itemIndex: 0, altIndex: 0, file: "02-add-vocab.webp" },
+  { itemIndex: 2, altIndex: 1, file: "04-quiz.webp" },
+  { itemIndex: 3, altIndex: 2, file: "05-quiz-setup.webp" },
+  { itemIndex: 5, altIndex: 3, file: "03-vocabulary.webp" },
 ] as const;
 
 /** Remaining feature items, shown as a compact icon strip below the zigzag. */
@@ -38,7 +38,7 @@ const compactIcons: Record<number, ReactElement> = {
   ),
 };
 
-export default function FeaturesSection({ t }: { t: Translations }) {
+export default function FeaturesSection({ t, locale }: { t: Translations; locale: string }) {
   return (
     <section id="features" className="bg-gray-50 py-20">
       <div className="section-container">
@@ -51,7 +51,7 @@ export default function FeaturesSection({ t }: { t: Translations }) {
 
         {/* Zigzag: feature copy paired with a matching screenshot */}
         <div className="mt-16 space-y-16 md:space-y-24">
-          {ZIGZAG_FEATURES.map(({ itemIndex, altIndex, src }, idx) => {
+          {ZIGZAG_FEATURES.map(({ itemIndex, altIndex, file }, idx) => {
             const feature = t.features.items[itemIndex];
             const reversed = idx % 2 === 1;
 
@@ -59,10 +59,10 @@ export default function FeaturesSection({ t }: { t: Translations }) {
               <div className="mx-auto w-full max-w-[220px] sm:max-w-[260px]">
                 <div className="overflow-hidden rounded-[2rem] shadow-xl ring-1 ring-black/5">
                   <img
-                    src={src}
+                    src={file}
                     alt={t.features.screenshotAlts[altIndex]}
                     width={720}
-                    height={1557}
+                    height={1504}
                     loading="lazy"
                     className="h-auto w-full"
                   />
