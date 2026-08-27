@@ -120,6 +120,9 @@ const ko: Translations = {
     yearly: "연간",
     yearlyDiscount: "할인",
     oneTime: "1회 결제",
+    yearlySavingsNote: "연간 결제 시 {percent} 할인",
+    perMonth: "/월",
+    perYear: "/년",
     plans: [
       {
         name: "Free",
@@ -136,8 +139,11 @@ const ko: Translations = {
       },
       {
         name: "Basic",
+        priceMonthly: "₩6,600",
+        priceYearly: "₩49,000",
+        yearlySavings: "38%",
         wordLimit: "1,000단어",
-        priceNote: "가격은 앱 내 구독 화면에서 확인하세요",
+        priceNote: "App Store 한국 기준 · 부가세 포함",
         description: "더 많은 단어 저장",
         features: [
           "1,000단어 저장",
@@ -149,8 +155,11 @@ const ko: Translations = {
       },
       {
         name: "Pro",
+        priceMonthly: "₩14,000",
+        priceYearly: "₩99,000",
+        yearlySavings: "41%",
         wordLimit: "무제한",
-        priceNote: "가격은 앱 내 구독 화면에서 확인하세요",
+        priceNote: "App Store 한국 기준 · 부가세 포함",
         description: "모든 기능 이용",
         features: [
           "무제한 단어 저장",
@@ -161,6 +170,7 @@ const ko: Translations = {
       },
       {
         name: "Lifetime",
+        priceOnce: "₩149,000",
         wordLimit: "무제한",
         priceNote: "가격은 앱 내 구매 화면에서 확인하세요",
         isLifetime: true,

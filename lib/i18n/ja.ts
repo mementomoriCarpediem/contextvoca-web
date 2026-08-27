@@ -119,6 +119,9 @@ const ja: Translations = {
     yearly: "年払い",
     yearlyDiscount: "お得",
     oneTime: "1回払い",
+    yearlySavingsNote: "年間払いで{percent}お得",
+    perMonth: "/月",
+    perYear: "/年",
     plans: [
       {
         name: "Free",
@@ -135,6 +138,7 @@ const ja: Translations = {
       },
       {
         name: "Basic",
+        yearlySavings: "38%",
         wordLimit: "1,000単語",
         priceNote: "価格はアプリ内のサブスクリプション画面でご確認ください",
         description: "より多くの単語を保存",
@@ -148,6 +152,7 @@ const ja: Translations = {
       },
       {
         name: "Pro",
+        yearlySavings: "41%",
         wordLimit: "無制限",
         priceNote: "価格はアプリ内のサブスクリプション画面でご確認ください",
         description: "すべての機能を利用",
