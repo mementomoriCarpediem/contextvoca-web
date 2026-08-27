@@ -59,7 +59,7 @@ export default function FeaturesSection({ t, locale }: { t: Translations; locale
               <div className="mx-auto w-full max-w-[220px] sm:max-w-[260px]">
                 <div className="overflow-hidden rounded-[2rem] shadow-xl ring-1 ring-black/5">
                   <img
-                    src={file}
+                    src={`/images/screens/${locale}/${file}`}
                     alt={t.features.screenshotAlts[altIndex]}
                     width={720}
                     height={1504}
