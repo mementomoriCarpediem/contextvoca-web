@@ -5,6 +5,7 @@ import "../globals.css";
 export const viewport = siteViewport;
 
 export const metadata: Metadata = {
+  verification: { other: { "naver-site-verification": "b6384bb3a29150ffcba9926cf900188d578a0f9f" } },
   title: "ContextVoca",
 };
 

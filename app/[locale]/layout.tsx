@@ -25,6 +25,7 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(SITE_URL),
+    verification: { other: { "naver-site-verification": "b6384bb3a29150ffcba9926cf900188d578a0f9f" } },
     title: {
       default: t.meta.title,
       template: `%s | ${brandNames[locale]}`,
