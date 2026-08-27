@@ -111,6 +111,75 @@ const ko: Translations = {
       },
     ],
   },
+  science: {
+    title: "왜 효과적인가 — 학습과학 근거",
+    subtitle:
+      "문맥보카가 채택한 학습 방식은 각각 학습심리학 연구로 뒷받침됩니다.",
+    cards: [
+      {
+        title: "문맥 속 어휘 학습",
+        body: "단어를 예문과 문맥 속에서 접하면, 고립된 단어만 외울 때보다 뜻을 추론하고 기억에 남기는 데 도움이 된다는 연구가 있습니다.[1] 문맥의 단서가 풍부할수록 단어 의미 학습 효과가 커진다는 것도 실험으로 확인됐습니다.[2] 또한 단어를 읽기만 할 때보다 문장을 완성하거나 직접 써 볼 때 더 오래 기억된다는 결과도 있습니다.[3]",
+        productLine:
+          "문맥보카에서는 사진이나 문장을 그대로 저장하고, AI가 핵심 단어를 추출해 문맥과 함께 학습하게 합니다.",
+      },
+      {
+        title: "망각 곡선과 감쇠 모델",
+        body: "1885년 심리학자 에빙하우스가 관찰한 망각 곡선은 학습 직후 가장 빠르게, 이후 완만하게 잊혀지는 형태를 보였습니다.[4] 이 곡선의 형태는 2015년 재현 실험에서도 동일하게 확인됐습니다.[5]",
+        productLine:
+          "문맥보카에서는 마지막 정답 후 경과일에 따라 숙련도가 줄어들고, 정답을 반복할수록 반감기가 길어지는 감쇠 모델로 숙련도를 계산합니다.",
+      },
+      {
+        title: "인출 연습(퀴즈)",
+        body: "다시 읽기만 하는 것보다 스스로 떠올려 보는 인출 연습이 장기 기억에 더 효과적이라는 것이 실험으로 확인됐습니다.[6] 학습법 유효성을 검토한 리뷰들은 '자기 시험(셀프 테스트)'과 '분산 학습'을 가장 효과가 확실한 두 방법으로 꼽습니다.[7]",
+        productLine:
+          "문맥보카에서는 스마트 퀴즈의 유사 문장 비교 테스트로 정답을 직접 떠올리는 인출 연습을 하게 합니다.",
+      },
+      {
+        title: "분산·개인화 복습",
+        body: "몰아서 복습하기보다 시간 간격을 두고 나눠 복습하는 것이 장기 기억에 효과적이라는 사실은 수백 건의 연구로 반복 검증됐습니다.[8] 최적의 복습 간격은 얼마나 오래 기억하고 싶은지에 따라 달라집니다.[9] 한 중학교 외국어 수업 실험에서는 학습자별 망각 속도에 맞춰 복습을 개인화했을 때, 획일적 분산 복습보다 10.0%p, 몰아치기보다 16.5%p 높은 학기말 성취를 보였습니다 — 문맥보카 자체 실험이 아닌 해당 연구의 결과입니다.[10]",
+        productLine:
+          "문맥보카에서는 숙련도가 낮거나 오래전에 학습한 단어, 정답률이 낮은 단어를 더 자주 출제해 복습 시점을 개인화합니다.",
+      },
+      {
+        title: "그럴듯한 오답 선택지",
+        body: "오답 선택지가 정답과 의미상 가까울수록, 학습자는 왜 틀렸는지 더 깊이 생각하게 됩니다.[11] 이 과정에서 관련 지식까지 함께 강화된다는 연구 결과가 있습니다.[11]",
+        productLine:
+          "문맥보카에서는 AI가 정답과 의미가 비슷한 오답 선택지를 생성해, 헷갈리기 쉬운 지점을 정확히 짚어줍니다.",
+      },
+    ],
+    referencesTitle: "참고문헌",
+    references: [
+      "[1] Nagy, W. E., Herman, P. A., & Anderson, R. C. (1985). Learning Words From Context. Reading Research Quarterly, 20(2), 233–253.",
+      "[2] Webb, S. (2008). The Effects of Context on Incidental Vocabulary Learning. Reading in a Foreign Language, 20(2), 232–245.",
+      "[3] Hulstijn, J. H., & Laufer, B. (2001). Some Empirical Evidence for the Involvement Load Hypothesis in Vocabulary Acquisition. Language Learning, 51(3), 539–558.",
+      "[4] Ebbinghaus, H. (1885). Über das Gedächtnis. Duncker & Humblot.",
+      "[5] Murre, J. M. J., & Dros, J. (2015). Replication and Analysis of Ebbinghaus' Forgetting Curve. PLOS ONE, 10(7), e0120644. https://doi.org/10.1371/journal.pone.0120644",
+      "[6] Roediger, H. L., & Karpicke, J. D. (2006). Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention. Psychological Science, 17(3), 249–255.",
+      "[7] Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). Improving Students' Learning With Effective Learning Techniques. Psychological Science in the Public Interest, 14(1), 4–58.",
+      "[8] Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., & Rohrer, D. (2006). Distributed Practice in Verbal Recall Tasks: A Review and Quantitative Synthesis. Psychological Bulletin, 132(3), 354–380.",
+      "[9] Cepeda, N. J., Vul, E., Rohrer, D., Wixted, J. T., & Pashler, H. (2008). Spacing Effects in Learning: A Temporal Ridgeline of Optimal Retention. Psychological Science, 19(11), 1095–1102.",
+      "[10] Lindsey, R. V., Shroyer, J. D., Pashler, H., & Mozer, M. C. (2014). Improving Students' Long-Term Knowledge Retention Through Personalized Review. Psychological Science, 25(3), 639–647.",
+      "[11] Little, J. L., & Bjork, E. L. (2015). Optimizing Multiple-Choice Tests as Tools for Learning. Memory & Cognition, 43(1), 85–98.",
+    ],
+    mediaTitle: "더 알아보기",
+    media: [
+      {
+        title: "Learning How to Learn",
+        creator: "Barbara Oakley·Terrence Sejnowski (UC San Diego/McMaster, Coursera)",
+        url: "https://www.coursera.org/learn/learning-how-to-learn",
+      },
+      {
+        title: "9.00SC Introduction to Psychology — Memory",
+        creator: "John Gabrieli (MIT OpenCourseWare)",
+        url: "https://ocw.mit.edu/courses/9-00sc-introduction-to-psychology-fall-2011/",
+      },
+      {
+        title: "Desirable Difficulties",
+        creator: "Elizabeth·Robert Bjork (UCLA Bjork Learning and Forgetting Lab)",
+        url: "https://bjorklab.psych.ucla.edu/videos/",
+      },
+    ],
+  },
   pricing: {
     title: "합리적인 요금제",
     subtitle: "무료로 시작하고, 필요할 때 업그레이드하세요.",
@@ -186,7 +255,7 @@ const ko: Translations = {
   },
   cta: {
     title: "지금 바로 시작하세요",
-    subtitle: "같은 시간, 2배 효과. 문장 맥락 단어 학습.",
+    subtitle: "문장 속에서 익히고, 잊기 전에 다시 만나는 단어 학습.",
     appStore: "App Store에서 다운로드",
     googlePlay: "Google Play에서 다운로드",
   },
@@ -232,6 +301,10 @@ const ko: Translations = {
           {
             q: "태그는 어떻게 사용하나요?",
             a: "단어를 등록할 때 태그(예: 토익, 수능, 비즈니스)를 지정할 수 있습니다. 퀴즈나 복습 시 특정 태그만 선택하여 집중 학습할 수 있습니다. 무료 플랜은 커스텀 태그 3개까지, Basic 이상은 무제한으로 생성 가능합니다.",
+          },
+          {
+            q: "과학적 근거가 있나요?",
+            a: "네. 몰아서 복습하기보다 시간 간격을 두고 나눠 복습하는 것이 장기 기억에 효과적이라는 사실은 수백 건의 연구로 반복 검증됐고, 다시 읽기보다 스스로 떠올려 보는 인출 연습이 더 효과적이라는 것도 실험으로 확인됐습니다. 학습자별 망각 속도에 맞춘 개인화 복습이 획일적 복습보다 더 높은 성취를 보였다는 연구 결과도 있습니다(문맥보카 자체 실험은 아닙니다). 자세한 근거와 참고문헌은 홈페이지의 '왜 효과적인가 — 학습과학 근거' 섹션(/ko/#science)에서 확인하실 수 있습니다.",
           },
         ],
       },

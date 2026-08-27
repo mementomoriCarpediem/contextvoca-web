@@ -105,6 +105,74 @@ const zh: Translations = {
       },
     ],
   },
+  science: {
+    title: "为什么有效 — 学习科学依据",
+    subtitle: "语境词汇采用的学习方法均有学习心理学研究支持。",
+    cards: [
+      {
+        title: "语境中的词汇学习",
+        body: "研究表明，在例句和语境中接触单词，比孤立地背单词更有助于推断词义并加深记忆。[1] 实验也证实，语境线索越丰富，词义学习效果越好。[2] 此外，比起只是阅读单词，补全句子或亲自造句能让记忆保持更久。[3]",
+        productLine:
+          "语境词汇会原样保存你的照片和句子，并由AI提取核心词汇，让你在语境中学习每个单词。",
+      },
+      {
+        title: "遗忘曲线与衰减模型",
+        body: "1885年心理学家艾宾浩斯观察到的遗忘曲线显示，遗忘在学习后最初阶段最快，之后逐渐放缓。[4] 这一曲线形态在2015年的复现实验中也得到了同样的确认。[5]",
+        productLine:
+          "语境词汇采用衰减模型计算熟练度：根据最近一次答对后的天数衰减，且连续答对次数越多，半衰期越长。",
+      },
+      {
+        title: "提取练习（测验）",
+        body: "实验证实，主动回忆比单纯重读更有利于长期记忆。[6] 学习方法有效性的综述研究将“自我测验”和“分散学习”列为证据最确凿的两种方法。[7]",
+        productLine:
+          "语境词汇的智能测验通过相似句子对比测试，让你主动回忆正确答案。",
+      },
+      {
+        title: "分散与个性化复习",
+        body: "数百项研究反复证实，比起集中突击，分散安排复习时间对长期记忆更有效。[8] 最佳复习间隔取决于你希望记住多久。[9] 一项在初中外语课堂进行的整学期实验发现，按学习者各自的遗忘速度个性化安排复习后，期末成绩比统一分散复习高10.0个百分点，比突击复习高16.5个百分点——这是该研究的结果，并非语境词汇自身的实验。[10]",
+        productLine:
+          "语境词汇会更频繁地出题给熟练度低、衰减较多或正确率较低的词汇，从而实现复习时机的个性化。",
+      },
+      {
+        title: "貌似合理的干扰项",
+        body: "干扰项与正确答案在语义上越接近，学习者就越需要深入思考自己为什么答错。[11] 研究表明，这个过程还能强化相关知识。[11]",
+        productLine:
+          "语境词汇由AI生成与正确答案语义相近的干扰项，精准点出你容易混淆的地方。",
+      },
+    ],
+    referencesTitle: "参考文献",
+    references: [
+      "[1] Nagy, W. E., Herman, P. A., & Anderson, R. C. (1985). Learning Words From Context. Reading Research Quarterly, 20(2), 233–253.",
+      "[2] Webb, S. (2008). The Effects of Context on Incidental Vocabulary Learning. Reading in a Foreign Language, 20(2), 232–245.",
+      "[3] Hulstijn, J. H., & Laufer, B. (2001). Some Empirical Evidence for the Involvement Load Hypothesis in Vocabulary Acquisition. Language Learning, 51(3), 539–558.",
+      "[4] Ebbinghaus, H. (1885). Über das Gedächtnis. Duncker & Humblot.",
+      "[5] Murre, J. M. J., & Dros, J. (2015). Replication and Analysis of Ebbinghaus' Forgetting Curve. PLOS ONE, 10(7), e0120644. https://doi.org/10.1371/journal.pone.0120644",
+      "[6] Roediger, H. L., & Karpicke, J. D. (2006). Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention. Psychological Science, 17(3), 249–255.",
+      "[7] Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). Improving Students' Learning With Effective Learning Techniques. Psychological Science in the Public Interest, 14(1), 4–58.",
+      "[8] Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., & Rohrer, D. (2006). Distributed Practice in Verbal Recall Tasks: A Review and Quantitative Synthesis. Psychological Bulletin, 132(3), 354–380.",
+      "[9] Cepeda, N. J., Vul, E., Rohrer, D., Wixted, J. T., & Pashler, H. (2008). Spacing Effects in Learning: A Temporal Ridgeline of Optimal Retention. Psychological Science, 19(11), 1095–1102.",
+      "[10] Lindsey, R. V., Shroyer, J. D., Pashler, H., & Mozer, M. C. (2014). Improving Students' Long-Term Knowledge Retention Through Personalized Review. Psychological Science, 25(3), 639–647.",
+      "[11] Little, J. L., & Bjork, E. L. (2015). Optimizing Multiple-Choice Tests as Tools for Learning. Memory & Cognition, 43(1), 85–98.",
+    ],
+    mediaTitle: "延伸阅读",
+    media: [
+      {
+        title: "Learning How to Learn",
+        creator: "Barbara Oakley·Terrence Sejnowski (UC San Diego/McMaster, Coursera)",
+        url: "https://www.coursera.org/learn/learning-how-to-learn",
+      },
+      {
+        title: "9.00SC Introduction to Psychology — Memory",
+        creator: "John Gabrieli (MIT OpenCourseWare)",
+        url: "https://ocw.mit.edu/courses/9-00sc-introduction-to-psychology-fall-2011/",
+      },
+      {
+        title: "Desirable Difficulties",
+        creator: "Elizabeth·Robert Bjork (UCLA Bjork Learning and Forgetting Lab)",
+        url: "https://bjorklab.psych.ucla.edu/videos/",
+      },
+    ],
+  },
   pricing: {
     title: "合理的价格",
     subtitle: "免费开始，需要时再升级。",
@@ -165,7 +233,7 @@ const zh: Translations = {
   },
   cta: {
     title: "立即开始",
-    subtitle: "同样的时间，双倍效果。基于句子语境的词汇学习。",
+    subtitle: "在语境中学习，在遗忘之前再次复习。",
     appStore: "从App Store下载",
     googlePlay: "从Google Play下载",
   },
@@ -210,6 +278,10 @@ const zh: Translations = {
           {
             q: "如何使用标签？",
             a: "添加词汇时可以指定标签（如托业、高考、商务）。测验或复习时可以选择特定标签进行集中学习。免费方案最多可创建3个自定义标签，Basic及以上方案无限制。",
+          },
+          {
+            q: "有科学依据吗？",
+            a: "有的。数百项研究反复证实，分散复习比集中突击更有利于长期记忆，主动回忆也比单纯重读更有效。也有研究表明，按学习者各自的遗忘速度进行个性化复习，效果优于统一的复习安排（这并非语境词汇自身的实验）。详细依据和参考文献请见首页的“为什么有效 — 学习科学依据”板块（/zh/#science）。",
           },
         ],
       },

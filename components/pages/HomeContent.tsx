@@ -230,6 +230,71 @@ export default function HomeContent({ locale }: { locale: Locale }) {
           </div>
         </section>
 
+        {/* Science */}
+        <section id="science" className="bg-gray-50 py-20">
+          <div className="section-container">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+                {t.science.title}
+              </h2>
+              <p className="mt-4 text-lg text-gray-500">{t.science.subtitle}</p>
+            </div>
+            <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {t.science.cards.map((card, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm"
+                >
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                    {card.body}
+                  </p>
+                  <p className="mt-4 text-sm font-medium text-primary-600">
+                    {card.productLine}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* References */}
+            <div className="mx-auto mt-16 max-w-3xl">
+              <h3 className="text-sm font-semibold text-gray-900">
+                {t.science.referencesTitle}
+              </h3>
+              <ol className="mt-4 space-y-2">
+                {t.science.references.map((reference) => (
+                  <li key={reference} className="text-xs leading-relaxed text-gray-500">
+                    {reference}
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            {/* Audiovisual resources */}
+            <div className="mx-auto mt-12 max-w-3xl">
+              <h3 className="text-sm font-semibold text-gray-900">
+                {t.science.mediaTitle}
+              </h3>
+              <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {t.science.media.map((item) => (
+                  <a
+                    key={item.url}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl border border-gray-100 bg-white p-4 text-sm shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                  >
+                    <p className="font-medium text-gray-900">{item.title}</p>
+                    <p className="mt-1 text-xs text-gray-500">{item.creator}</p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Pricing */}
         <section id="pricing" className="bg-white py-20">
           <div className="section-container">
