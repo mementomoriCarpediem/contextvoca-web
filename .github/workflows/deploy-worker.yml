@@ -1,0 +1,27 @@
+# contextvoca.app 정본 배포: main push → 빌드 → wrangler deploy (Worker contextvoca-web)
+# 로컬에서 `wrangler deploy`를 병행하지 말 것 — 배포가 겹치면 엣지 매니페스트가 갈린다.
+name: Deploy to Cloudflare Worker
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: worker-deploy
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+      - run: yarn install --immutable
+      - run: node scripts/check-i18n-keys.mjs
+      - run: yarn build
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
