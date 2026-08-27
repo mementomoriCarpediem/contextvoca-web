@@ -2,19 +2,18 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useTranslation } from "@/lib/i18n/LanguageContext";
-import LanguageSelector, {
-  MobileLanguageSelector,
-} from "./LanguageSelector";
+import { getDictionary, Locale } from "@/lib/i18n";
+import LanguageSelector, { MobileLanguageSelector } from "./LanguageSelector";
 
-export default function Header() {
+export default function Header({ locale }: { locale: Locale }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useTranslation();
+  const t = getDictionary(locale);
+  const base = `/${locale}`;
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <nav className="section-container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href={`${base}/`} className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600 text-sm font-bold text-white">
             C
           </div>
@@ -24,25 +23,25 @@ export default function Header() {
         {/* Desktop nav */}
         <div className="hidden items-center gap-6 md:flex">
           <Link
-            href="/#features"
+            href={`${base}/#features`}
             className="text-sm font-medium text-gray-600 transition-colors hover:text-primary-600"
           >
             {t.header.features}
           </Link>
           <Link
-            href="/#pricing"
+            href={`${base}/#pricing`}
             className="text-sm font-medium text-gray-600 transition-colors hover:text-primary-600"
           >
             {t.header.pricing}
           </Link>
           <Link
-            href="/support"
+            href={`${base}/support`}
             className="text-sm font-medium text-gray-600 transition-colors hover:text-primary-600"
           >
             {t.header.support}
           </Link>
-          <LanguageSelector />
-          <a href="#download" className="btn-primary !py-2 !text-sm">
+          <LanguageSelector locale={locale} />
+          <a href={`${base}/#download`} className="btn-primary !py-2 !text-sm">
             {t.header.download}
           </a>
         </div>
@@ -83,31 +82,31 @@ export default function Header() {
         <div className="border-t border-gray-100 bg-white px-4 pb-4 md:hidden">
           <div className="flex flex-col gap-3 pt-3">
             <Link
-              href="/#features"
+              href={`${base}/#features`}
               className="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.header.features}
             </Link>
             <Link
-              href="/#pricing"
+              href={`${base}/#pricing`}
               className="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.header.pricing}
             </Link>
             <Link
-              href="/support"
+              href={`${base}/support`}
               className="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.header.support}
             </Link>
             <div className="px-3 py-2">
-              <MobileLanguageSelector />
+              <MobileLanguageSelector locale={locale} />
             </div>
             <a
-              href="#download"
+              href={`${base}/#download`}
               className="btn-primary !text-sm"
               onClick={() => setMobileMenuOpen(false)}
             >

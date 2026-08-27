@@ -1,0 +1,13 @@
+# ContextVoca
+
+> AI-powered vocabulary app that turns photos and sentences into a personal English vocabulary list, then reinforces retention with adaptive quizzes.
+
+Platforms: iOS, Android
+Plans: Free (up to 100 words), Basic (up to 1,000 words), Pro (unlimited words) — monthly or yearly subscription; Lifetime (unlimited words, one-time purchase). Exact pricing is shown in the app's subscription screen.
+Support: support@contextvoca.app
+
+## Localized pages
+- Korean: https://contextvoca.app/ko/
+- English: https://contextvoca.app/en/
+- Japanese: https://contextvoca.app/ja/
+- Chinese (Simplified): https://contextvoca.app/zh/

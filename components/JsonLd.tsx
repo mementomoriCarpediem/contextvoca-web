@@ -1,15 +1,25 @@
-"use client";
+/**
+ * Renders one or more JSON-LD `<script>` tags. This is a Server Component
+ * (no "use client") so the structured data is present in the static HTML at
+ * build time — crawlers that don't execute JavaScript still see it.
+ */
+export default function JsonLd({
+  data,
+}: {
+  data: Record<string, unknown> | Record<string, unknown>[];
+}) {
+  const items = Array.isArray(data) ? data : [data];
 
-import { useEffect, useRef } from "react";
-
-export default function JsonLd({ data }: { data: Record<string, unknown> }) {
-  const ref = useRef<HTMLScriptElement>(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.textContent = JSON.stringify(data);
-    }
-  }, [data]);
-
-  return <script ref={ref} type="application/ld+json" />;
+  return (
+    <>
+      {items.map((item, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+        />
+      ))}
+    </>
+  );
 }

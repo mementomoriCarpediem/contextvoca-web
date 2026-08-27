@@ -1,29 +1,42 @@
-"use client";
-
+import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import PageHead from "@/components/PageHead";
-import { useTranslation } from "@/lib/i18n/LanguageContext";
+import { getDictionary, resolveLocale } from "@/lib/i18n";
+import { buildAlternates } from "@/lib/seo/site";
 
-export default function TermsPage() {
-  const { t } = useTranslation();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = resolveLocale((await params).locale);
+  const t = getDictionary(locale);
+
+  return {
+    title: t.terms.metaTitle,
+    description: t.terms.metaDescription,
+    alternates: buildAlternates(locale, "/terms"),
+  };
+}
+
+export default async function TermsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = resolveLocale((await params).locale);
+  const t = getDictionary(locale);
 
   return (
     <>
-      <PageHead
-        title={t.terms.metaTitle}
-        description={t.terms.metaDescription}
-      />
-      <Header />
+      <Header locale={locale} />
       <main className="pt-24 pb-20">
         <div className="section-container">
           <div className="mx-auto max-w-3xl">
             <h1 className="text-3xl font-bold text-gray-900">
               {t.terms.title}
             </h1>
-            <p className="mt-2 text-sm text-gray-500">
-              {t.terms.lastUpdated}
-            </p>
+            <p className="mt-2 text-sm text-gray-500">{t.terms.lastUpdated}</p>
 
             <div className="mt-10 space-y-8 text-sm leading-relaxed text-gray-700">
               {t.terms.sections.map((section) => (
@@ -47,7 +60,7 @@ export default function TermsPage() {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

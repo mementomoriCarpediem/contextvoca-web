@@ -2,9 +2,9 @@ import { Translations } from "./types";
 
 const ja: Translations = {
   meta: {
-    title: "ContextVoca - 文章で学ぶスマート単語帳",
+    title: "文脈単語帳 - AIで文脈から学ぶ英単語帳",
     description:
-      "単語だけ暗記しないでください。文章で理解しましょう。AIが文章から重要な単語を抽出し、類似文章比較テストで本当の実力を身につけます。",
+      "単語だけ暗記しないでください。文章で理解しましょう。AIが写真や文章から重要な単語を抽出し、スマートクイズで完璧に定着させます。",
     keywords: [
       "英単語帳",
       "TOEIC単語",
@@ -12,10 +12,11 @@ const ja: Translations = {
       "単語暗記",
       "文章学習",
       "AI単語帳",
+      "文脈単語帳",
       "ContextVoca",
     ],
     ogDescription:
-      "AIが文章から重要な単語を抽出し、類似文章比較テストで本当の実力を身につけます。",
+      "AIが写真や文章から重要な単語を抽出し、スマートクイズで完璧に定着させます。",
   },
   header: {
     features: "機能",
@@ -24,7 +25,7 @@ const ja: Translations = {
     download: "ダウンロード",
   },
   footer: {
-    tagline: "文章で学ぶスマート単語帳",
+    tagline: "AIで文脈から学ぶ英単語帳",
     service: "サービス",
     featureIntro: "機能紹介",
     pricing: "料金プラン",
@@ -40,7 +41,7 @@ const ja: Translations = {
     titleLine1: "単語だけ暗記しないで。",
     titleLine2: "文章で理解しよう。",
     description:
-      "AIが文章から重要な単語を抽出し、類似文章比較テストで\n本当の実力を身につけます。",
+      "AIが写真や文章から重要な単語を抽出し、スマートクイズで\n本当の実力を身につけます。",
     appStore: "App Store",
     googlePlay: "Google Play",
   },
@@ -57,8 +58,7 @@ const ja: Translations = {
       {
         number: "2",
         title: "AIが重要単語を抽出",
-        description:
-          "AIが文章から学習に必要な重要単語を自動的に見つけます。",
+        description: "AIが文章から学習に必要な重要単語を自動的に見つけます。",
       },
       {
         number: "3",
@@ -76,8 +76,7 @@ const ja: Translations = {
   },
   features: {
     title: "強力な機能",
-    subtitle:
-      "従来の単語帳とは違います。AI搭載の文脈学習のすべて。",
+    subtitle: "従来の単語帳とは違います。AI搭載の文脈学習のすべて。",
     items: [
       {
         title: "AI重要単語抽出",
@@ -116,7 +115,6 @@ const ja: Translations = {
     subtitle: "無料で始めて、必要な時にアップグレード。",
     popular: "人気",
     startButton: "始める",
-    upTo: "",
     monthly: "月払い",
     yearly: "年払い",
     yearlyDiscount: "お得",
@@ -124,11 +122,8 @@ const ja: Translations = {
     plans: [
       {
         name: "Free",
-        monthlyPrice: "無料",
-        yearlyPrice: "無料",
-        monthlyPeriod: "",
-        yearlyPeriod: "",
         wordLimit: "100単語",
+        priceNote: "完全無料",
         description: "基本学習機能",
         features: [
           "100単語保存",
@@ -140,11 +135,8 @@ const ja: Translations = {
       },
       {
         name: "Basic",
-        monthlyPrice: "$5",
-        yearlyPrice: "$35",
-        monthlyPeriod: "/月",
-        yearlyPeriod: "/年",
         wordLimit: "1,000単語",
+        priceNote: "価格はアプリ内のサブスクリプション画面でご確認ください",
         description: "より多くの単語を保存",
         features: [
           "1,000単語保存",
@@ -156,11 +148,8 @@ const ja: Translations = {
       },
       {
         name: "Pro",
-        monthlyPrice: "$10",
-        yearlyPrice: "$70",
-        monthlyPeriod: "/月",
-        yearlyPeriod: "/年",
         wordLimit: "無制限",
+        priceNote: "価格はアプリ内のサブスクリプション画面でご確認ください",
         description: "すべての機能を利用",
         features: [
           "無制限単語保存",
@@ -171,13 +160,10 @@ const ja: Translations = {
       },
       {
         name: "Lifetime",
-        monthlyPrice: "$99",
-        yearlyPrice: "$99",
-        monthlyPeriod: "",
-        yearlyPeriod: "",
-        isLifetime: true,
         wordLimit: "無制限",
-        description: "永久無制限利用",
+        priceNote: "価格はアプリ内の購入画面でご確認ください",
+        isLifetime: true,
+        description: "1回払いで永久に無制限利用",
         features: [
           "無制限単語保存",
           "すべてのPro機能",
@@ -194,20 +180,23 @@ const ja: Translations = {
     googlePlay: "Google Playからダウンロード",
   },
   support: {
+    metaTitle: "サポート・よくある質問",
+    metaDescription:
+      "文脈単語帳の使い方、機能、サブスクリプション、アカウント管理についてのよくある質問と、お問い合わせ方法をご案内します。",
     title: "お困りですか？",
     subtitle:
       "よくある質問をご確認いただくか、以下の連絡先までお問い合わせください。",
     contactTitle: "直接お問い合わせ",
     contactDescription:
       "以下の方法でお問い合わせいただければ、できるだけ早くご返答いたします。",
-    contactButton: "メールでのお問い合わせ: resonance.zorba@gmail.com",
+    contactButton: "メールでのお問い合わせ: support@contextvoca.app",
     faqs: [
       {
         category: "はじめに",
         questions: [
           {
-            q: "ContextVocaはどんなアプリですか？",
-            a: "ContextVocaは、文章の中で単語を学ぶAIベースの単語帳アプリです。テキストを入力するとAIが重要単語を抽出し、類似文章比較テストで深い学習を提供します。",
+            q: "文脈単語帳（ContextVoca）はどんなアプリですか？",
+            a: "文脈単語帳は、文章の中で単語を学ぶAIベースの単語帳アプリです。テキストを入力するとAIが重要単語を抽出し、類似文章比較テストで深い学習を提供します。",
           },
           {
             q: "どのデバイスで使えますか？",
@@ -241,7 +230,7 @@ const ja: Translations = {
         questions: [
           {
             q: "無料でも使えますか？",
-            a: "はい、無料プランで100単語まで保存・学習できます。より多くの単語を保存するには、Basic（1,000単語、$5/月）またはPro（無制限、$10/月）プランをご購読ください。Lifetime（$99、1回払い）で永久無制限利用も可能です。",
+            a: "はい、無料プランで100単語まで保存・学習できます。より多くの単語を保存するには、Basic（1,000単語）またはPro（無制限）プランをご購読ください。正確な価格はアプリ内のサブスクリプション画面でご確認いただけます。Lifetimeプランなら1回払いで永久無制限に利用できます。",
           },
           {
             q: "プランごとの違いは何ですか？",
@@ -262,7 +251,7 @@ const ja: Translations = {
         questions: [
           {
             q: "アカウントを削除したいです。",
-            a: "アプリ設定 > アカウント管理からアカウント削除を申請できます。アカウント削除時、すべての学習データが永久に削除されます。またはresonance.zorba@gmail.comにメールで削除を申請してください。",
+            a: "アプリ設定 > アカウント管理からアカウント削除を申請できます。アカウント削除時、すべての学習データが永久に削除されます。またはsupport@contextvoca.appにメールで削除を申請してください。",
           },
           {
             q: "他のデバイスでも使えますか？",
@@ -273,15 +262,15 @@ const ja: Translations = {
     ],
   },
   privacy: {
-    metaTitle: "プライバシーポリシー - ContextVoca",
-    metaDescription: "ContextVocaのプライバシーポリシーです。",
+    metaTitle: "プライバシーポリシー",
+    metaDescription: "文脈単語帳（ContextVoca）のプライバシーポリシーです。",
     title: "プライバシーポリシー",
     lastUpdated: "最終更新：2026年2月7日",
     sections: [
       {
         title: "1. 概要",
         content:
-          'ContextVoca（以下「サービス」）はユーザーの個人情報を大切にし、関連法令に従って個人情報を保護しています。本プライバシーポリシーは、サービスが収集する情報とその利用目的について案内します。',
+          '文脈単語帳（ContextVoca、以下「サービス」）はユーザーの個人情報を大切にし、関連法令に従って個人情報を保護しています。本プライバシーポリシーは、サービスが収集する情報とその利用目的について案内します。',
       },
       {
         title: "2. 収集する個人情報",
@@ -348,26 +337,25 @@ const ja: Translations = {
         items: [
           "商号: 공명（Gongmyeong）",
           "事業者登録番号: 520-22-02348",
-          "メール: resonance.zorba@gmail.com",
+          "メール: support@contextvoca.app",
         ],
       },
       {
         title: "10. お問い合わせ",
-        content:
-          "個人情報に関するお問い合わせは resonance.zorba@gmail.com までご連絡ください。",
+        content: "個人情報に関するお問い合わせは support@contextvoca.app までご連絡ください。",
       },
     ],
   },
   terms: {
-    metaTitle: "利用規約 - ContextVoca",
-    metaDescription: "ContextVocaサービス利用規約です。",
+    metaTitle: "利用規約",
+    metaDescription: "文脈単語帳（ContextVoca）サービス利用規約です。",
     title: "利用規約",
     lastUpdated: "最終更新：2026年2月7日",
     sections: [
       {
         title: "第1条（目的）",
         content:
-          '本規約は、ContextVoca（以下「サービス」）の利用に関する基本的な事項を規定することを目的とします。',
+          '本規約は、文脈単語帳（ContextVoca、以下「サービス」）の利用に関する基本的な事項を規定することを目的とします。',
       },
       {
         title: "第2条（サービスの内容）",
@@ -393,8 +381,8 @@ const ja: Translations = {
         title: "第4条（有料サービス）",
         content: "",
         items: [
-          "サービスは無料プランと有料サブスクリプションプラン（Basic、Pro）を提供します。",
-          "有料サブスクリプションはApple App StoreまたはGoogle Playを通じて決済されます。",
+          "サービスは無料プラン、有料サブスクリプションプラン（Basic、Pro）、および1回払いのLifetimeプランを提供します。",
+          "有料サブスクリプションおよびLifetimeの購入は、Apple App StoreまたはGoogle Playを通じて決済されます。価格は各ストアのアプリ内画面に表示されます。",
           "サブスクリプションは解約しない限り自動更新されます。更新日の少なくとも24時間前に解約する必要があります。",
           "返金はAppleまたはGoogleの返金ポリシーに従います。",
         ],
@@ -445,13 +433,12 @@ const ja: Translations = {
         items: [
           "商号: 공명（Gongmyeong）",
           "事業者登録番号: 520-22-02348",
-          "メール: resonance.zorba@gmail.com",
+          "メール: support@contextvoca.app",
         ],
       },
       {
         title: "お問い合わせ",
-        content:
-          "利用規約に関するお問い合わせは resonance.zorba@gmail.com までご連絡ください。",
+        content: "利用規約に関するお問い合わせは support@contextvoca.app までご連絡ください。",
       },
     ],
   },

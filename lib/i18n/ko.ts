@@ -2,9 +2,9 @@ import { Translations } from "./types";
 
 const ko: Translations = {
   meta: {
-    title: "ContextVoca - 문장으로 배우는 스마트 단어장",
+    title: "문맥보카 - 문맥으로 배우는 AI 영단어장",
     description:
-      "단어만 외우지 마세요. 문장으로 이해하세요. AI가 문장에서 핵심 단어를 추출하고, 유사 문장 비교 테스트로 진짜 실력을 만들어 드립니다.",
+      "단어만 외우지 마세요. 문장으로 이해하세요. AI가 사진과 문장에서 핵심 단어를 추출하고, 스마트 퀴즈로 완벽하게 암기시켜 드립니다.",
     keywords: [
       "영어단어장",
       "토익단어",
@@ -12,10 +12,11 @@ const ko: Translations = {
       "영단어암기",
       "문장학습",
       "AI단어장",
+      "문맥보카",
       "ContextVoca",
     ],
     ogDescription:
-      "AI가 문장에서 핵심 단어를 추출하고, 유사 문장 비교 테스트로 진짜 실력을 만들어 드립니다.",
+      "AI가 사진과 문장에서 핵심 단어를 추출하고, 스마트 퀴즈로 완벽하게 암기시켜 드립니다.",
   },
   header: {
     features: "기능",
@@ -24,7 +25,7 @@ const ko: Translations = {
     download: "다운로드",
   },
   footer: {
-    tagline: "문장으로 배우는 스마트 단어장",
+    tagline: "문맥으로 배우는 AI 영단어장",
     service: "서비스",
     featureIntro: "기능 소개",
     pricing: "요금제",
@@ -40,7 +41,7 @@ const ko: Translations = {
     titleLine1: "단어만 외우지 마세요.",
     titleLine2: "문장으로 이해하세요.",
     description:
-      "AI가 문장에서 핵심 단어를 추출하고, 유사 문장 비교 테스트로\n진짜 실력을 만들어 드립니다.",
+      "AI가 사진과 문장에서 핵심 단어를 추출하고, 스마트 퀴즈로\n진짜 실력을 만들어 드립니다.",
     appStore: "App Store",
     googlePlay: "Google Play",
   },
@@ -115,7 +116,6 @@ const ko: Translations = {
     subtitle: "무료로 시작하고, 필요할 때 업그레이드하세요.",
     popular: "인기",
     startButton: "시작하기",
-    upTo: "",
     monthly: "월간",
     yearly: "연간",
     yearlyDiscount: "할인",
@@ -123,11 +123,8 @@ const ko: Translations = {
     plans: [
       {
         name: "Free",
-        monthlyPrice: "무료",
-        yearlyPrice: "무료",
-        monthlyPeriod: "",
-        yearlyPeriod: "",
         wordLimit: "100단어",
+        priceNote: "완전 무료",
         description: "기본 학습 기능",
         features: [
           "100단어 저장",
@@ -139,11 +136,8 @@ const ko: Translations = {
       },
       {
         name: "Basic",
-        monthlyPrice: "$5",
-        yearlyPrice: "$35",
-        monthlyPeriod: "/월",
-        yearlyPeriod: "/년",
         wordLimit: "1,000단어",
+        priceNote: "가격은 앱 내 구독 화면에서 확인하세요",
         description: "더 많은 단어 저장",
         features: [
           "1,000단어 저장",
@@ -155,11 +149,8 @@ const ko: Translations = {
       },
       {
         name: "Pro",
-        monthlyPrice: "$10",
-        yearlyPrice: "$70",
-        monthlyPeriod: "/월",
-        yearlyPeriod: "/년",
         wordLimit: "무제한",
+        priceNote: "가격은 앱 내 구독 화면에서 확인하세요",
         description: "모든 기능 이용",
         features: [
           "무제한 단어 저장",
@@ -170,13 +161,10 @@ const ko: Translations = {
       },
       {
         name: "Lifetime",
-        monthlyPrice: "$99",
-        yearlyPrice: "$99",
-        monthlyPeriod: "",
-        yearlyPeriod: "",
-        isLifetime: true,
         wordLimit: "무제한",
-        description: "평생 무제한 이용",
+        priceNote: "가격은 앱 내 구매 화면에서 확인하세요",
+        isLifetime: true,
+        description: "1회 결제로 평생 무제한 이용",
         features: [
           "무제한 단어 저장",
           "모든 Pro 기능",
@@ -193,19 +181,22 @@ const ko: Translations = {
     googlePlay: "Google Play에서 다운로드",
   },
   support: {
+    metaTitle: "고객지원 및 자주 묻는 질문",
+    metaDescription:
+      "문맥보카 이용 중 궁금한 점을 확인하세요. 시작하기, 기능 사용법, 구독, 계정 관리에 대한 FAQ와 문의 방법을 안내합니다.",
     title: "도움이 필요하신가요?",
     subtitle: "자주 묻는 질문을 확인하시거나, 아래 연락처로 문의해 주세요.",
     contactTitle: "직접 문의하기",
     contactDescription:
       "아래 방법으로 문의해 주시면 빠른 시일 내에 답변 드리겠습니다.",
-    contactButton: "이메일 문의: resonance.zorba@gmail.com",
+    contactButton: "이메일 문의: support@contextvoca.app",
     faqs: [
       {
         category: "시작하기",
         questions: [
           {
-            q: "ContextVoca는 어떤 앱인가요?",
-            a: "ContextVoca는 문장 속에서 단어를 학습하는 AI 기반 단어장 앱입니다. 텍스트를 입력하면 AI가 핵심 단어를 추출하고, 유사 문장 비교 테스트로 깊이 있는 학습을 제공합니다.",
+            q: "문맥보카는 어떤 앱인가요?",
+            a: "문맥보카(ContextVoca)는 문장 속에서 단어를 학습하는 AI 기반 단어장 앱입니다. 텍스트를 입력하면 AI가 핵심 단어를 추출하고, 유사 문장 비교 테스트로 깊이 있는 학습을 제공합니다.",
           },
           {
             q: "어떤 기기에서 사용할 수 있나요?",
@@ -239,7 +230,7 @@ const ko: Translations = {
         questions: [
           {
             q: "무료로도 사용할 수 있나요?",
-            a: "네, 무료 플랜으로 100단어까지 저장하고 학습할 수 있습니다. 더 많은 단어를 저장하려면 Basic(1,000단어, $5/월) 또는 Pro(무제한, $10/월) 플랜을 구독하세요. Lifetime($99, 1회 결제)으로 평생 무제한 이용도 가능합니다.",
+            a: "네, 무료 플랜으로 100단어까지 저장하고 학습할 수 있습니다. 더 많은 단어를 저장하려면 Basic(1,000단어) 또는 Pro(무제한) 플랜을 구독하세요. 정확한 가격은 앱 내 구독 화면에서 확인할 수 있습니다. Lifetime 플랜은 1회 결제로 평생 무제한 이용이 가능합니다.",
           },
           {
             q: "플랜별 차이가 뭔가요?",
@@ -260,7 +251,7 @@ const ko: Translations = {
         questions: [
           {
             q: "계정을 삭제하고 싶어요.",
-            a: "앱 설정 > 계정 관리에서 계정 삭제를 요청할 수 있습니다. 계정 삭제 시 모든 학습 데이터가 영구적으로 삭제됩니다. 또는 resonance.zorba@gmail.com으로 삭제를 요청해 주세요.",
+            a: "앱 설정 > 계정 관리에서 계정 삭제를 요청할 수 있습니다. 계정 삭제 시 모든 학습 데이터가 영구적으로 삭제됩니다. 또는 support@contextvoca.app으로 삭제를 요청해 주세요.",
           },
           {
             q: "다른 기기에서도 사용할 수 있나요?",
@@ -271,15 +262,15 @@ const ko: Translations = {
     ],
   },
   privacy: {
-    metaTitle: "개인정보처리방침 - ContextVoca",
-    metaDescription: "ContextVoca의 개인정보처리방침입니다.",
+    metaTitle: "개인정보처리방침",
+    metaDescription: "문맥보카(ContextVoca)의 개인정보처리방침입니다.",
     title: "개인정보처리방침",
     lastUpdated: "최종 업데이트: 2026년 2월 7일",
     sections: [
       {
         title: "1. 개요",
         content:
-          'ContextVoca(이하 "서비스")는 사용자의 개인정보를 소중히 여기며, 관련 법률에 따라 개인정보를 보호하고 있습니다. 본 개인정보처리방침은 서비스가 수집하는 정보와 그 이용 목적에 대해 안내합니다.',
+          '문맥보카(ContextVoca, 이하 "서비스")는 사용자의 개인정보를 소중히 여기며, 관련 법률에 따라 개인정보를 보호하고 있습니다. 본 개인정보처리방침은 서비스가 수집하는 정보와 그 이용 목적에 대해 안내합니다.',
       },
       {
         title: "2. 수집하는 개인정보",
@@ -346,26 +337,25 @@ const ko: Translations = {
         items: [
           "상호: 공명",
           "사업자등록번호: 520-22-02348",
-          "이메일: resonance.zorba@gmail.com",
+          "이메일: support@contextvoca.app",
         ],
       },
       {
         title: "10. 문의",
-        content:
-          "개인정보 관련 문의는 resonance.zorba@gmail.com으로 연락해 주세요.",
+        content: "개인정보 관련 문의는 support@contextvoca.app으로 연락해 주세요.",
       },
     ],
   },
   terms: {
-    metaTitle: "이용약관 - ContextVoca",
-    metaDescription: "ContextVoca 서비스 이용약관입니다.",
+    metaTitle: "이용약관",
+    metaDescription: "문맥보카(ContextVoca) 서비스 이용약관입니다.",
     title: "이용약관",
     lastUpdated: "최종 업데이트: 2026년 2월 7일",
     sections: [
       {
         title: "제1조 (목적)",
         content:
-          '본 약관은 ContextVoca(이하 "서비스")의 이용에 관한 기본적인 사항을 규정함을 목적으로 합니다.',
+          '본 약관은 문맥보카(ContextVoca, 이하 "서비스")의 이용에 관한 기본적인 사항을 규정함을 목적으로 합니다.',
       },
       {
         title: "제2조 (서비스의 내용)",
@@ -391,8 +381,8 @@ const ko: Translations = {
         title: "제4조 (유료 서비스)",
         content: "",
         items: [
-          "서비스는 무료 플랜과 유료 구독 플랜(Basic, Pro)을 제공합니다.",
-          "유료 구독은 Apple App Store 또는 Google Play를 통해 결제됩니다.",
+          "서비스는 무료 플랜과 유료 구독 플랜(Basic, Pro), 그리고 1회 결제형 Lifetime 플랜을 제공합니다.",
+          "유료 구독 및 Lifetime 구매는 Apple App Store 또는 Google Play를 통해 결제됩니다. 가격은 각 스토어의 앱 내 화면에 표시됩니다.",
           "구독은 해지하지 않는 한 자동으로 갱신됩니다. 갱신일 최소 24시간 전에 해지해야 다음 결제가 청구되지 않습니다.",
           "환불은 Apple 또는 Google의 환불 정책에 따릅니다.",
         ],
@@ -443,13 +433,12 @@ const ko: Translations = {
         items: [
           "상호: 공명",
           "사업자등록번호: 520-22-02348",
-          "이메일: resonance.zorba@gmail.com",
+          "이메일: support@contextvoca.app",
         ],
       },
       {
         title: "문의",
-        content:
-          "이용약관 관련 문의는 resonance.zorba@gmail.com으로 연락해 주세요.",
+        content: "이용약관 관련 문의는 support@contextvoca.app으로 연락해 주세요.",
       },
     ],
   },

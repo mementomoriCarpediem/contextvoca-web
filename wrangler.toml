@@ -1,0 +1,15 @@
+# contextvoca.app 정적 사이트 — Cloudflare Worker(정적 에셋) 서빙.
+# 배포 정본: main push → CI(wrangler deploy). 로컬 wrangler deploy와 CI를 함께 쓰지 말 것
+# (reflexarcade 2026-07-29 사고: 두 배포가 겹치면 엣지 매니페스트가 갈려 200/404가 오간다).
+name = "contextvoca-web"
+compatibility_date = "2026-08-01"
+
+[assets]
+directory = "./out"
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"
+
+routes = [
+  { pattern = "contextvoca.app", custom_domain = true },
+  { pattern = "www.contextvoca.app", custom_domain = true },
+]
