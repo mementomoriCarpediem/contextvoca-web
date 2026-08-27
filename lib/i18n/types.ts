@@ -32,6 +32,10 @@ export interface Translations {
     description: string;
     appStore: string;
     googlePlay: string;
+    /** Alt text for the hero device mockup screenshot. */
+    imageAlt: string;
+    /** Alt text for the mascot illustration next to the hero mockup. */
+    mascotAlt: string;
   };
   howItWorks: {
     title: string;
@@ -49,6 +53,10 @@ export interface Translations {
       title: string;
       description: string;
     }>;
+    /** Alt text for the four feature screenshots shown in the zigzag layout, in
+     * display order (AI keyword extraction, similar-sentence quiz, adaptive
+     * difficulty, tag-based organization). */
+    screenshotAlts: string[];
   };
   science: {
     title: string;
@@ -69,6 +77,22 @@ export interface Translations {
       creator: string;
       url: string;
     }>;
+    /** Labels for the forgetting-curve chart (retention = e^(-days/halfLife)). */
+    forgettingCurve: {
+      xAxisLabel: string;
+      yAxisLabel: string;
+      /** One label per half-life curve, in order [7, 14, 30, 90] days. */
+      legend: string[];
+    };
+    /** Labels for the cramming-vs-spaced-review timeline illustration. */
+    spacedReview: {
+      crammingLabel: string;
+      spacedLabel: string;
+    };
+    /** Alt text for the small mascot illustration placed among the science cards. */
+    mascotAlt: string;
+    /** Label for the collapsed <details> toggle that reveals the reference list. */
+    referencesToggle: string;
   };
   pricing: {
     title: string;

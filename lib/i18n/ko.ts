@@ -44,6 +44,8 @@ const ko: Translations = {
       "AI가 사진과 문장에서 핵심 단어를 추출하고, 스마트 퀴즈로\n진짜 실력을 만들어 드립니다.",
     appStore: "App Store",
     googlePlay: "Google Play",
+    imageAlt: "문맥보카 앱 홈 화면 스크린샷",
+    mascotAlt: "문맥보카 마스코트 문어 캐릭터",
   },
   howItWorks: {
     title: "이렇게 학습하세요",
@@ -109,6 +111,12 @@ const ko: Translations = {
         description:
           "토익, 수능, 비즈니스 등 태그로 단어를 분류하세요. 원하는 카테고리만 골라서 집중 학습할 수 있습니다.",
       },
+    ],
+    screenshotAlts: [
+      "문장을 입력해 핵심 단어를 추출하는 화면",
+      "유사 문장과 비교하며 정답을 고르는 퀴즈 화면",
+      "정답률에 맞춰 난이도와 출제 방식을 설정하는 화면",
+      "태그로 분류된 단어장 목록 화면",
     ],
   },
   science: {
@@ -179,6 +187,22 @@ const ko: Translations = {
         url: "https://bjorklab.psych.ucla.edu/videos/",
       },
     ],
+    forgettingCurve: {
+      xAxisLabel: "경과일",
+      yAxisLabel: "기억 유지율",
+      legend: [
+        "1회 정답 → 7일",
+        "2회 연속 정답 → 14일",
+        "3회 연속 정답 → 30일",
+        "4회 연속 정답 → 90일",
+      ],
+    },
+    spacedReview: {
+      crammingLabel: "몰아치기",
+      spacedLabel: "분산 복습",
+    },
+    mascotAlt: "문맥보카 마스코트",
+    referencesToggle: "참고문헌 보기",
   },
   pricing: {
     title: "합리적인 요금제",

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <radialGradient id="posterBg" cx="0.3" cy="0.25" r="1.1">
+      <stop offset="0" stop-color="#F6F3FF"/>
+      <stop offset="1" stop-color="#DFD6FA"/>
+    </radialGradient>
+    <linearGradient id="posterBody" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#6A5BE0"/>
+      <stop offset="1" stop-color="#372B96"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#posterBg)"/>
+
+  <!-- simplified mascot, bottom-right -->
+  <g transform="translate(980 380) scale(0.85)" opacity="0.9">
+    <ellipse cx="0" cy="230" rx="150" ry="22" fill="rgba(76,63,184,0.14)"/>
+    <path d="M-130 20 C-160 110 -185 165 -155 195 C-135 215 -105 205 -113 182" stroke="url(#posterBody)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.82"/>
+    <path d="M130 20 C160 110 185 165 155 195 C135 215 105 205 113 182" stroke="url(#posterBody)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.82"/>
+    <path d="M-95 10 C-105 100 -122 160 -90 190 C-68 210 -40 194 -48 172" stroke="url(#posterBody)" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M95 10 C105 100 122 160 90 190 C68 210 40 194 48 172" stroke="url(#posterBody)" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <ellipse cx="0" cy="0" rx="130" ry="120" fill="url(#posterBody)"/>
+    <circle cx="-42" cy="-12" r="26" fill="#fff"/>
+    <circle cx="42" cy="-12" r="26" fill="#fff"/>
+    <circle cx="-42" cy="-8" r="11" fill="#2B2440"/>
+    <circle cx="42" cy="-8" r="11" fill="#2B2440"/>
+    <path d="M-30 42 Q0 60 30 42" stroke="#2B2440" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- play button -->
+  <circle cx="480" cy="360" r="90" fill="#ffffff" opacity="0.92"/>
+  <path d="M450 315 L450 405 L525 360 Z" fill="#4d12b4"/>
+</svg>
