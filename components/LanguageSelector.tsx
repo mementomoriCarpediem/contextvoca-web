@@ -95,12 +95,12 @@ export function MobileLanguageSelector({ locale }: { locale: Locale }) {
   const pathname = usePathname() || `/${locale}`;
 
   return (
-    <div className="flex gap-1 rounded-lg bg-gray-100 p-1">
+    <div className="grid grid-cols-2 gap-1 rounded-lg bg-gray-100 p-1">
       {locales.map((l: Locale) => (
         <Link
           key={l}
           href={hrefForLocale(pathname, locale, l)}
-          className={`flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-colors ${
+          className={`flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md px-3 py-1.5 text-sm transition-colors ${
             l === locale
               ? "bg-white font-medium text-primary-700 shadow-sm"
               : "text-gray-500 hover:text-gray-700"
