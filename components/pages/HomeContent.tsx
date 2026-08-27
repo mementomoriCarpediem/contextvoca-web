@@ -17,7 +17,7 @@ export default function HomeContent({ locale }: { locale: Locale }) {
     <>
       <Header locale={locale} />
       <main>
-        <HeroSection t={t} />
+        <HeroSection t={t} locale={locale} />
 
         {/* How It Works */}
         <section className="bg-white py-20">
@@ -51,7 +51,7 @@ export default function HomeContent({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <FeaturesSection t={t} />
+        <FeaturesSection t={t} locale={locale} />
         <ScienceSection t={t} />
 
         {/* Pricing */}

@@ -1,6 +1,6 @@
 import { Translations } from "@/lib/i18n";
 
-export default function HeroSection({ t }: { t: Translations }) {
+export default function HeroSection({ t, locale }: { t: Translations; locale: string }) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary-800 via-primary-700 to-primary-600 pt-32 pb-20">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVHJhbnNmb3JtPSJyb3RhdGUoNDUpIj48cGF0aCBkPSJNLTEwIDMwaDYwdjJoLTYweiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNhKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')] opacity-50" />
@@ -51,10 +51,10 @@ export default function HeroSection({ t }: { t: Translations }) {
           <div className="relative mx-auto w-full max-w-[280px] md:max-w-[300px]">
             <div className="overflow-hidden rounded-[2.5rem] shadow-2xl ring-1 ring-white/20">
               <img
-                src="/images/screens/01-home.webp"
+                src={`/images/screens/${locale}/01-home.webp`}
                 alt={t.hero.imageAlt}
                 width={720}
-                height={1557}
+                height={1504}
                 loading="eager"
                 className="h-auto w-full"
               />
