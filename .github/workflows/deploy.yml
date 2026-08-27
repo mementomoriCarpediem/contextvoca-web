@@ -27,11 +27,6 @@ jobs:
 
 
 
-      - name: Build
-        env:
-          NEXT_PUBLIC_BASE_PATH: "/contextvoca-web"
-        run: yarn build
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
