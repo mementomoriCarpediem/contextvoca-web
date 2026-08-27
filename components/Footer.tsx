@@ -12,9 +12,14 @@ export default function Footer({ locale }: { locale: Locale }) {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600 text-sm font-bold text-white">
-                C
-              </div>
+              <img
+                src="/images/brand/mascot.svg"
+                alt=""
+                width={32}
+                height={32}
+                loading="lazy"
+                className="h-8 w-8 rounded-lg"
+              />
               <span className="text-lg font-bold text-gray-900">
                 ContextVoca
               </span>
