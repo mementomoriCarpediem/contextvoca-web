@@ -59,12 +59,22 @@ export interface Translations {
     yearly: string;
     yearlyDiscount: string;
     oneTime: string;
+    /** "{percent}" 자리에 yearlySavings가 들어간다. */
+    yearlySavingsNote: string;
+    perMonth: string;
+    perYear: string;
     plans: Array<{
       name: string;
       /** Headline figure shown on the card, e.g. word limit ("1,000 words"). */
       wordLimit: string;
       /** Secondary note replacing a fixed price, e.g. "Price shown in the app's subscription screen". */
       priceNote: string;
+      /** 고정 가격(현지 스토어 확인 가능한 로케일만). 없으면 priceNote만 표시. */
+      priceMonthly?: string;
+      priceYearly?: string;
+      priceOnce?: string;
+      /** 연간 결제 할인율 문자열("38%"). 통화와 무관해 모든 로케일에 표시 가능. */
+      yearlySavings?: string;
       isLifetime?: boolean;
       description: string;
       features: string[];

@@ -114,6 +114,9 @@ const zh: Translations = {
     yearly: "年付",
     yearlyDiscount: "优惠",
     oneTime: "一次性付款",
+    yearlySavingsNote: "按年付费省{percent}",
+    perMonth: "/月",
+    perYear: "/年",
     plans: [
       {
         name: "Free",
@@ -130,6 +133,7 @@ const zh: Translations = {
       },
       {
         name: "Basic",
+        yearlySavings: "38%",
         wordLimit: "1,000个词汇",
         priceNote: "具体价格请在应用内订阅页面查看",
         description: "存储更多词汇",
@@ -143,6 +147,7 @@ const zh: Translations = {
       },
       {
         name: "Pro",
+        yearlySavings: "41%",
         wordLimit: "无限",
         priceNote: "具体价格请在应用内订阅页面查看",
         description: "使用全部功能",

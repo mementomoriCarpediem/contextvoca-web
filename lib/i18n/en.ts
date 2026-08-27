@@ -121,6 +121,9 @@ const en: Translations = {
     yearly: "Yearly",
     yearlyDiscount: "Save more",
     oneTime: "One-time purchase",
+    yearlySavingsNote: "Save {percent} with annual billing",
+    perMonth: "/mo",
+    perYear: "/yr",
     plans: [
       {
         name: "Free",
@@ -137,6 +140,7 @@ const en: Translations = {
       },
       {
         name: "Basic",
+        yearlySavings: "38%",
         wordLimit: "1,000 words",
         priceNote: "Price shown in the app's subscription screen",
         description: "Save more words",
@@ -150,6 +154,7 @@ const en: Translations = {
       },
       {
         name: "Pro",
+        yearlySavings: "41%",
         wordLimit: "Unlimited",
         priceNote: "Price shown in the app's subscription screen",
         description: "Every feature, unlocked",

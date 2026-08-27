@@ -295,12 +295,27 @@ export default function HomeContent({ locale }: { locale: Locale }) {
                     </p>
                     <div className="mt-6">
                       <span className="text-4xl font-extrabold text-gray-900">
-                        {plan.wordLimit}
+                        {plan.priceOnce ??
+                          (billingYearly ? plan.priceYearly : plan.priceMonthly) ??
+                          plan.wordLimit}
                       </span>
+                      {(plan.priceMonthly || plan.priceYearly) && !plan.priceOnce && (
+                        <span className="ml-1 text-sm text-gray-500">
+                          {billingYearly ? t.pricing.perYear : t.pricing.perMonth}
+                        </span>
+                      )}
                     </div>
+                    {(plan.priceMonthly || plan.priceOnce) && (
+                      <p className="mt-1 text-sm text-gray-600">{plan.wordLimit}</p>
+                    )}
                     {plan.isLifetime && (
                       <p className="mt-1 text-xs text-gray-400">
                         {t.pricing.oneTime}
+                      </p>
+                    )}
+                    {plan.yearlySavings && (
+                      <p className="mt-1 text-xs font-semibold text-green-600">
+                        {t.pricing.yearlySavingsNote.replace("{percent}", plan.yearlySavings)}
                       </p>
                     )}
                     <p className="mt-1 text-sm font-medium text-primary-600">
