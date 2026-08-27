@@ -110,6 +110,75 @@ const ja: Translations = {
       },
     ],
   },
+  science: {
+    title: "なぜ効果的なのか — 学習科学の根拠",
+    subtitle:
+      "文脈単語帳が採用する学習方法は、それぞれ学習心理学の研究に裏付けられています。",
+    cards: [
+      {
+        title: "文脈の中での語彙学習",
+        body: "単語を例文や文脈の中で目にすると、孤立した単語だけを覚えるよりも意味を推測し記憶に残りやすくなるという研究があります。[1] 文脈の手がかりが豊富なほど、単語の意味学習の効果が高まることも実験で確認されています。[2] また、単語を読むだけよりも、文を完成させたり自分で書いたりする方がより長く記憶に残るという結果もあります。[3]",
+        productLine:
+          "文脈単語帳では、写真や文章をそのまま保存し、AIが重要単語を抽出することで、文脈と一緒に単語を学べるようにしています。",
+      },
+      {
+        title: "忘却曲線と減衰モデル",
+        body: "1885年に心理学者エビングハウスが観察した忘却曲線は、学習直後に最も速く忘れ、その後緩やかになるという形を示しました。[4] この曲線の形は、2015年の再現実験でも同様に確認されています。[5]",
+        productLine:
+          "文脈単語帳では、最後に正解してからの経過日数に応じて習熟度が減衰し、連続正解回数が増えるほど半減期が長くなる減衰モデルで習熟度を計算します。",
+      },
+      {
+        title: "想起練習（クイズ）",
+        body: "読み返すだけよりも、自分で思い出そうとする想起練習の方が長期記憶に効果的であることが実験で確認されています。[6] 学習法の有効性を検証したレビューでは、「自己テスト」と「分散学習」が最も効果が確実な2つの方法として挙げられています。[7]",
+        productLine:
+          "文脈単語帳では、スマートクイズの類似文章比較テストによって、正解を自分で思い出す想起練習を行えます。",
+      },
+      {
+        title: "分散・個別化された復習",
+        body: "詰め込んで復習するよりも、時間の間隔を空けて分けて復習する方が長期記憶に効果的であることは、数百件の研究で繰り返し検証されています。[8] 最適な復習間隔は、どれくらい長く記憶していたいかによって変わります。[9] ある中学校の外国語授業での実験では、学習者ごとの忘却速度に合わせて復習を個別化したところ、均一な分散復習より10.0ポイント、詰め込みより16.5ポイント高い学期末成績を示しました — これは文脈単語帳自体の実験ではなく、当該研究の結果です。[10]",
+        productLine:
+          "文脈単語帳では、習熟度が低い単語や長く学習していない単語、正答率が低い単語をより多く出題することで、復習のタイミングを個別化しています。",
+      },
+      {
+        title: "もっともらしい誤答選択肢",
+        body: "誤答の選択肢が正解と意味的に近いほど、学習者はなぜ間違えたのかをより深く考えるようになります。[11] この過程で関連知識まで強化されるという研究結果もあります。[11]",
+        productLine:
+          "文脈単語帳では、AIが正解と意味の近い誤答選択肢を生成し、混同しやすいポイントを的確に示します。",
+      },
+    ],
+    referencesTitle: "参考文献",
+    references: [
+      "[1] Nagy, W. E., Herman, P. A., & Anderson, R. C. (1985). Learning Words From Context. Reading Research Quarterly, 20(2), 233–253.",
+      "[2] Webb, S. (2008). The Effects of Context on Incidental Vocabulary Learning. Reading in a Foreign Language, 20(2), 232–245.",
+      "[3] Hulstijn, J. H., & Laufer, B. (2001). Some Empirical Evidence for the Involvement Load Hypothesis in Vocabulary Acquisition. Language Learning, 51(3), 539–558.",
+      "[4] Ebbinghaus, H. (1885). Über das Gedächtnis. Duncker & Humblot.",
+      "[5] Murre, J. M. J., & Dros, J. (2015). Replication and Analysis of Ebbinghaus' Forgetting Curve. PLOS ONE, 10(7), e0120644. https://doi.org/10.1371/journal.pone.0120644",
+      "[6] Roediger, H. L., & Karpicke, J. D. (2006). Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention. Psychological Science, 17(3), 249–255.",
+      "[7] Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). Improving Students' Learning With Effective Learning Techniques. Psychological Science in the Public Interest, 14(1), 4–58.",
+      "[8] Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., & Rohrer, D. (2006). Distributed Practice in Verbal Recall Tasks: A Review and Quantitative Synthesis. Psychological Bulletin, 132(3), 354–380.",
+      "[9] Cepeda, N. J., Vul, E., Rohrer, D., Wixted, J. T., & Pashler, H. (2008). Spacing Effects in Learning: A Temporal Ridgeline of Optimal Retention. Psychological Science, 19(11), 1095–1102.",
+      "[10] Lindsey, R. V., Shroyer, J. D., Pashler, H., & Mozer, M. C. (2014). Improving Students' Long-Term Knowledge Retention Through Personalized Review. Psychological Science, 25(3), 639–647.",
+      "[11] Little, J. L., & Bjork, E. L. (2015). Optimizing Multiple-Choice Tests as Tools for Learning. Memory & Cognition, 43(1), 85–98.",
+    ],
+    mediaTitle: "もっと詳しく",
+    media: [
+      {
+        title: "Learning How to Learn",
+        creator: "Barbara Oakley·Terrence Sejnowski (UC San Diego/McMaster, Coursera)",
+        url: "https://www.coursera.org/learn/learning-how-to-learn",
+      },
+      {
+        title: "9.00SC Introduction to Psychology — Memory",
+        creator: "John Gabrieli (MIT OpenCourseWare)",
+        url: "https://ocw.mit.edu/courses/9-00sc-introduction-to-psychology-fall-2011/",
+      },
+      {
+        title: "Desirable Difficulties",
+        creator: "Elizabeth·Robert Bjork (UCLA Bjork Learning and Forgetting Lab)",
+        url: "https://bjorklab.psych.ucla.edu/videos/",
+      },
+    ],
+  },
   pricing: {
     title: "合理的な料金プラン",
     subtitle: "無料で始めて、必要な時にアップグレード。",
@@ -180,7 +249,7 @@ const ja: Translations = {
   },
   cta: {
     title: "今すぐ始めましょう",
-    subtitle: "同じ時間で2倍の効果。文章コンテキスト単語学習。",
+    subtitle: "文脈で覚え、忘れる前にもう一度出会う単語学習。",
     appStore: "App Storeからダウンロード",
     googlePlay: "Google Playからダウンロード",
   },
@@ -227,6 +296,10 @@ const ja: Translations = {
           {
             q: "タグはどう使いますか？",
             a: "単語を登録する際にタグ（例：TOEIC、受験、ビジネス）を指定できます。クイズや復習時に特定のタグだけ選んで集中学習できます。無料プランはカスタムタグ3個まで、Basic以上は無制限に作成できます。",
+          },
+          {
+            q: "科学的根拠はありますか？",
+            a: "はい。詰め込むよりも時間の間隔を空けて復習する方が長期記憶に効果的であることは数百件の研究で繰り返し検証されており、読み返すよりも自分で思い出す想起練習の方が効果的であることも確認されています。学習者ごとの忘却速度に合わせた個別化復習が、均一な復習よりも高い成果を示したという研究結果もあります（文脈単語帳自体の実験ではありません）。詳しい根拠と参考文献は、ホームページの「なぜ効果的なのか — 学習科学の根拠」セクション（/ja/#science）でご確認いただけます。",
           },
         ],
       },

@@ -112,6 +112,75 @@ const en: Translations = {
       },
     ],
   },
+  science: {
+    title: "Why It Works — The Learning Science Behind ContextVoca",
+    subtitle:
+      "Every method ContextVoca uses is backed by learning-psychology research.",
+    cards: [
+      {
+        title: "Learning Vocabulary in Context",
+        body: "Research suggests that encountering a word in an example sentence or context helps you infer and retain its meaning better than memorizing an isolated word.[1] Richer contextual cues have also been shown experimentally to improve vocabulary learning.[2] Completing or producing a sentence yourself has also been shown to leave a longer-lasting memory than simply reading a word.[3]",
+        productLine:
+          "ContextVoca saves your photos and sentences as-is, and AI extracts the key vocabulary so you learn each word together with its context.",
+      },
+      {
+        title: "The Forgetting Curve and Decay Model",
+        body: "The forgetting curve observed by psychologist Hermann Ebbinghaus in 1885 showed that forgetting happens fastest right after learning, then levels off.[4] The same curve shape was confirmed again in a 2015 replication study.[5]",
+        productLine:
+          "ContextVoca calculates mastery with a decay model where proficiency fades based on days since your last correct answer, and the half-life grows longer each time you answer correctly in a row.",
+      },
+      {
+        title: "Retrieval Practice (Quizzes)",
+        body: "Studies show that actively recalling information is more effective for long-term retention than simply rereading it.[6] Reviews of learning-technique effectiveness rank self-testing and spaced practice as the two techniques with the strongest evidence.[7]",
+        productLine:
+          "ContextVoca's smart quiz uses similar-sentence comparison tests so you practice actively recalling the right answer.",
+      },
+      {
+        title: "Spaced and Personalized Review",
+        body: "Hundreds of studies have repeatedly confirmed that spacing review out over time is more effective for long-term memory than cramming.[8] The ideal review interval depends on how long you want to remember something.[9] In one study conducted during a semester of middle-school foreign-language classes, personalizing review to each learner's forgetting rate produced final scores 10.0 percentage points higher than uniform spaced review and 16.5 percentage points higher than cramming — this is a research finding, not a result from ContextVoca's own testing.[10]",
+        productLine:
+          "ContextVoca personalizes when you review by showing words more often when your mastery is low or has decayed, or when your accuracy on a word is lower.",
+      },
+      {
+        title: "Plausible Wrong Answers",
+        body: "The closer a wrong answer choice is in meaning to the correct one, the more a learner has to think about why it's wrong.[11] Research suggests this process also strengthens related knowledge.[11]",
+        productLine:
+          "ContextVoca has AI generate wrong-answer choices that are close in meaning to the correct answer, pinpointing exactly where you tend to get confused.",
+      },
+    ],
+    referencesTitle: "References",
+    references: [
+      "[1] Nagy, W. E., Herman, P. A., & Anderson, R. C. (1985). Learning Words From Context. Reading Research Quarterly, 20(2), 233–253.",
+      "[2] Webb, S. (2008). The Effects of Context on Incidental Vocabulary Learning. Reading in a Foreign Language, 20(2), 232–245.",
+      "[3] Hulstijn, J. H., & Laufer, B. (2001). Some Empirical Evidence for the Involvement Load Hypothesis in Vocabulary Acquisition. Language Learning, 51(3), 539–558.",
+      "[4] Ebbinghaus, H. (1885). Über das Gedächtnis. Duncker & Humblot.",
+      "[5] Murre, J. M. J., & Dros, J. (2015). Replication and Analysis of Ebbinghaus' Forgetting Curve. PLOS ONE, 10(7), e0120644. https://doi.org/10.1371/journal.pone.0120644",
+      "[6] Roediger, H. L., & Karpicke, J. D. (2006). Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention. Psychological Science, 17(3), 249–255.",
+      "[7] Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). Improving Students' Learning With Effective Learning Techniques. Psychological Science in the Public Interest, 14(1), 4–58.",
+      "[8] Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., & Rohrer, D. (2006). Distributed Practice in Verbal Recall Tasks: A Review and Quantitative Synthesis. Psychological Bulletin, 132(3), 354–380.",
+      "[9] Cepeda, N. J., Vul, E., Rohrer, D., Wixted, J. T., & Pashler, H. (2008). Spacing Effects in Learning: A Temporal Ridgeline of Optimal Retention. Psychological Science, 19(11), 1095–1102.",
+      "[10] Lindsey, R. V., Shroyer, J. D., Pashler, H., & Mozer, M. C. (2014). Improving Students' Long-Term Knowledge Retention Through Personalized Review. Psychological Science, 25(3), 639–647.",
+      "[11] Little, J. L., & Bjork, E. L. (2015). Optimizing Multiple-Choice Tests as Tools for Learning. Memory & Cognition, 43(1), 85–98.",
+    ],
+    mediaTitle: "Learn More",
+    media: [
+      {
+        title: "Learning How to Learn",
+        creator: "Barbara Oakley·Terrence Sejnowski (UC San Diego/McMaster, Coursera)",
+        url: "https://www.coursera.org/learn/learning-how-to-learn",
+      },
+      {
+        title: "9.00SC Introduction to Psychology — Memory",
+        creator: "John Gabrieli (MIT OpenCourseWare)",
+        url: "https://ocw.mit.edu/courses/9-00sc-introduction-to-psychology-fall-2011/",
+      },
+      {
+        title: "Desirable Difficulties",
+        creator: "Elizabeth·Robert Bjork (UCLA Bjork Learning and Forgetting Lab)",
+        url: "https://bjorklab.psych.ucla.edu/videos/",
+      },
+    ],
+  },
   pricing: {
     title: "Simple, fair pricing",
     subtitle: "Start for free, upgrade whenever you need more.",
@@ -182,7 +251,7 @@ const en: Translations = {
   },
   cta: {
     title: "Start learning today",
-    subtitle: "Same time invested, double the results. Context-based word learning.",
+    subtitle: "Learn words in context and meet them again before you forget.",
     appStore: "Download on the App Store",
     googlePlay: "Get it on Google Play",
   },
@@ -228,6 +297,10 @@ const en: Translations = {
           {
             q: "How do tags work?",
             a: "When you save a word, you can assign tags (for example TOEIC, exam prep, or business). Use tags during quizzes or review sessions to focus on a specific category. The Free plan allows up to 3 custom tags; Basic and above have unlimited tags.",
+          },
+          {
+            q: "Is there scientific evidence behind this?",
+            a: "Yes. Hundreds of studies have repeatedly confirmed that spacing out review over time is more effective for long-term memory than cramming, and that actively recalling information beats simply rereading it. There's also research showing that personalizing review to each learner's forgetting rate leads to better outcomes than uniform review (this is a research finding, not a result from ContextVoca's own testing). For details and references, see the \"Why It Works\" section (/en/#science) on our homepage.",
           },
         ],
       },

@@ -50,6 +50,26 @@ export interface Translations {
       description: string;
     }>;
   };
+  science: {
+    title: string;
+    subtitle: string;
+    cards: Array<{
+      title: string;
+      /** 2~3 sentences drawn only from the vetted "safe sentences" in docs/science-claims.md. */
+      body: string;
+      /** One line describing what the product actually does, matching docs/science-claims.md exactly. */
+      productLine: string;
+    }>;
+    referencesTitle: string;
+    /** Formatted citation strings, each starting with its footnote marker (e.g. "[1] Author, Year..."). */
+    references: string[];
+    mediaTitle: string;
+    media: Array<{
+      title: string;
+      creator: string;
+      url: string;
+    }>;
+  };
   pricing: {
     title: string;
     subtitle: string;
