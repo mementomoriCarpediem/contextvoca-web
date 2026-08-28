@@ -1,6 +1,8 @@
+import type { Locale } from "@/lib/i18n/types";
+import { appStoreUrl, playStoreUrl } from "@/lib/seo/site";
 import { Translations } from "@/lib/i18n";
 
-export default function HeroSection({ t, locale }: { t: Translations; locale: string }) {
+export default function HeroSection({ t, locale }: { t: Translations; locale: Locale }) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary-800 via-primary-700 to-primary-600 pt-32 pb-20">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVHJhbnNmb3JtPSJyb3RhdGUoNDUpIj48cGF0aCBkPSJNLTEwIDMwaDYwdjJoLTYweiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNhKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')] opacity-50" />
@@ -23,7 +25,7 @@ export default function HeroSection({ t, locale }: { t: Translations; locale: st
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row md:justify-start">
               <a
-                href="https://apps.apple.com/app/id6758887227"
+                href={appStoreUrl(locale)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl bg-white px-8 py-4 text-base font-semibold text-primary-700 shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
@@ -34,7 +36,7 @@ export default function HeroSection({ t, locale }: { t: Translations; locale: st
                 {t.hero.appStore}
               </a>
               <a
-                href="https://play.google.com/store/apps/details?id=com.contextvoca.app"
+                href={playStoreUrl(locale)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20"

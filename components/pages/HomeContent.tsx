@@ -1,3 +1,4 @@
+import { appStoreUrl, playStoreUrl } from "@/lib/seo/site";
 "use client";
 
 import { useState } from "react";
@@ -192,7 +193,7 @@ export default function HomeContent({ locale }: { locale: Locale }) {
             <p className="mt-4 text-lg text-primary-200">{t.cta.subtitle}</p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
-                href="https://apps.apple.com/app/id6758887227"
+                href={appStoreUrl(locale)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl bg-white px-8 py-4 text-base font-semibold text-primary-700 shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
@@ -207,7 +208,7 @@ export default function HomeContent({ locale }: { locale: Locale }) {
                 {t.cta.appStore}
               </a>
               <a
-                href="https://play.google.com/store/apps/details?id=com.contextvoca.app"
+                href={playStoreUrl(locale)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20"

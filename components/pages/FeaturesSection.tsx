@@ -1,3 +1,4 @@
+import type { Locale } from "@/lib/i18n/types";
 import type { ReactElement } from "react";
 import { Translations } from "@/lib/i18n";
 
@@ -38,7 +39,7 @@ const compactIcons: Record<number, ReactElement> = {
   ),
 };
 
-export default function FeaturesSection({ t, locale }: { t: Translations; locale: string }) {
+export default function FeaturesSection({ t, locale }: { t: Translations; locale: Locale }) {
   return (
     <section id="features" className="bg-gray-50 py-20">
       <div className="section-container">
