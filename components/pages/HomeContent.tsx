@@ -1,5 +1,6 @@
-import { appStoreUrl, playStoreUrl } from "@/lib/seo/site";
 "use client";
+
+import { appStoreUrl, playStoreUrl } from "@/lib/seo/site";
 
 import { useState } from "react";
 import Footer from "@/components/Footer";
