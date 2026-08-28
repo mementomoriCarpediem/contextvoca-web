@@ -44,11 +44,11 @@ const PLAY_HL: Record<Locale, string> = { ko: "ko", en: "en", ja: "ja", zh: "zh-
 const APPLE_APP_ID = "6758887227";
 const PLAY_PACKAGE = "com.contextvoca.app";
 /** App Store Connect 캠페인 링크 값(pt=제공자, ct=캠페인). 발급 전에는 빈 값 → 파라미터 생략. */
-const APPLE_CAMPAIGN = { pt: "", ct: "website" };
+const APPLE_CAMPAIGN = { pt: "125659097", ct: "website" };
 
 export function appStoreUrl(locale: Locale): string {
   const base = `https://apps.apple.com/${APPLE_STOREFRONT[locale]}/app/id${APPLE_APP_ID}`;
-  return APPLE_CAMPAIGN.pt ? `${base}?pt=${APPLE_CAMPAIGN.pt}&ct=${APPLE_CAMPAIGN.ct}` : base;
+  return APPLE_CAMPAIGN.pt ? `${base}?pt=${APPLE_CAMPAIGN.pt}&ct=${APPLE_CAMPAIGN.ct}&mt=8` : base;
 }
 
 export function playStoreUrl(locale: Locale): string {
