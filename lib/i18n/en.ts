@@ -233,9 +233,11 @@ const en: Translations = {
       },
       {
         name: "Basic",
-        yearlySavings: "38%",
+        priceMonthly: "$5.00",
+        priceYearly: "$35.00",
+        yearlySavings: "41%",
         wordLimit: "1,000 words",
-        priceNote: "Price shown in the app's subscription screen",
+        priceNote: "U.S. App Store pricing",
         description: "Save more words",
         features: [
           "Save up to 1,000 words",
@@ -247,9 +249,11 @@ const en: Translations = {
       },
       {
         name: "Pro",
+        priceMonthly: "$10.00",
+        priceYearly: "$70.00",
         yearlySavings: "41%",
         wordLimit: "Unlimited",
-        priceNote: "Price shown in the app's subscription screen",
+        priceNote: "U.S. App Store pricing",
         description: "Every feature, unlocked",
         features: [
           "Unlimited word storage",
@@ -260,8 +264,9 @@ const en: Translations = {
       },
       {
         name: "Lifetime",
+        priceOnce: "$99.00",
         wordLimit: "Unlimited",
-        priceNote: "Price shown in the app's purchase screen",
+        priceNote: "U.S. App Store pricing",
         isLifetime: true,
         description: "Pay once, use it for life",
         features: [

@@ -265,7 +265,7 @@ const ko: Translations = {
         name: "Lifetime",
         priceOnce: "₩149,000",
         wordLimit: "무제한",
-        priceNote: "가격은 앱 내 구매 화면에서 확인하세요",
+        priceNote: "App Store 한국 기준 · 부가세 포함",
         isLifetime: true,
         description: "1회 결제로 평생 무제한 이용",
         features: [
