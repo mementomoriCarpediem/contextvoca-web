@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n/types";
-import { appStoreUrl, playStoreUrl } from "@/lib/seo/site";
+import { appStoreLink, playStoreLink } from "@/lib/seo/site";
 import { Translations } from "@/lib/i18n";
 
 export default function HeroSection({ t, locale }: { t: Translations; locale: Locale }) {
@@ -25,7 +25,7 @@ export default function HeroSection({ t, locale }: { t: Translations; locale: Lo
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row md:justify-start">
               <a
-                href={appStoreUrl(locale)}
+                href={appStoreLink(locale)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl bg-white px-8 py-4 text-base font-semibold text-primary-700 shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
@@ -36,7 +36,7 @@ export default function HeroSection({ t, locale }: { t: Translations; locale: Lo
                 {t.hero.appStore}
               </a>
               <a
-                href={playStoreUrl(locale)}
+                href={playStoreLink(locale)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20"

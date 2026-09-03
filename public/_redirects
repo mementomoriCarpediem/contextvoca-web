@@ -1,0 +1,22 @@
+# 스토어 버튼 클릭 계측 경로 (2026-09-03 도입)
+#
+# 외부 링크 클릭은 어떤 분석 도구로도 잡히지 않는다. 자체 도메인 경로를 한 번 거치게 하면
+# Cloudflare 로그에 요청으로 남아 "웹 방문 → 스토어 이동"을 셀 수 있다. 클릭 수는
+# GraphQL httpRequestsAdaptiveGroups에서 clientRequestPath로 조회한다.
+#
+# 스토어프런트·캠페인 파라미터의 정본은 이 파일이다(lib/seo/site.ts는 이 경로만 만든다).
+#   Apple: 국가 없는 URL은 웹에서 /us/로 301되어 영문 제목 페이지가 열린다(2026-08-28 실측).
+#          pt/ct는 App Store Connect 캠페인 링크 값(설치 귀속), mt=8은 App Store 지정.
+#   Play : 계정 국가로 자동 분기하므로 hl로 표시 언어만 지정하고 utm으로 유입원을 남긴다.
+#
+# 302(임시)를 쓰는 이유: 301은 브라우저가 캐시해 두 번째 클릭부터 로그에 남지 않는다.
+
+/go/ios/ko  https://apps.apple.com/kr/app/id6758887227?pt=125659097&ct=website&mt=8  302
+/go/ios/en  https://apps.apple.com/us/app/id6758887227?pt=125659097&ct=website&mt=8  302
+/go/ios/ja  https://apps.apple.com/jp/app/id6758887227?pt=125659097&ct=website&mt=8  302
+/go/ios/zh  https://apps.apple.com/cn/app/id6758887227?pt=125659097&ct=website&mt=8  302
+
+/go/android/ko  https://play.google.com/store/apps/details?id=com.contextvoca.app&hl=ko&utm_source=contextvoca.app&utm_medium=website&utm_campaign=ko  302
+/go/android/en  https://play.google.com/store/apps/details?id=com.contextvoca.app&hl=en&utm_source=contextvoca.app&utm_medium=website&utm_campaign=en  302
+/go/android/ja  https://play.google.com/store/apps/details?id=com.contextvoca.app&hl=ja&utm_source=contextvoca.app&utm_medium=website&utm_campaign=ja  302
+/go/android/zh  https://play.google.com/store/apps/details?id=com.contextvoca.app&hl=zh-CN&utm_source=contextvoca.app&utm_medium=website&utm_campaign=zh  302
