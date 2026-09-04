@@ -1,4 +1,3 @@
-import { WebAnalytics } from "@/components/WebAnalytics";
 import type { Metadata } from "next";
 import { siteViewport } from "@/lib/seo/site";
 import "../globals.css";
@@ -23,10 +22,7 @@ export default function RootSelectorLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen font-sans antialiased">
-        {children}
-        <WebAnalytics />
-      </body>
+      <body className="min-h-screen font-sans antialiased">{children}</body>
     </html>
   );
 }

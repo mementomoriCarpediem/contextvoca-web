@@ -1,4 +1,3 @@
-import { WebAnalytics } from "@/components/WebAnalytics";
 import type { Metadata } from "next";
 import {
   getDictionary,
@@ -66,10 +65,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={htmlLangMap[locale]} suppressHydrationWarning>
-      <body className="min-h-screen font-sans antialiased">
-        {children}
-        <WebAnalytics />
-      </body>
+      <body className="min-h-screen font-sans antialiased">{children}</body>
     </html>
   );
 }
