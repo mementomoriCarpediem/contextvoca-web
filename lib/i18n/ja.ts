@@ -2,9 +2,9 @@ import { Translations } from "./types";
 
 const ja: Translations = {
   meta: {
-    title: "文脈単語帳 - AIで文脈から学ぶ英単語帳",
+    title: "文脈単語帳 - 写真でつくるAI英単語帳",
     description:
-      "単語だけ暗記しないでください。文章で理解しましょう。AIが写真や文章から重要な単語を抽出し、スマートクイズで完璧に定着させます。",
+      "教材を撮るだけで、AIが覚える価値のある英単語を選び、例文と一緒に単語帳に保存。TOEIC・TOEFL・英検のタグで整理し、間違えた単語ほど多く出るクイズで復習できます。",
     keywords: [
       "英単語帳",
       "TOEIC単語",
@@ -16,7 +16,7 @@ const ja: Translations = {
       "ContextVoca",
     ],
     ogDescription:
-      "AIが写真や文章から重要な単語を抽出し、スマートクイズで完璧に定着させます。",
+      "写真1枚で例文つきの英単語帳が完成。AI抽出・文脈保存・スマートクイズ。",
   },
   header: {
     features: "機能",

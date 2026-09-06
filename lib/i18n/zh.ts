@@ -2,9 +2,9 @@ import { Translations } from "./types";
 
 const zh: Translations = {
   meta: {
-    title: "语境词汇 - AI结合语境学习英语单词",
+    title: "语境词汇 - 拍照生成AI英语单词本",
     description:
-      "不要只背单词，通过句子来理解。AI从照片和句子中提取核心词汇，并通过智能测验帮你彻底记住它们。",
+      "拍下课本或教材，AI 自动挑出值得学的英语单词，连同例句一起存入单词本。用托福、雅思、四六级标签整理，错得多的单词在测验中出现得更频繁。",
     keywords: [
       "英语词汇",
       "单词本",
@@ -15,7 +15,7 @@ const zh: Translations = {
       "语境词汇",
       "ContextVoca",
     ],
-    ogDescription: "AI从照片和句子中提取核心词汇，并通过智能测验帮你彻底记住它们。",
+    ogDescription: "拍一张照片，带例句的英语单词本就做好了。AI 提取、语境保存、智能测验。",
   },
   header: {
     features: "功能",

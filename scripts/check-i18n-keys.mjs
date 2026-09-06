@@ -18,7 +18,7 @@ import ts from "typescript";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const i18nDir = path.join(__dirname, "..", "lib", "i18n");
-const LOCALES = ["ko", "en", "ja", "zh"];
+const LOCALES = ["ko", "en", "ja", "zh", "zh-Hant"];
 
 const require = createRequire(import.meta.url);
 

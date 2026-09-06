@@ -27,6 +27,7 @@ export function buildAlternates(locale: Locale, pathSuffix: LocalizedPathSuffix)
       en: localizedUrl("en", pathSuffix),
       ja: localizedUrl("ja", pathSuffix),
       "zh-Hans": localizedUrl("zh", pathSuffix),
+      "zh-Hant": localizedUrl("zh-Hant", pathSuffix),
       "x-default": localizedUrl("en", pathSuffix),
     },
   };

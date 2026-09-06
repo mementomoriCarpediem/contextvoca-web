@@ -2,9 +2,9 @@ import { Translations } from "./types";
 
 const ko: Translations = {
   meta: {
-    title: "문맥보카 - 문맥으로 배우는 AI 영단어장",
+    title: "문맥보카 - 사진 찍는 영어 단어장",
     description:
-      "단어만 외우지 마세요. 문장으로 이해하세요. AI가 사진과 문장에서 핵심 단어를 추출하고, 스마트 퀴즈로 완벽하게 암기시켜 드립니다.",
+      "책·교재를 사진 찍으면 AI가 핵심 영어 단어를 골라 예문과 함께 단어장에 담습니다. 토익·토플·수능 태그로 정리하고, 틀린 단어를 더 자주 내는 퀴즈로 복습하세요.",
     keywords: [
       "영어단어장",
       "토익단어",
@@ -16,7 +16,7 @@ const ko: Translations = {
       "ContextVoca",
     ],
     ogDescription:
-      "AI가 사진과 문장에서 핵심 단어를 추출하고, 스마트 퀴즈로 완벽하게 암기시켜 드립니다.",
+      "사진 한 장이면 예문까지 담긴 영어 단어장이 완성됩니다. AI 추출, 문맥 저장, 스마트 퀴즈.",
   },
   header: {
     features: "기능",

@@ -11,3 +11,4 @@ Support: support@contextvoca.app
 - English: https://contextvoca.app/en/
 - Japanese: https://contextvoca.app/ja/
 - Chinese (Simplified): https://contextvoca.app/zh/
+- Chinese (Traditional, Taiwan/Hong Kong): https://contextvoca.app/zh-Hant/

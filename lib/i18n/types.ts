@@ -1,4 +1,4 @@
-export type Locale = "ko" | "en" | "ja" | "zh";
+export type Locale = "ko" | "en" | "ja" | "zh" | "zh-Hant";
 
 export interface Translations {
   meta: {

@@ -632,6 +632,7 @@ __metadata:
     "@types/react-dom": ^19.1.0
     autoprefixer: ^10.4.21
     next: ^15.3.0
+    opencc-js: 1
     postcss: ^8.5.3
     react: ^19.1.0
     react-dom: ^19.1.0
@@ -1261,6 +1262,13 @@ __metadata:
   version: 3.0.0
   resolution: "object-hash@npm:3.0.0"
   checksum: 80b4904bb3857c52cc1bfd0b52c0352532ca12ed3b8a6ff06a90cd209dfda1b95cee059a7625eb9da29537027f68ac4619363491eedb2f5d3dddbba97494fd6c
+  languageName: node
+  linkType: hard
+
+"opencc-js@npm:1":
+  version: 1.4.2
+  resolution: "opencc-js@npm:1.4.2"
+  checksum: 9e4504871ab295dab50f63fbeaa266c9bb372753a25c4d1f98b724d7b33a1d054a5c8b51c7beefc3bc658a28b104946df81d57cbe3d9395071618e4f7e368457
   languageName: node
   linkType: hard
 

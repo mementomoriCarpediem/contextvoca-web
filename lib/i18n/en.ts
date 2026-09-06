@@ -2,9 +2,9 @@ import { Translations } from "./types";
 
 const en: Translations = {
   meta: {
-    title: "ContextVoca - Learn English Words in Context with AI",
+    title: "ContextVoca - Scan Photos into Vocabulary Lists",
     description:
-      "Stop memorizing word lists. AI pulls the key vocabulary out of your photos and sentences, then a smart quiz makes sure it actually sticks.",
+      "Snap a textbook page and AI picks the words worth learning, saves each with its sentence, and quizzes you on the ones you miss most. Built for TOEFL, IELTS, SAT and everyday English.",
     keywords: [
       "vocabulary app",
       "AI vocabulary",
@@ -16,7 +16,7 @@ const en: Translations = {
       "ContextVoca",
     ],
     ogDescription:
-      "AI pulls the key vocabulary out of your photos and sentences, then a smart quiz makes sure it actually sticks.",
+      "Photos into vocabulary lists in 30 seconds. AI extraction, context sentences, smart quizzes.",
   },
   header: {
     features: "Features",
