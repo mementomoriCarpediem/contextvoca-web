@@ -9,10 +9,18 @@ export const siteViewport: Viewport = {
   themeColor: "#4F46E5",
 };
 
-export type LocalizedPathSuffix = "" | "/privacy" | "/terms" | "/support";
+export type LocalizedPathSuffix = "" | "/privacy" | "/terms" | "/support" | "/blog";
 
 export function localizedUrl(locale: Locale, pathSuffix: LocalizedPathSuffix): string {
   return `${SITE_URL}/${locale}${pathSuffix}/`;
+}
+
+/**
+ * URL of a single blog post. Kept separate from `localizedUrl` because the
+ * slug segment isn't a fixed `LocalizedPathSuffix` literal.
+ */
+export function localizedBlogPostUrl(locale: Locale, slug: string): string {
+  return `${SITE_URL}/${locale}/blog/${slug}/`;
 }
 
 /**

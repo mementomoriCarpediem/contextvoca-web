@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
-import { locales } from "@/lib/i18n";
-import { SITE_URL, LocalizedPathSuffix } from "@/lib/seo/site";
+import { htmlLangMap, locales } from "@/lib/i18n";
+import { SITE_URL, LocalizedPathSuffix, localizedUrl } from "@/lib/seo/site";
+import { getAllPostsMeta } from "@/lib/blog/posts";
+import { buildPostAlternates } from "@/lib/blog/hreflang";
 
 // Required for `output: "export"` — this route has no request-time inputs,
 // so it can be fully prerendered to a static sitemap.xml at build time.
@@ -37,6 +39,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       });
     }
+  }
+
+  // Blog list page — one per locale, correct 5-language hreflang map
+  // (unlike PAGES above, kept separate rather than reusing its ko/en/ja/zh-only
+  // block so the new pages don't inherit that existing gap).
+  const blogListLanguages = Object.fromEntries(
+    locales.map((locale) => [htmlLangMap[locale], localizedUrl(locale, "/blog")])
+  );
+  for (const locale of locales) {
+    entries.push({
+      url: localizedUrl(locale, "/blog"),
+      changeFrequency: "weekly",
+      priority: 0.6,
+      alternates: {
+        languages: { ...blogListLanguages, "x-default": localizedUrl("en", "/blog") },
+      },
+    });
+  }
+
+  // Blog posts — published only (getAllPostsMeta defaults to excluding drafts).
+  const posts = getAllPostsMeta();
+  for (const post of posts) {
+    const alternates = buildPostAlternates(post, posts);
+    entries.push({
+      url: alternates.canonical,
+      changeFrequency: "monthly",
+      priority: 0.5,
+      alternates: { languages: alternates.languages },
+    });
   }
 
   return entries;

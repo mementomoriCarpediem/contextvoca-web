@@ -22,6 +22,7 @@ const zh: Translations = {
     pricing: "价格",
     support: "支持",
     download: "下载",
+    blog: "博客",
   },
   footer: {
     tagline: "AI结合语境学习英语单词",
@@ -528,6 +529,16 @@ const zh: Translations = {
         content: "如有使用条款相关问题，请联系 support@contextvoca.app。",
       },
     ],
+  },
+  blog: {
+    metaTitle: "博客",
+    metaDescription: "语境词汇博客：单词记忆方法与用照片制作单词本的方法。",
+    title: "博客",
+    subtitle: "介绍结合语境学习英语单词的方法。",
+    emptyState: "暂无已发布的文章，敬请期待。",
+    allTagsLabel: "全部",
+    updatedLabel: "更新日期：",
+    backToList: "返回博客列表",
   },
 };
 

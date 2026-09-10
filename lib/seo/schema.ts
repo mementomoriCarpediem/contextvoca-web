@@ -1,6 +1,7 @@
 import { Locale, Translations } from "@/lib/i18n/types";
 import { brandNames, htmlLangMap } from "@/lib/i18n";
-import { SITE_URL } from "./site";
+import type { BlogPostMeta } from "@/lib/blog/types";
+import { SITE_URL, localizedBlogPostUrl } from "./site";
 
 const SUPPORT_EMAIL = "support@contextvoca.app";
 
@@ -49,6 +50,25 @@ export function buildOrganizationSchema(locale: Locale): Record<string, unknown>
       email: SUPPORT_EMAIL,
       contactType: "customer support",
     },
+  };
+}
+
+export function buildArticleSchema(post: BlogPostMeta): Record<string, unknown> {
+  const url = localizedBlogPostUrl(post.locale, post.slug);
+  const org = { "@type": "Organization", name: brandNames[post.locale] };
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    inLanguage: htmlLangMap[post.locale],
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    author: org,
+    publisher: org,
   };
 }
 

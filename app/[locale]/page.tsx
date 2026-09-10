@@ -9,6 +9,7 @@ import {
   ogLocaleMap,
 } from "@/lib/i18n";
 import { buildAlternates, SITE_URL } from "@/lib/seo/site";
+import { localeHasPublishedPosts } from "@/lib/blog/posts";
 import {
   buildSoftwareApplicationSchema,
   buildFaqPageSchema,
@@ -64,7 +65,7 @@ export default async function LocaleHomePage({
           buildOrganizationSchema(locale),
         ]}
       />
-      <HomeContent locale={locale} />
+      <HomeContent locale={locale} showBlog={localeHasPublishedPosts(locale)} />
     </>
   );
 }

@@ -11,13 +11,19 @@ import ScienceSection from "@/components/pages/ScienceSection";
 import ReferencesFooter from "@/components/pages/ReferencesFooter";
 import { getDictionary, Locale } from "@/lib/i18n";
 
-export default function HomeContent({ locale }: { locale: Locale }) {
+export default function HomeContent({
+  locale,
+  showBlog = false,
+}: {
+  locale: Locale;
+  showBlog?: boolean;
+}) {
   const t = getDictionary(locale);
   const [billingYearly, setBillingYearly] = useState(false);
 
   return (
     <>
-      <Header locale={locale} />
+      <Header locale={locale} showBlog={showBlog} />
       <main>
         <HeroSection t={t} locale={locale} />
 

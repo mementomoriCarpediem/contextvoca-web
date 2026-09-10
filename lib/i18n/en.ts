@@ -23,6 +23,7 @@ const en: Translations = {
     pricing: "Pricing",
     support: "Support",
     download: "Download",
+    blog: "Blog",
   },
   footer: {
     tagline: "Learn English words in context, with AI",
@@ -551,6 +552,17 @@ const en: Translations = {
           "For any questions about these Terms, please contact support@contextvoca.app.",
       },
     ],
+  },
+  blog: {
+    metaTitle: "Blog",
+    metaDescription:
+      "ContextVoca's blog on vocabulary memorization methods and turning photos into vocabulary lists.",
+    title: "Blog",
+    subtitle: "Practical guides for learning English vocabulary in context.",
+    emptyState: "No posts published yet. Check back soon.",
+    allTagsLabel: "All",
+    updatedLabel: "Updated:",
+    backToList: "Back to blog",
   },
 };
 

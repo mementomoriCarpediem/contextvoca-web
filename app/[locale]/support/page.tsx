@@ -6,6 +6,7 @@ import SupportFaqList from "@/components/pages/SupportFaqList";
 import { getDictionary, resolveLocale } from "@/lib/i18n";
 import { buildAlternates } from "@/lib/seo/site";
 import { buildFaqPageSchema, buildContactPageSchema } from "@/lib/seo/schema";
+import { localeHasPublishedPosts } from "@/lib/blog/posts";
 
 export async function generateMetadata({
   params,
@@ -35,7 +36,7 @@ export default async function SupportPage({
       <JsonLd
         data={[buildFaqPageSchema(t), buildContactPageSchema(locale, t)]}
       />
-      <Header locale={locale} />
+      <Header locale={locale} showBlog={localeHasPublishedPosts(locale)} />
       <main className="pt-24 pb-20">
         <div className="section-container">
           <div className="mx-auto max-w-3xl">
