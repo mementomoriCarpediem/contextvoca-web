@@ -66,7 +66,8 @@ export function localeHasPublishedPosts(locale: Locale): boolean {
  * this slug before touching the filesystem.
  */
 export const PLACEHOLDER_SLUG = "__placeholder__";
-export const PLACEHOLDER_LOCALE: Locale = defaultLocale;
+/** Not exported — only `getStaticParamsForBuild` below needs it. */
+const PLACEHOLDER_LOCALE: Locale = defaultLocale;
 
 /**
  * Params for `app/[locale]/blog/[slug]/page.tsx`'s `generateStaticParams`.

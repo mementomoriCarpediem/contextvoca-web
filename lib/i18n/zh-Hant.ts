@@ -527,7 +527,7 @@ const zhHant: Translations = {
     "metaDescription": "語境詞彙部落格：單字記憶方法與用照片製作單字本的方法。",
     "title": "部落格",
     "subtitle": "介紹結合語境學習英語單字的方法。",
-    "emptyState": "暫無已釋出的文章，敬請期待。",
+    "emptyState": "暫無已發布的文章，敬請期待。",
     "allTagsLabel": "全部",
     "updatedLabel": "更新日期：",
     "backToList": "返回部落格列表"

@@ -1,15 +1,12 @@
 import { describe, expect, it } from "vitest";
-import {
-  parseArgs,
-  changedFilesToPostRefs,
-  buildIndexNowPayload,
-} from "./indexnow-submit.mjs";
+import { parseArgs, changedFilesToPostRefs, isDraft } from "./indexnow-submit.mjs";
 
 describe("parseArgs", () => {
   it("treats bare positional arguments as an explicit URL list", () => {
     expect(parseArgs(["https://contextvoca.app/ko/blog/a/", "https://contextvoca.app/ja/blog/b/"])).toEqual({
       mode: "urls",
       urls: ["https://contextvoca.app/ko/blog/a/", "https://contextvoca.app/ja/blog/b/"],
+      dryRun: false,
     });
   });
 
@@ -17,6 +14,7 @@ describe("parseArgs", () => {
     expect(parseArgs(["--since", "origin/main"])).toEqual({
       mode: "since",
       ref: "origin/main",
+      dryRun: false,
     });
   });
 
@@ -26,6 +24,27 @@ describe("parseArgs", () => {
 
   it("throws when given no arguments at all", () => {
     expect(() => parseArgs([])).toThrow();
+  });
+
+  it("recognizes --dry-run alongside an explicit URL list, in either position", () => {
+    expect(parseArgs(["--dry-run", "https://contextvoca.app/ko/blog/a/"])).toEqual({
+      mode: "urls",
+      urls: ["https://contextvoca.app/ko/blog/a/"],
+      dryRun: true,
+    });
+    expect(parseArgs(["https://contextvoca.app/ko/blog/a/", "--dry-run"])).toEqual({
+      mode: "urls",
+      urls: ["https://contextvoca.app/ko/blog/a/"],
+      dryRun: true,
+    });
+  });
+
+  it("recognizes --dry-run alongside --since", () => {
+    expect(parseArgs(["--since", "origin/main", "--dry-run"])).toEqual({
+      mode: "since",
+      ref: "origin/main",
+      dryRun: true,
+    });
   });
 });
 
@@ -51,19 +70,24 @@ describe("changedFilesToPostRefs", () => {
   });
 });
 
-describe("buildIndexNowPayload", () => {
-  it("builds the IndexNow request body from host/key/keyLocation/urlList", () => {
-    const payload = buildIndexNowPayload({
-      host: "contextvoca.app",
-      key: "abc123",
-      keyLocation: "https://contextvoca.app/abc123.txt",
-      urls: ["https://contextvoca.app/ko/blog/photo-vocabulary/"],
-    });
-    expect(payload).toEqual({
-      host: "contextvoca.app",
-      key: "abc123",
-      keyLocation: "https://contextvoca.app/abc123.txt",
-      urlList: ["https://contextvoca.app/ko/blog/photo-vocabulary/"],
-    });
+describe("isDraft", () => {
+  it("returns true when the frontmatter block sets draft: true", () => {
+    expect(isDraft("---\ntitle: t\ndraft: true\n---\nbody")).toBe(true);
+  });
+
+  it("returns false when draft is absent", () => {
+    expect(isDraft("---\ntitle: t\n---\nbody")).toBe(false);
+  });
+
+  it("returns false when draft: false", () => {
+    expect(isDraft("---\ntitle: t\ndraft: false\n---\nbody")).toBe(false);
+  });
+
+  it("returns false when there is no frontmatter block at all", () => {
+    expect(isDraft("just plain text, no frontmatter")).toBe(false);
+  });
+
+  it("ignores a 'draft: true'-looking line outside the frontmatter block", () => {
+    expect(isDraft("---\ntitle: t\n---\nSee also: draft: true (not real frontmatter)")).toBe(false);
   });
 });

@@ -39,7 +39,6 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale: localeParam, slug } = await params;
-  const locale = resolveLocale(localeParam);
   const post = safeGetPost(localeParam, slug);
 
   // draft(또는 placeholder) — title 외 어떤 필드도 metadata에 올리지 않는다.

@@ -14,7 +14,7 @@ ContextVoca 앱 지원 웹사이트 - 랜딩페이지, 개인정보처리방침,
 
 - Next.js 15 (Static Export)
 - TailwindCSS
-- GitHub Pages
+- Cloudflare Workers (정적 에셋 서빙)
 
 ## Development
 
@@ -26,9 +26,15 @@ npm run test    # vitest — 순수 로직(lib/blog/*, scripts/indexnow-submit.m
 
 ## Deployment
 
-`main` 브랜치에 push하면 GitHub Actions로 자동 배포됩니다.
+`main` 브랜치에 push하면 GitHub Actions가 빌드해 Cloudflare Worker(`contextvoca-web`)에
+배포합니다(`.github/workflows/deploy-worker.yml`, `wrangler.toml` 참고). 로컬에서
+`wrangler deploy`를 병행하지 말 것 — 배포가 겹치면 엣지 매니페스트가 갈린다.
 
-배포 URL: https://mementomoriCarpediem.github.io/contextvoca-web/
+배포 URL: https://contextvoca.app/
+
+(구 주소 `https://mementomoriCarpediem.github.io/contextvoca-web/`는 스토어·심사
+링크가 가리켜서 유지하되, 새 도메인으로 보내는 리다이렉트 스텁만 배포한다 —
+`legacy-redirect/`, `.github/workflows/deploy.yml` 참고. 실제 사이트가 아니다.)
 
 ## 블로그 글 발행 절차
 
@@ -43,9 +49,13 @@ npm run test    # vitest — 순수 로직(lib/blog/*, scripts/indexnow-submit.m
    (`wrangler.toml` 참고, 로컬 `wrangler deploy`는 절대 병행하지 않는다).
 4. 배포 확인(`https://contextvoca.app/{locale}/blog/{slug}/` 접속) 후:
    ```bash
-   node scripts/indexnow-submit.mjs --since <배포 전 커밋 ref>
+   node scripts/indexnow-submit.mjs --dry-run --since <배포 전 커밋 ref>  # 먼저 페이로드만 확인
+   node scripts/indexnow-submit.mjs --since <배포 전 커밋 ref>            # 실제 제출
    # 또는 URL을 직접 지정: node scripts/indexnow-submit.mjs https://contextvoca.app/ko/blog/{slug}/
    ```
-   `--since`는 그 ref 이후 `content/blog/`에서 바뀐 글 중 발행(`draft`가 아닌)
-   상태인 것만 골라 IndexNow(Bing·Naver·Yandex 등)에 URL 갱신을 통보한다. 키는
-   `public/*.txt`(파일명=키)를 그대로 읽으므로 별도 발급이 필요 없다.
+   `--since <ref>`는 `git diff --name-only <ref> -- content/blog`로 비교한다 —
+   즉 **`<ref>`와 현재 작업 트리를 비교**하며 HEAD나 커밋 이력이 아니다. 커밋하지
+   않은 변경도 잡히므로, `main` push·빌드 확인 이후(3번 완료 후)에만 실행할 것.
+   변경분 중 발행(`draft`가 아닌) 상태인 글만 골라 IndexNow(Bing·Naver·Yandex 등)에
+   URL 갱신을 통보한다. `--dry-run`은 실제 호출 없이 제출될 URL과 요청 페이로드만
+   출력한다. 키는 `public/*.txt`(파일명=키)를 그대로 읽으므로 별도 발급이 필요 없다.

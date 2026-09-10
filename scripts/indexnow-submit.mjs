@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 // IndexNow 제출 스크립트.
-// 사용: node scripts/indexnow-submit.mjs <url1> [url2 ...]
-//       node scripts/indexnow-submit.mjs --since <git-ref>   (예: origin/main)
+// 사용: node scripts/indexnow-submit.mjs [--dry-run] <url1> [url2 ...]
+//       node scripts/indexnow-submit.mjs [--dry-run] --since <git-ref>   (예: origin/main)
 //
-// `--since`는 그 ref 이후 content/blog/에서 변경된 .mdx 파일을 찾아 URL로 매핑하고,
+// `--since`는 `git diff --name-only <ref> -- content/blog`로 변경분을 찾는다 —
+// 즉 <ref>와 "현재 작업 트리"를 비교한다(HEAD가 아니다). 커밋 전 상태도 잡히므로
+// 실제 배포된 내용과 다를 수 있다: main 푸시·빌드 확인 이후에만 실행할 것.
 // 그중 draft:true인 글은 제외한다(noindex 스텁을 검색엔진에 통보할 이유가 없다).
 // 키는 public/*.txt(파일명 = 키, 내용도 키)를 읽는다 — 새로 발급하지 않는다.
+// `--dry-run`은 실제 IndexNow 호출 없이 제출될 URL·페이로드만 출력하고 끝낸다.
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -16,19 +19,22 @@ const ROOT = path.join(__dirname, "..");
 const SITE_URL = "https://contextvoca.app";
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
-/** Parses CLI argv into an explicit URL list or a `--since <ref>` git-diff request. */
+/** Parses CLI argv into an explicit URL list or a `--since <ref>` git-diff request. `--dry-run` may appear anywhere. */
 export function parseArgs(argv) {
-  if (argv[0] === "--since") {
-    const ref = argv[1];
+  const dryRun = argv.includes("--dry-run");
+  const rest = argv.filter((arg) => arg !== "--dry-run");
+
+  if (rest[0] === "--since") {
+    const ref = rest[1];
     if (!ref) {
       throw new Error("indexnow-submit: --since requires a git ref argument");
     }
-    return { mode: "since", ref };
+    return { mode: "since", ref, dryRun };
   }
-  if (argv.length === 0) {
+  if (rest.length === 0) {
     throw new Error("indexnow-submit: pass one or more URLs, or --since <git-ref>");
   }
-  return { mode: "urls", urls: argv };
+  return { mode: "urls", urls: rest, dryRun };
 }
 
 /** Extracts `{locale, slug}` from `content/blog/{locale}/{slug}.mdx` paths (e.g. from `git diff --name-only`). */
@@ -52,7 +58,7 @@ export function buildIndexNowPayload({ host, key, keyLocation, urls }) {
  * yes/no gate, and staying import-free from `lib/blog` (TypeScript) lets it
  * keep running under plain `node`, matching this repo's other `scripts/*.mjs`.
  */
-function isDraft(rawMdx) {
+export function isDraft(rawMdx) {
   const block = rawMdx.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!block) return false;
   return /^draft:\s*true\s*$/m.test(block[1]);
@@ -106,8 +112,15 @@ async function main() {
   const { key, keyLocation } = findKeyFile();
   const payload = buildIndexNowPayload({ host: "contextvoca.app", key, keyLocation, urls });
 
-  console.log(`indexnow-submit: submitting ${urls.length} URL(s):`);
+  console.log(
+    `indexnow-submit: ${args.dryRun ? "[dry-run] would submit" : "submitting"} ${urls.length} URL(s):`
+  );
   for (const url of urls) console.log(`  - ${url}`);
+
+  if (args.dryRun) {
+    console.log(JSON.stringify(payload, null, 2));
+    return;
+  }
 
   const res = await fetch(INDEXNOW_ENDPOINT, {
     method: "POST",

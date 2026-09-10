@@ -48,11 +48,25 @@ describe("buildPostAlternates", () => {
     expect(result.languages["x-default"]).toBe("https://contextvoca.app/en/blog/en-slug/");
   });
 
-  it("falls back x-default to the current post when no English translation is published", () => {
+  it("falls back x-default to the sole published translation when no English translation exists", () => {
     const ko = post({ locale: "ko", slug: "ko-slug", translationKey: "photo" });
 
     const result = buildPostAlternates(ko, [ko]);
 
     expect(result.languages["x-default"]).toBe("https://contextvoca.app/ko/blog/ko-slug/");
+  });
+
+  it("picks the same x-default for a cluster regardless of which post's page is rendering (no English)", () => {
+    const ja = post({ locale: "ja", slug: "ja-slug", translationKey: "photo" });
+    const zhHant = post({ locale: "zh-Hant", slug: "tw-slug", translationKey: "photo" });
+    const all = [ja, zhHant];
+
+    // Rendering ja's page and rendering zh-Hant's page must agree on x-default —
+    // it depends only on the cluster's available locales, not on `post`.
+    const fromJaPage = buildPostAlternates(ja, all);
+    const fromZhHantPage = buildPostAlternates(zhHant, all);
+
+    expect(fromJaPage.languages["x-default"]).toBe("https://contextvoca.app/ja/blog/ja-slug/");
+    expect(fromZhHantPage.languages["x-default"]).toBe("https://contextvoca.app/ja/blog/ja-slug/");
   });
 });

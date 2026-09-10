@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
-import { htmlLangMap, locales } from "@/lib/i18n";
+import { locales } from "@/lib/i18n";
 import { SITE_URL, LocalizedPathSuffix, localizedUrl } from "@/lib/seo/site";
-import { getAllPostsMeta } from "@/lib/blog/posts";
+import { getAllPostsMeta, localeHasPublishedPosts } from "@/lib/blog/posts";
 import { buildPostAlternates } from "@/lib/blog/hreflang";
+import { buildBlogListSitemapEntries } from "@/lib/seo/sitemap-blog-entries";
 
 // Required for `output: "export"` — this route has no request-time inputs,
 // so it can be fully prerendered to a static sitemap.xml at build time.
@@ -41,22 +42,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // Blog list page — one per locale, correct 5-language hreflang map
-  // (unlike PAGES above, kept separate rather than reusing its ko/en/ja/zh-only
-  // block so the new pages don't inherit that existing gap).
-  const blogListLanguages = Object.fromEntries(
-    locales.map((locale) => [htmlLangMap[locale], localizedUrl(locale, "/blog")])
-  );
-  for (const locale of locales) {
-    entries.push({
-      url: localizedUrl(locale, "/blog"),
-      changeFrequency: "weekly",
-      priority: 0.6,
-      alternates: {
-        languages: { ...blogListLanguages, "x-default": localizedUrl("en", "/blog") },
-      },
-    });
-  }
+  // Blog list page — only locales with >=1 published post: a locale with
+  // zero posts is `noindex` (see app/[locale]/blog/page.tsx) and must not be
+  // submitted to search engines or advertised as a hreflang alternate.
+  const localesWithPosts = locales.filter((locale) => localeHasPublishedPosts(locale));
+  entries.push(...buildBlogListSitemapEntries(localesWithPosts));
 
   // Blog posts — published only (getAllPostsMeta defaults to excluding drafts).
   const posts = getAllPostsMeta();

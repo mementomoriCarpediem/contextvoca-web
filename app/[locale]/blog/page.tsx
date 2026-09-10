@@ -6,6 +6,7 @@ import BlogListing from "@/components/blog/BlogListing";
 import { getDictionary, resolveLocale } from "@/lib/i18n";
 import { buildAlternates } from "@/lib/seo/site";
 import { getPostsMetaByLocale, localeHasPublishedPosts } from "@/lib/blog/posts";
+import { buildBlogListRobots } from "@/lib/blog/list-robots";
 
 export async function generateMetadata({
   params,
@@ -19,6 +20,7 @@ export async function generateMetadata({
     title: t.blog.metaTitle,
     description: t.blog.metaDescription,
     alternates: buildAlternates(locale, "/blog"),
+    robots: buildBlogListRobots(localeHasPublishedPosts(locale)),
   };
 }
 

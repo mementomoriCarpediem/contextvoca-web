@@ -1,6 +1,7 @@
 import { htmlLangMap } from "@/lib/i18n";
 import { localizedBlogPostUrl } from "@/lib/seo/site";
 import { filterPublished } from "./sort-and-filter";
+import { pickPreferredLocale } from "./pick-preferred-locale";
 import type { BlogPostMeta } from "./types";
 
 export interface PostAlternates {
@@ -11,9 +12,11 @@ export interface PostAlternates {
 /**
  * Builds `alternates` metadata for a single blog post: canonical URL plus a
  * hreflang map of every *published* post that shares the same
- * `translationKey` (including the post itself). `x-default` points at the
- * English translation when one is published, otherwise falls back to the
- * post being rendered.
+ * `translationKey` (including the post itself). `x-default` is chosen by
+ * `pickPreferredLocale` from that cluster's available locales — English if
+ * published, else deterministically the first available locale in `locales`
+ * order — independent of which post's page is currently rendering metadata
+ * (see `pick-preferred-locale.ts` for why that matters).
  */
 export function buildPostAlternates(
   post: BlogPostMeta,
@@ -31,10 +34,12 @@ export function buildPostAlternates(
     );
   }
 
-  const english = translations.find((p) => p.locale === "en");
-  languages["x-default"] = english
-    ? localizedBlogPostUrl(english.locale, english.slug)
-    : localizedBlogPostUrl(post.locale, post.slug);
+  // `post` is always published when this function is called (draft pages
+  // never reach it), so it's always present in `translations` — the cluster
+  // is never empty and `pickPreferredLocale` always resolves.
+  const preferredLocale = pickPreferredLocale(translations.map((t) => t.locale))!;
+  const xDefaultTarget = translations.find((t) => t.locale === preferredLocale)!;
+  languages["x-default"] = localizedBlogPostUrl(xDefaultTarget.locale, xDefaultTarget.slug);
 
   return {
     canonical: localizedBlogPostUrl(post.locale, post.slug),
