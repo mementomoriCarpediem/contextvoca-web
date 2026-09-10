@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { getDictionary, resolveLocale } from "@/lib/i18n";
 import { buildAlternates } from "@/lib/seo/site";
+import { localeHasPublishedPosts } from "@/lib/blog/posts";
 
 export async function generateMetadata({
   params,
@@ -29,7 +30,7 @@ export default async function PrivacyPage({
 
   return (
     <>
-      <Header locale={locale} />
+      <Header locale={locale} showBlog={localeHasPublishedPosts(locale)} />
       <main className="pt-24 pb-20">
         <div className="section-container">
           <div className="mx-auto max-w-3xl">

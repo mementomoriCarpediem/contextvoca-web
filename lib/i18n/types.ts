@@ -12,6 +12,7 @@ export interface Translations {
     pricing: string;
     support: string;
     download: string;
+    blog: string;
   };
   footer: {
     tagline: string;
@@ -167,5 +168,18 @@ export interface Translations {
       content: string;
       items?: string[];
     }>;
+  };
+  blog: {
+    metaTitle: string;
+    metaDescription: string;
+    title: string;
+    subtitle: string;
+    /** Shown on the list page when this locale has no published posts yet. */
+    emptyState: string;
+    /** Tag-filter link back to the unfiltered list (e.g. "All" / "전체"). */
+    allTagsLabel: string;
+    /** Prefix before the revision date on a post page, when `updated` is set. */
+    updatedLabel: string;
+    backToList: string;
   };
 }

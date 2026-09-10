@@ -23,7 +23,8 @@ const zhHant: Translations = {
     "features": "功能",
     "pricing": "價格",
     "support": "支援",
-    "download": "下載"
+    "download": "下載",
+    "blog": "部落格"
   },
   "footer": {
     "tagline": "AI結合語境學習英語單字",
@@ -520,6 +521,16 @@ const zhHant: Translations = {
         "content": "如有使用條款相關問題，請聯絡 support@contextvoca.app。"
       }
     ]
+  },
+  "blog": {
+    "metaTitle": "部落格",
+    "metaDescription": "語境詞彙部落格：單字記憶方法與用照片製作單字本的方法。",
+    "title": "部落格",
+    "subtitle": "介紹結合語境學習英語單字的方法。",
+    "emptyState": "暫無已發布的文章，敬請期待。",
+    "allTagsLabel": "全部",
+    "updatedLabel": "更新日期：",
+    "backToList": "返回部落格列表"
   }
 };
 

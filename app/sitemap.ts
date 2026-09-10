@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
-import { SITE_URL, LocalizedPathSuffix } from "@/lib/seo/site";
+import { SITE_URL, LocalizedPathSuffix, localizedUrl } from "@/lib/seo/site";
+import { getAllPostsMeta, localeHasPublishedPosts } from "@/lib/blog/posts";
+import { buildPostAlternates } from "@/lib/blog/hreflang";
+import { buildBlogListSitemapEntries } from "@/lib/seo/sitemap-blog-entries";
 
 // Required for `output: "export"` — this route has no request-time inputs,
 // so it can be fully prerendered to a static sitemap.xml at build time.
@@ -37,6 +40,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       });
     }
+  }
+
+  // Blog list page — only locales with >=1 published post: a locale with
+  // zero posts is `noindex` (see app/[locale]/blog/page.tsx) and must not be
+  // submitted to search engines or advertised as a hreflang alternate.
+  const localesWithPosts = locales.filter((locale) => localeHasPublishedPosts(locale));
+  entries.push(...buildBlogListSitemapEntries(localesWithPosts));
+
+  // Blog posts — published only (getAllPostsMeta defaults to excluding drafts).
+  const posts = getAllPostsMeta();
+  for (const post of posts) {
+    const alternates = buildPostAlternates(post, posts);
+    entries.push({
+      url: alternates.canonical,
+      changeFrequency: "monthly",
+      priority: 0.5,
+      alternates: { languages: alternates.languages },
+    });
   }
 
   return entries;

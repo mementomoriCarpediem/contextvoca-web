@@ -5,7 +5,14 @@ import { useState } from "react";
 import { getDictionary, Locale } from "@/lib/i18n";
 import LanguageSelector, { MobileLanguageSelector } from "./LanguageSelector";
 
-export default function Header({ locale }: { locale: Locale }) {
+export default function Header({
+  locale,
+  showBlog = false,
+}: {
+  locale: Locale;
+  /** Nav link is only shown for locales that have at least one published post. */
+  showBlog?: boolean;
+}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = getDictionary(locale);
   const base = `/${locale}`;
@@ -44,6 +51,14 @@ export default function Header({ locale }: { locale: Locale }) {
           >
             {t.header.support}
           </Link>
+          {showBlog && (
+            <Link
+              href={`${base}/blog`}
+              className="text-sm font-medium text-gray-600 transition-colors hover:text-primary-600"
+            >
+              {t.header.blog}
+            </Link>
+          )}
           <LanguageSelector locale={locale} />
           <a href={`${base}/#download`} className="btn-primary !py-2 !text-sm">
             {t.header.download}
@@ -106,6 +121,15 @@ export default function Header({ locale }: { locale: Locale }) {
             >
               {t.header.support}
             </Link>
+            {showBlog && (
+              <Link
+                href={`${base}/blog`}
+                className="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t.header.blog}
+              </Link>
+            )}
             <div className="px-3 py-2">
               <MobileLanguageSelector locale={locale} />
             </div>

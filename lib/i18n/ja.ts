@@ -23,6 +23,7 @@ const ja: Translations = {
     pricing: "料金",
     support: "サポート",
     download: "ダウンロード",
+    blog: "ブログ",
   },
   footer: {
     tagline: "AIで文脈から学ぶ英単語帳",
@@ -548,6 +549,17 @@ const ja: Translations = {
         content: "利用規約に関するお問い合わせは support@contextvoca.app までご連絡ください。",
       },
     ],
+  },
+  blog: {
+    metaTitle: "ブログ",
+    metaDescription:
+      "英単語の覚え方や写真から単語帳を作る方法をまとめた文脈単語帳のブログ。",
+    title: "ブログ",
+    subtitle: "文脈とともに英単語を身につける方法を紹介します。",
+    emptyState: "まだ公開された記事はありません。近日公開予定です。",
+    allTagsLabel: "すべて",
+    updatedLabel: "更新日:",
+    backToList: "ブログ一覧へ",
   },
 };
 

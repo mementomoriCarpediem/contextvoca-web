@@ -23,6 +23,7 @@ const ko: Translations = {
     pricing: "요금제",
     support: "지원",
     download: "다운로드",
+    blog: "블로그",
   },
   footer: {
     tagline: "문맥으로 배우는 AI 영단어장",
@@ -548,6 +549,17 @@ const ko: Translations = {
         content: "이용약관 관련 문의는 support@contextvoca.app으로 연락해 주세요.",
       },
     ],
+  },
+  blog: {
+    metaTitle: "블로그",
+    metaDescription:
+      "영어 단어 암기법과 사진으로 단어장 만드는 법을 정리한 문맥보카 블로그.",
+    title: "블로그",
+    subtitle: "영어 단어를 문맥과 함께 익히는 방법을 다룹니다.",
+    emptyState: "아직 게시된 글이 없습니다. 곧 찾아뵙겠습니다.",
+    allTagsLabel: "전체",
+    updatedLabel: "업데이트:",
+    backToList: "블로그 목록으로",
   },
 };
 

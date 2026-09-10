@@ -8,6 +8,8 @@ const require = createRequire(import.meta.url);
 const OpenCC = require("opencc-js");
 const conv = OpenCC.Converter({ from: "cn", to: "twp" });
 
+// "釋出"는 OpenCC cn→twp가 "发布"에 붙이는 배포/릴리스 어감의 대만 어휘 — 콘텐츠
+// "발행"에는 "發布"가 자연스러워 2026-09-10 예외 추가.
 const TW_TERMS: Array<[string, string]> = [
   ["單詞", "單字"], ["生詞", "生字"], ["詞典", "字典"], ["關鍵詞", "關鍵字"], ["智能", "智慧"],
   ["賬戶", "帳戶"], ["賬號", "帳號"], ["設置", "設定"], ["保存", "儲存"], ["點擊", "點選"],
@@ -15,6 +17,7 @@ const TW_TERMS: Array<[string, string]> = [
   ["視頻", "影片"], ["屏幕", "螢幕"], ["默認", "預設"], ["支持", "支援"], ["信息", "資訊"],
   ["數據", "資料"], ["初中", "國中"], ["示例", "範例"], ["軟件", "軟體"], ["程序", "程式"],
   ["訂閱", "訂閱"], ["四六級", "多益／英檢"], ["考研", "研究所考試"],
+  ["博客", "部落格"], ["釋出", "發布"],
 ];
 function tw(s: string): string {
   let out = conv(s);
