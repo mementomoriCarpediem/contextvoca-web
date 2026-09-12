@@ -26,7 +26,7 @@ describe("buildBlogListSitemapEntries", () => {
   it("uses en for x-default when en has published posts", () => {
     const entries = buildBlogListSitemapEntries(["ko", "en"]);
     for (const entry of entries) {
-      expect(entry.alternates?.languages["x-default"]).toBe("https://contextvoca.app/en/blog/");
+      expect(entry.alternates?.languages?.["x-default"]).toBe("https://contextvoca.app/en/blog/");
     }
   });
 });

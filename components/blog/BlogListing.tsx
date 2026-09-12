@@ -1,15 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import type { BlogPostMeta } from "@/lib/blog/types";
 import type { Locale, Translations } from "@/lib/i18n";
 
 /**
- * Tag filter is link-based (`?tag=...`), not client state — each chip is a
- * real, crawlable `<Link>`. The full post list is already server-rendered
- * into the page HTML; this component only narrows what's shown after
- * hydration, based on the `tag` query param.
+ * Tag filter is link-based (`?tag=...`) — each chip is a real, crawlable
+ * `<Link>`. The active tag is read from `window.location` after mount, NOT via
+ * `useSearchParams`: with `output: "export"` that hook opts the whole subtree
+ * out of static rendering, leaving the built HTML without any post links
+ * (verified 2026-09-12 in out/ko/blog/index.html). With this approach the
+ * full list is in the static HTML and narrows only after hydration.
  */
 export default function BlogListing({
   locale,
@@ -20,8 +22,14 @@ export default function BlogListing({
   posts: BlogPostMeta[];
   t: Translations["blog"];
 }) {
-  const searchParams = useSearchParams();
-  const activeTag = searchParams.get("tag");
+  const [activeTag, setActiveTag] = useState<string | null>(null);
+  useEffect(() => {
+    const read = () =>
+      setActiveTag(new URLSearchParams(window.location.search).get("tag"));
+    read();
+    window.addEventListener("popstate", read);
+    return () => window.removeEventListener("popstate", read);
+  }, []);
   const base = `/${locale}/blog`;
 
   if (posts.length === 0) {
