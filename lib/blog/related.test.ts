@@ -89,4 +89,12 @@ describe("pickRelatedPosts", () => {
     const result = pickRelatedPosts([current], current);
     expect(result).toEqual([]);
   });
+
+  it("excludes posts from other locales even when they share the slug", () => {
+    const current = post({ slug: "photo-vocabulary-guide", locale: "ko", tags: ["a"] });
+    const jaSameSlug = post({ slug: "photo-vocabulary-guide", locale: "ja", tags: ["a"] });
+    const jaOther = post({ slug: "eiken", locale: "ja", tags: ["a"] });
+    const koOther = post({ slug: "toeic", locale: "ko", tags: ["a"] });
+    expect(pickRelatedPosts([current, jaSameSlug, jaOther, koOther], current)).toEqual([koOther]);
+  });
 });
