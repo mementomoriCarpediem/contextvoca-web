@@ -560,6 +560,13 @@ const ja: Translations = {
     allTagsLabel: "すべて",
     updatedLabel: "更新日:",
     backToList: "ブログ一覧へ",
+    latestPosts: {
+      title: "最新記事",
+      viewAll: "すべて見る",
+    },
+    relatedPosts: {
+      title: "関連記事",
+    },
   },
 };
 

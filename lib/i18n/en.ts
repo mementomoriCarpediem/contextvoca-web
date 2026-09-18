@@ -563,6 +563,13 @@ const en: Translations = {
     allTagsLabel: "All",
     updatedLabel: "Updated:",
     backToList: "Back to blog",
+    latestPosts: {
+      title: "Latest posts",
+      viewAll: "View all",
+    },
+    relatedPosts: {
+      title: "Related posts",
+    },
   },
 };
 

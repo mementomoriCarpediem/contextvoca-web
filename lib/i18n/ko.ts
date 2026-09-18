@@ -560,6 +560,13 @@ const ko: Translations = {
     allTagsLabel: "전체",
     updatedLabel: "업데이트:",
     backToList: "블로그 목록으로",
+    latestPosts: {
+      title: "최신 글",
+      viewAll: "모두 보기",
+    },
+    relatedPosts: {
+      title: "관련 글",
+    },
   },
 };
 

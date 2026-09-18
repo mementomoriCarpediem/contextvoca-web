@@ -181,5 +181,16 @@ export interface Translations {
     /** Prefix before the revision date on a post page, when `updated` is set. */
     updatedLabel: string;
     backToList: string;
+    /** Home page's "latest posts" section — rendered only when the locale
+     * has at least one published post. */
+    latestPosts: {
+      title: string;
+      /** Link label to the full blog list, e.g. "View all" / "모두 보기". */
+      viewAll: string;
+    };
+    /** "Related posts" block shown under a published post's article body. */
+    relatedPosts: {
+      title: string;
+    };
   };
 }

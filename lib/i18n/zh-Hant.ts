@@ -530,7 +530,14 @@ const zhHant: Translations = {
     "emptyState": "暫無已發布的文章，敬請期待。",
     "allTagsLabel": "全部",
     "updatedLabel": "更新日期：",
-    "backToList": "返回部落格列表"
+    "backToList": "返回部落格列表",
+    "latestPosts": {
+      "title": "最新文章",
+      "viewAll": "查看全部"
+    },
+    "relatedPosts": {
+      "title": "相關文章"
+    }
   }
 };
 
