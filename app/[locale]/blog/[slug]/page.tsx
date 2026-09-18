@@ -9,12 +9,14 @@ import { getDictionary, resolveLocale } from "@/lib/i18n";
 import {
   getAllPostsMeta,
   getPost,
+  getPostsMetaByLocale,
   getStaticParamsForBuild,
   localeHasPublishedPosts,
   PLACEHOLDER_SLUG,
 } from "@/lib/blog/posts";
 import { buildPostAlternates } from "@/lib/blog/hreflang";
 import { getMdxComponents } from "@/lib/blog/mdx-components";
+import { pickRelatedPosts } from "@/lib/blog/related";
 import { buildArticleSchema } from "@/lib/seo/schema";
 import { buildStubViewModel } from "@/lib/blog/stub";
 import type { BlogPost } from "@/lib/blog/types";
@@ -114,6 +116,11 @@ export default async function BlogPostPage({
     components: getMdxComponents(locale),
   });
 
+  const relatedPosts = pickRelatedPosts(
+    getPostsMetaByLocale(locale),
+    post.meta
+  );
+
   return (
     <>
       <JsonLd data={buildArticleSchema(post.meta)} />
@@ -134,6 +141,27 @@ export default async function BlogPostPage({
             </div>
             <div className="blog-prose mt-8">{content}</div>
           </article>
+
+          {relatedPosts.length > 0 && (
+            <div className="mx-auto mt-12 max-w-[65ch]">
+              <h2 className="text-xl font-semibold text-gray-900">
+                {t.blog.relatedPosts.title}
+              </h2>
+              <ul className="mt-6 space-y-6">
+                {relatedPosts.map((related) => (
+                  <li key={`${related.locale}-${related.slug}`}>
+                    <Link
+                      href={`/${locale}/blog/${related.slug}`}
+                      className="text-base font-semibold text-gray-900 hover:text-primary-600"
+                    >
+                      {related.title}
+                    </Link>
+                    <p className="mt-1 text-sm text-gray-400">{related.date}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="mx-auto mt-12 max-w-[65ch]">
             <Link

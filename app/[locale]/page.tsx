@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import HomeContent from "@/components/pages/HomeContent";
+import LatestPostsSection from "@/components/blog/LatestPostsSection";
 import {
   getDictionary,
   resolveLocale,
@@ -9,12 +10,14 @@ import {
   ogLocaleMap,
 } from "@/lib/i18n";
 import { buildAlternates, SITE_URL } from "@/lib/seo/site";
-import { localeHasPublishedPosts } from "@/lib/blog/posts";
+import { getPostsMetaByLocale, localeHasPublishedPosts } from "@/lib/blog/posts";
 import {
   buildSoftwareApplicationSchema,
   buildFaqPageSchema,
   buildOrganizationSchema,
 } from "@/lib/seo/schema";
+
+const LATEST_POSTS_LIMIT = 3;
 
 export async function generateMetadata({
   params,
@@ -55,6 +58,7 @@ export default async function LocaleHomePage({
 }) {
   const locale = resolveLocale((await params).locale);
   const t = getDictionary(locale);
+  const latestPosts = getPostsMetaByLocale(locale).slice(0, LATEST_POSTS_LIMIT);
 
   return (
     <>
@@ -65,7 +69,13 @@ export default async function LocaleHomePage({
           buildOrganizationSchema(locale),
         ]}
       />
-      <HomeContent locale={locale} showBlog={localeHasPublishedPosts(locale)} />
+      <HomeContent
+        locale={locale}
+        showBlog={localeHasPublishedPosts(locale)}
+        latestPostsSection={
+          <LatestPostsSection locale={locale} posts={latestPosts} t={t.blog} />
+        }
+      />
     </>
   );
 }

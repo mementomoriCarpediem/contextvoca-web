@@ -2,6 +2,7 @@
 
 import { appStoreLink, playStoreLink } from "@/lib/seo/site";
 
+import type { ReactNode } from "react";
 import { useState } from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -14,9 +15,18 @@ import { getDictionary, Locale } from "@/lib/i18n";
 export default function HomeContent({
   locale,
   showBlog = false,
+  latestPostsSection = null,
 }: {
   locale: Locale;
   showBlog?: boolean;
+  /**
+   * Server-rendered "latest posts" section, passed down from the (server)
+   * page component so its content lands in the static export's HTML —
+   * `HomeContent` itself is a client component (`billingYearly` toggle
+   * state) and cannot read `content/blog` directly. `null` when the locale
+   * has no published posts; the caller decides that, not this component.
+   */
+  latestPostsSection?: ReactNode;
 }) {
   const t = getDictionary(locale);
   const [billingYearly, setBillingYearly] = useState(false);
@@ -232,6 +242,8 @@ export default function HomeContent({
             </div>
           </div>
         </section>
+
+        {latestPostsSection}
 
         <ReferencesFooter t={t} />
       </main>
