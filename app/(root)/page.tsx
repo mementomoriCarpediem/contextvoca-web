@@ -16,6 +16,7 @@ export const metadata: Metadata = {
       en: `${SITE_URL}/en/`,
       ja: `${SITE_URL}/ja/`,
       "zh-Hans": `${SITE_URL}/zh/`,
+      "zh-Hant": `${SITE_URL}/zh-Hant/`,
       "x-default": `${SITE_URL}/en/`,
     },
   },

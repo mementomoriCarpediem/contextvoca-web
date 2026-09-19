@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             en: `${SITE_URL}/en${suffix}/`,
             ja: `${SITE_URL}/ja${suffix}/`,
             "zh-Hans": `${SITE_URL}/zh${suffix}/`,
+            "zh-Hant": `${SITE_URL}/zh-Hant${suffix}/`,
             "x-default": `${SITE_URL}/en${suffix}/`,
           },
         },
@@ -54,6 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const alternates = buildPostAlternates(post, posts);
     entries.push({
       url: alternates.canonical,
+      lastModified: post.updated ?? post.date,
       changeFrequency: "monthly",
       priority: 0.5,
       alternates: { languages: alternates.languages },
