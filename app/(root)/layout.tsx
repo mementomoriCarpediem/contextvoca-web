@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import { siteViewport } from "@/lib/seo/site";
 import "../globals.css";
@@ -22,7 +23,7 @@ export default function RootSelectorLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen font-sans antialiased">{children}</body>
+      <body className="min-h-screen font-sans antialiased">{children}<footer style={{textAlign:"center",padding:"12px",fontSize:"11px",opacity:0.65}}><a href="https://growth-control-tower.resonace-zorba.workers.dev/measurement.html">Web measurement · 측정 안내</a></footer><Script src="https://growth-control-tower.resonace-zorba.workers.dev/measure.js" strategy="afterInteractive" /></body>
     </html>
   );
 }
