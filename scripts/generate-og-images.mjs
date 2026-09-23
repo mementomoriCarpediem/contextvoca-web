@@ -9,9 +9,9 @@
  * corrected number. Deriving the picture from frontmatter on every build makes
  * drift impossible: there is no second source to forget.
  *
- * Deterministic by construction — the palette comes from a hash of the slug,
- * the motif from the tags, and nothing reads the clock or a random source. Two
- * runs produce byte-identical PNGs (verified by sha256 in review).
+ * Deterministic by construction — every visual axis comes from a hash of the
+ * slug, and nothing reads the clock or a random source. Two runs produce
+ * byte-identical PNGs (verified by sha256 in review).
  *
  * Drafts get no image at all: a draft page must not reference one (see
  * `app/[locale]/blog/[slug]/page.tsx`'s stub branch).
@@ -23,6 +23,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 import { loadTsModule } from "./load-ts-module.mjs";
+import { inspectOgPng } from "./inspect-og-png.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -36,14 +37,18 @@ const { buildOgSvg, hasTextGlyphs } = loadTsModule(path.join(ROOT, "lib", "og", 
 const { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, ogImagePathname } = loadTsModule(
   path.join(ROOT, "lib", "og", "og-image.ts")
 );
+const { ogImageProblems } = loadTsModule(path.join(ROOT, "lib", "og", "image-health.ts"));
 
-/** Hard ceiling per image. Well above what these flat-fill cards need (~15 KB). */
-const MAX_BYTES = 200_000;
+/** Every failure names the file it came from — a build log without one is useless. */
+function postError(source, message) {
+  return new Error(`${source}: ${message}`);
+}
 
 /**
  * Published posts, mirroring `filterPublished` (`!draft`). `draft` is required
- * to be a boolean when present — same rule `validateFrontmatter` enforces
- * during the build, so an odd value fails here instead of quietly publishing.
+ * to be a boolean when present and `tags` an array of strings — the same rules
+ * `validateFrontmatter` enforces during the build, so an odd value fails here
+ * instead of quietly publishing or blowing up deep inside the renderer.
  */
 function listPublishedPosts() {
   if (!fs.existsSync(CONTENT_DIR)) return [];
@@ -55,18 +60,26 @@ function listPublishedPosts() {
 
     for (const file of fs.readdirSync(localeDir).sort()) {
       if (!file.endsWith(".mdx")) continue;
+      const filePath = path.join(localeDir, file);
+      const source = path.relative(ROOT, filePath);
       const slug = file.replace(/\.mdx$/, "");
-      const { data } = parseFrontmatter(fs.readFileSync(path.join(localeDir, file), "utf8"));
+
+      let data;
+      try {
+        ({ data } = parseFrontmatter(fs.readFileSync(filePath, "utf8")));
+      } catch (error) {
+        throw postError(source, error instanceof Error ? error.message : String(error));
+      }
 
       if (data.draft !== undefined && typeof data.draft !== "boolean") {
-        throw new Error(`${locale}/${file}: "draft" must be a boolean when present`);
+        throw postError(source, `"draft" must be a boolean when present`);
       }
       if (data.draft) continue;
 
-      if (!Array.isArray(data.tags)) {
-        throw new Error(`${locale}/${file}: "tags" must be an array`);
+      if (!Array.isArray(data.tags) || data.tags.some((tag) => typeof tag !== "string")) {
+        throw postError(source, `"tags" must be an array of strings`);
       }
-      posts.push({ locale, slug, tags: data.tags });
+      posts.push({ locale, slug, tags: data.tags, source });
     }
   }
 
@@ -78,20 +91,16 @@ async function renderPost(post) {
   if (hasTextGlyphs(svg)) {
     // Belt and braces with `lib/og/svg.test.ts`: a glyph would need a CJK font
     // on the build machine and would render as tofu boxes where it is missing.
-    throw new Error(`${post.locale}/${post.slug}: OG SVG contains a text element`);
+    throw postError(post.source, "OG SVG contains a text element");
   }
 
   const png = await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toBuffer();
-  const { width, height, format } = await sharp(png).metadata();
-  if (width !== OG_IMAGE_WIDTH || height !== OG_IMAGE_HEIGHT || format !== "png") {
-    throw new Error(
-      `${post.locale}/${post.slug}: rendered ${width}x${height} ${format}, expected ${OG_IMAGE_WIDTH}x${OG_IMAGE_HEIGHT} png`
-    );
-  }
-  if (png.length >= MAX_BYTES) {
-    throw new Error(
-      `${post.locale}/${post.slug}: ${png.length} bytes exceeds the ${MAX_BYTES} byte budget`
-    );
+
+  // Check what we just produced, not what we intended to produce: a renderer
+  // that drops every shape still returns a perfectly sized PNG.
+  const problems = ogImageProblems(await inspectOgPng(png));
+  if (problems.length > 0) {
+    throw postError(post.source, `rendered image ${problems.join("; ")}`);
   }
 
   const target = path.join(ROOT, "public", ogImagePathname(post.locale, post.slug).slice(1));
