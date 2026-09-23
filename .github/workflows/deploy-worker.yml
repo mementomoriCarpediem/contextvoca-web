@@ -29,6 +29,10 @@ jobs:
       - run: yarn install --immutable
       - run: node scripts/check-i18n-keys.mjs
       - run: yarn build
+      # 빌드 산출물(out/) 대조 — 발행 글마다 1200x675 OG 이미지가 존재하고
+      # og:image/twitter:image/JSON-LD가 그 URL을 가리키는지, draft 페이지에는
+      # 이미지가 없는지 확인한다. 어긋나면 배포 전에 실패한다.
+      - run: node scripts/check-og-images.mjs
       - name: Deploy
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
