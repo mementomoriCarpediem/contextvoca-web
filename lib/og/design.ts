@@ -1,22 +1,35 @@
 /**
- * Deterministic look of a post's OG image: which brand palette it uses and
- * which shape motif it carries. Pure and import-free — see `og-image.ts` for
- * why (loaded from plain-Node build scripts).
+ * Deterministic look of a post's OG image. Pure and import-free — see
+ * `og-image.ts` for why (loaded from plain-Node build scripts).
  *
- * Nothing here reads the clock or a random source: the same frontmatter must
- * always produce the same picture, because the image is a derived asset that
- * is regenerated on every build and must not churn.
+ * Nothing here reads the clock or a random source, and nothing depends on the
+ * *other* posts: the same frontmatter must always produce the same picture,
+ * and adding a post must never change an existing post's image. (That rules
+ * out "pick a combination nobody used yet" style collision avoidance.)
+ *
+ * Every visual axis is cut from one 32-bit `hashSlug(slug)` value, and the
+ * cuts together consume all 32 bits with per-step-distinct values. Two slugs
+ * therefore render the same card only if their hashes collide outright — not
+ * merely because they share a motif. That matters: the tag vocabulary is
+ * narrow (8 of 14 posts in `content/blog` are exam posts), so before the extra
+ * axes existed the whole signature space was the six palettes and different
+ * posts genuinely collided.
  */
 
 export interface OgPalette {
   readonly id: string;
-  /** Background gradient, top-left → bottom-right. */
+  /** Background gradient endpoints. */
   readonly from: string;
   readonly to: string;
-  /** Motif fill/stroke — the bright foreground color. */
+  /** Motif body — the bright foreground color. */
   readonly ink: string;
-  /** Secondary motif color, used for accents inside the motif. */
-  readonly accent: string;
+  /**
+   * Candidate motif accents for this background, brightest-safe first. Each
+   * is a brand scale color light enough to stay legible against this
+   * palette's `to` end (the accent also paints shapes that sit directly on
+   * the background, e.g. the book's right page).
+   */
+  readonly accents: readonly string[];
 }
 
 /**
@@ -25,12 +38,48 @@ export interface OgPalette {
  * primary/accent scales verbatim — the brand's own source of truth.
  */
 export const OG_PALETTES: readonly OgPalette[] = [
-  { id: "deep", from: "#1a0b2e", to: "#4d12b4", ink: "#f0e6ff", accent: "#a78bfa" },
-  { id: "violet", from: "#370d82", to: "#6418e6", ink: "#f0e6ff", accent: "#b888ff" },
-  { id: "night", from: "#0d0517", to: "#370d82", ink: "#d4b8ff", accent: "#8b5cf6" },
-  { id: "royal", from: "#4d12b4", to: "#8038ff", ink: "#f0e6ff", accent: "#d4b8ff" },
-  { id: "orchid", from: "#1a0b2e", to: "#7c3aed", ink: "#f0e6ff", accent: "#9c58ff" },
-  { id: "indigo", from: "#370d82", to: "#8b5cf6", ink: "#f0e6ff", accent: "#d4b8ff" },
+  {
+    id: "deep",
+    from: "#1a0b2e",
+    to: "#4d12b4",
+    ink: "#f0e6ff",
+    accents: ["#a78bfa", "#b888ff", "#9c58ff", "#d4b8ff"],
+  },
+  {
+    id: "violet",
+    from: "#370d82",
+    to: "#6418e6",
+    ink: "#f0e6ff",
+    accents: ["#b888ff", "#a78bfa", "#d4b8ff", "#9c58ff"],
+  },
+  {
+    id: "night",
+    from: "#0d0517",
+    to: "#370d82",
+    ink: "#d4b8ff",
+    accents: ["#8b5cf6", "#9c58ff", "#a78bfa", "#b888ff"],
+  },
+  {
+    id: "royal",
+    from: "#4d12b4",
+    to: "#8038ff",
+    ink: "#f0e6ff",
+    accents: ["#d4b8ff", "#b888ff", "#a78bfa", "#9c58ff"],
+  },
+  {
+    id: "orchid",
+    from: "#1a0b2e",
+    to: "#7c3aed",
+    ink: "#f0e6ff",
+    accents: ["#a78bfa", "#d4b8ff", "#b888ff", "#9c58ff"],
+  },
+  {
+    id: "indigo",
+    from: "#370d82",
+    to: "#8b5cf6",
+    ink: "#f0e6ff",
+    accents: ["#d4b8ff", "#b888ff", "#a78bfa", "#9c58ff"],
+  },
 ];
 
 export const OG_MOTIF_IDS = [
@@ -99,4 +148,88 @@ export function pickMotif(tags: readonly string[]): OgMotifId {
     }
   }
   return FALLBACK_MOTIF;
+}
+
+/** A soft background circle. Integer coordinates keep distinct steps distinct. */
+export interface OgBlob {
+  readonly cx: number;
+  readonly cy: number;
+  readonly r: number;
+}
+
+/** Background gradient direction as `[x1, y1, x2, y2]` in unit-square coords. */
+export type OgGradient = readonly [number, number, number, number];
+
+export interface OgLook {
+  readonly palette: OgPalette;
+  readonly accent: string;
+  readonly motif: OgMotifId;
+  readonly gradient: OgGradient;
+  /** Large, very faint `ink` circle in the upper right region. */
+  readonly inkBlob: OgBlob;
+  /** Softer `accent` circle in the lower left region. */
+  readonly accentBlob: OgBlob;
+  /** Motif box edge in px (the motif is drawn in a 400-unit space and scaled). */
+  readonly motifSize: number;
+}
+
+const GRADIENTS: readonly OgGradient[] = [
+  [0, 0, 1, 1],
+  [0, 0, 1, 0],
+  [0, 0, 0, 1],
+  [1, 0, 0, 1],
+  [0, 1, 1, 0],
+  [1, 1, 0, 0],
+  [0, 0.2, 1, 0.8],
+  [0.2, 0, 0.8, 1],
+];
+
+/**
+ * Bit budget of `hashSlug`. The widths sum to exactly 32 and every axis maps
+ * its index to a value no other index of that axis produces, so the whole hash
+ * is recoverable from the rendered card — distinct hash, distinct card.
+ */
+const AXES = {
+  accent: { shift: 0, bits: 2 },
+  gradient: { shift: 2, bits: 3 },
+  motifSize: { shift: 5, bits: 3 },
+  inkBlobX: { shift: 8, bits: 5 },
+  inkBlobY: { shift: 13, bits: 4 },
+  inkBlobR: { shift: 17, bits: 3 },
+  accentBlobX: { shift: 20, bits: 5 },
+  accentBlobY: { shift: 25, bits: 4 },
+  accentBlobR: { shift: 29, bits: 3 },
+} as const;
+
+function axisIndex(hash: number, axis: { shift: number; bits: number }): number {
+  return (hash >>> axis.shift) & ((1 << axis.bits) - 1);
+}
+
+/**
+ * Everything the renderer needs, derived from `slug` (look) and `tags`
+ * (motif). Same slug → same look, in every locale: a translation is the same
+ * post and deliberately shares its card.
+ */
+export function resolveOgLook(slug: string, tags: readonly string[]): OgLook {
+  const hash = hashSlug(slug);
+  const palette = pickPalette(slug);
+
+  return {
+    palette,
+    accent: palette.accents[axisIndex(hash, AXES.accent) % palette.accents.length],
+    motif: pickMotif(tags),
+    gradient: GRADIENTS[axisIndex(hash, AXES.gradient)],
+    // 368–480 px in 16 px steps: visible variation, always inside the frame.
+    motifSize: 368 + axisIndex(hash, AXES.motifSize) * 16,
+    inkBlob: {
+      cx: 820 + axisIndex(hash, AXES.inkBlobX) * 11,
+      cy: -40 + axisIndex(hash, AXES.inkBlobY) * 14,
+      r: 240 + axisIndex(hash, AXES.inkBlobR) * 14,
+    },
+    accentBlob: {
+      cx: 20 + axisIndex(hash, AXES.accentBlobX) * 10,
+      cy: 480 + axisIndex(hash, AXES.accentBlobY) * 14,
+      r: 180 + axisIndex(hash, AXES.accentBlobR) * 13,
+    },
+  };
 }

@@ -5,6 +5,7 @@ import {
   hashSlug,
   pickMotif,
   pickPalette,
+  resolveOgLook,
 } from "./design";
 
 describe("hashSlug", () => {
@@ -94,5 +95,62 @@ describe("pickMotif", () => {
     for (const tags of tagSets) {
       expect(OG_MOTIF_IDS).toContain(pickMotif(tags));
     }
+  });
+});
+
+describe("resolveOgLook", () => {
+  const look = resolveOgLook("suneung-vocab-context", ["수능 영단어"]);
+
+  it("is deterministic for the same slug and tags", () => {
+    expect(resolveOgLook("suneung-vocab-context", ["수능 영단어"])).toEqual(look);
+  });
+
+  it("keeps the palette and motif the dedicated pickers return", () => {
+    expect(look.palette).toBe(pickPalette("suneung-vocab-context"));
+    expect(look.motif).toBe(pickMotif(["수능 영단어"]));
+  });
+
+  it("takes the accent from the palette's own brand-safe list", () => {
+    for (const slug of ["a", "b", "c", "suneung-vocab-context", "photo-vocabulary-guide"]) {
+      const resolved = resolveOgLook(slug, []);
+      expect(resolved.palette.accents).toContain(resolved.accent);
+      expect(resolved.accent).not.toBe(resolved.palette.ink);
+    }
+  });
+
+  it("keeps every axis inside its declared range", () => {
+    for (let i = 0; i < 300; i += 1) {
+      const resolved = resolveOgLook(`slug-${i}`, []);
+      expect(resolved.motifSize).toBeGreaterThanOrEqual(368);
+      expect(resolved.motifSize).toBeLessThanOrEqual(480);
+      expect(resolved.inkBlob.cx).toBeGreaterThanOrEqual(820);
+      expect(resolved.inkBlob.cx).toBeLessThanOrEqual(1161);
+      expect(resolved.inkBlob.r).toBeGreaterThanOrEqual(240);
+      expect(resolved.inkBlob.r).toBeLessThanOrEqual(338);
+      expect(resolved.accentBlob.cx).toBeGreaterThanOrEqual(20);
+      expect(resolved.accentBlob.cx).toBeLessThanOrEqual(330);
+      expect(resolved.accentBlob.cy).toBeGreaterThanOrEqual(480);
+      expect(resolved.accentBlob.cy).toBeLessThanOrEqual(690);
+      expect(resolved.gradient).toHaveLength(4);
+    }
+  });
+
+  it("varies on every axis across slugs — no axis is silently constant", () => {
+    const slugs = Array.from({ length: 400 }, (_, i) => `vocab-post-${i}`);
+    const looks = slugs.map((slug) => resolveOgLook(slug, []));
+    const distinct = (values: unknown[]) => new Set(values.map((v) => JSON.stringify(v))).size;
+
+    expect(distinct(looks.map((l) => l.palette.id))).toBe(OG_PALETTES.length);
+    expect(distinct(looks.map((l) => l.accent))).toBeGreaterThan(1);
+    expect(distinct(looks.map((l) => l.gradient))).toBe(8);
+    expect(distinct(looks.map((l) => l.motifSize))).toBe(8);
+    expect(distinct(looks.map((l) => l.inkBlob))).toBeGreaterThan(50);
+    expect(distinct(looks.map((l) => l.accentBlob))).toBeGreaterThan(50);
+  });
+
+  it("gives a post's translations the same look (same slug, same picture)", () => {
+    expect(resolveOgLook("photo-vocabulary-guide", ["사진 단어장"])).toEqual(
+      resolveOgLook("photo-vocabulary-guide", ["拍照背單字"])
+    );
   });
 });
