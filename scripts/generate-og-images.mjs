@@ -116,7 +116,12 @@ async function main() {
 
   const posts = listPublishedPosts();
   for (const post of posts) {
-    const { target, bytes } = await renderPost(post);
+    // Anything thrown below here (sharp, the renderer, the filesystem) also
+    // gets the file name attached — an unattributed build failure is useless.
+    const { target, bytes } = await renderPost(post).catch((error) => {
+      const message = error instanceof Error ? error.message : String(error);
+      throw message.startsWith(post.source) ? error : postError(post.source, message);
+    });
     console.log(
       `og image ${path.relative(ROOT, target)} — ${OG_IMAGE_WIDTH}x${OG_IMAGE_HEIGHT}, ${bytes} bytes`
     );
