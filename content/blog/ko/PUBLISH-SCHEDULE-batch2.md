@@ -3,12 +3,12 @@
 승인: 대표님 "2차 배치 발행도 승인"(2026-09-19, 데스크톱 세션). 검수: `~/projects/contextvoca/content/20260918-web-blog-kr-batch2/02-review.md`.
 세션 크론은 7일 만료라 예약 불가 — **발행일에 세션에서 수행**한다(자동 게시 금지 원칙과 일치).
 
-| 발행일 | slug |
-|---|---|
-| 2026-09-23 | novel-reading-photo-vocabulary |
-| 2026-09-25 | civil-service-exam-vocab |
-| 2026-09-30 | middle-school-vocab-method |
-| 2026-10-02 | transfer-exam-vocab |
+| 발행일 | slug | 상태 |
+|---|---|---|
+| 2026-09-23 | novel-reading-photo-vocabulary | 발행 완료 |
+| ~~2026-09-25~~ → **2026-09-23** | civil-service-exam-vocab | 발행 완료 — 대표님 지시로 앞당김(2026-09-23). frontmatter `date`도 발행일에 맞춰 09-25→09-23으로 고쳤다(미래 날짜 `datePublished` 방지) |
+| 2026-09-30 | middle-school-vocab-method | 대기 |
+| 2026-10-02 | transfer-exam-vocab | 대기 |
 
 발행일 절차(편별):
 1. `sed -i 's/^draft: true$/draft: false/' content/blog/ko/<slug>.mdx` → `corepack yarn build` → `grep -c noindex out/ko/blog/<slug>/index.html` = 0, `out/sitemap.xml` URL 수 +1 확인
