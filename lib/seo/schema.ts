@@ -1,6 +1,7 @@
 import { Locale, Translations } from "@/lib/i18n/types";
 import { brandNames, htmlLangMap } from "@/lib/i18n";
 import type { BlogPostMeta } from "@/lib/blog/types";
+import { ogImageUrl } from "@/lib/og/og-image";
 import { SITE_URL, localizedBlogPostUrl } from "./site";
 
 const SUPPORT_EMAIL = "support@contextvoca.app";
@@ -66,6 +67,10 @@ export function buildArticleSchema(post: BlogPostMeta): Record<string, unknown> 
     dateModified: post.updated ?? post.date,
     inLanguage: htmlLangMap[post.locale],
     url,
+    // Generated at build time by `scripts/generate-og-images.mjs` — the same
+    // URL the page's og:image/twitter:image carry (one shared builder, so the
+    // three can't drift apart).
+    image: ogImageUrl(SITE_URL, post.locale, post.slug),
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     author: org,
     publisher: org,
