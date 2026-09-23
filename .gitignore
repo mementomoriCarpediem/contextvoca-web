@@ -52,3 +52,6 @@ package-lock.json
 .wrangler/
 .dev.vars
 .indexnow-key
+
+# generated OG images (scripts/generate-og-images.mjs, rebuilt on every build)
+public/og/

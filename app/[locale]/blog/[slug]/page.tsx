@@ -18,6 +18,8 @@ import { buildPostAlternates } from "@/lib/blog/hreflang";
 import { getMdxComponents } from "@/lib/blog/mdx-components";
 import { pickRelatedPosts } from "@/lib/blog/related";
 import { buildArticleSchema } from "@/lib/seo/schema";
+import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, ogImageUrl } from "@/lib/og/og-image";
+import { SITE_URL } from "@/lib/seo/site";
 import { buildStubViewModel } from "@/lib/blog/stub";
 import type { BlogPost } from "@/lib/blog/types";
 
@@ -57,6 +59,16 @@ export async function generateMetadata({
   const { meta } = post;
   const alternates = buildPostAlternates(meta, getAllPostsMeta());
 
+  // Generated at build time from this post's frontmatter — see
+  // `scripts/generate-og-images.mjs`. `alt` is an HTML attribute, not a glyph
+  // baked into the picture: the image itself is deliberately text-free.
+  const ogImage = {
+    url: ogImageUrl(SITE_URL, meta.locale, meta.slug),
+    width: OG_IMAGE_WIDTH,
+    height: OG_IMAGE_HEIGHT,
+    alt: meta.title,
+  };
+
   return {
     title: meta.title,
     description: meta.description,
@@ -68,11 +80,13 @@ export async function generateMetadata({
       url: alternates.canonical,
       publishedTime: meta.date,
       modifiedTime: meta.updated ?? meta.date,
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: meta.title,
       description: meta.description,
+      images: [ogImage],
     },
   };
 }
