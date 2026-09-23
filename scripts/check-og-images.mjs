@@ -10,20 +10,24 @@
  * about which posts are published, the sets stop matching and this fails.
  *
  * Checks, for every post in the sitemap:
- *   1. `out/og/{locale}/{slug}.png` exists, is a real 1200x675 PNG, < 200 KB
+ *   1. `out/og/{locale}/{slug}.png` exists and passes `ogImageProblems`
+ *      (png, 1200x675, within the byte budget, and actually has a motif drawn)
  *   2. its page's `og:image`, `twitter:image` and JSON-LD `Article.image` all
  *      carry exactly that image's absolute URL
  * plus, across the whole output:
- *   3. no OG image exists for a post that isn't published (no stale files)
- *   4. no draft/stub blog page references an OG image at all
+ *   3. no two different posts share a byte-identical image (translations of
+ *      one post share a slug, and are expected to share their card)
+ *   4. no OG image exists for a post that isn't published (no stale files)
+ *   5. no draft/stub blog page references an OG image at all
  *
  * Usage: node scripts/check-og-images.mjs   (after `yarn build`)
  */
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import sharp from "sharp";
 import { loadTsModule } from "./load-ts-module.mjs";
+import { inspectOgPng } from "./inspect-og-png.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -32,10 +36,14 @@ const OUT_DIR = path.join(ROOT, "out");
 const { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, ogImagePathname, ogImageUrl } = loadTsModule(
   path.join(ROOT, "lib", "og", "og-image.ts")
 );
-
-const MAX_BYTES = 200_000;
-/** `https://host/{locale}/blog/{slug}/` — the list page `/{locale}/blog/` doesn't match. */
-const POST_URL = /^(https?:\/\/[^/]+)\/([^/]+)\/blog\/([^/]+)\/$/;
+const { ogImageProblems } = loadTsModule(path.join(ROOT, "lib", "og", "image-health.ts"));
+const {
+  articleImageSets,
+  findSharedImageGroups,
+  metaContents,
+  parseJsonLdBlocks,
+  parseSitemapPostUrls,
+} = loadTsModule(path.join(ROOT, "lib", "og", "output-probe.ts"));
 
 const errors = [];
 function fail(message) {
@@ -48,45 +56,7 @@ function readSitemapPosts() {
     fail(`${path.relative(ROOT, sitemapPath)} is missing — run \`yarn build\` first`);
     return [];
   }
-  const xml = fs.readFileSync(sitemapPath, "utf8");
-  const posts = [];
-  for (const [, loc] of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
-    const match = loc.match(POST_URL);
-    if (match) posts.push({ origin: match[1], locale: match[2], slug: match[3] });
-  }
-  return posts;
-}
-
-/** All `<meta>` tags in `html`, as attribute objects. */
-function metaTags(html) {
-  return [...html.matchAll(/<meta\s[^>]*>/g)].map(([tag]) => {
-    const attrs = {};
-    for (const [, name, value] of tag.matchAll(/([a-zA-Z:_-]+)="([^"]*)"/g)) {
-      attrs[name] = value;
-    }
-    return attrs;
-  });
-}
-
-function metaContents(html, key) {
-  return metaTags(html)
-    .filter((attrs) => attrs.property === key || attrs.name === key)
-    .map((attrs) => attrs.content);
-}
-
-/** Every parsed `application/ld+json` payload in `html`. */
-function jsonLdBlocks(html, label) {
-  const blocks = [];
-  for (const [, raw] of html.matchAll(
-    /<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g
-  )) {
-    try {
-      blocks.push(JSON.parse(raw));
-    } catch {
-      fail(`${label}: an application/ld+json block is not valid JSON`);
-    }
-  }
-  return blocks;
+  return parseSitemapPostUrls(fs.readFileSync(sitemapPath, "utf8"));
 }
 
 function blogPageFiles() {
@@ -110,7 +80,12 @@ function listGeneratedImages() {
     const localeDir = path.join(ogDir, locale);
     if (!fs.statSync(localeDir).isDirectory()) continue;
     for (const file of fs.readdirSync(localeDir).sort()) {
-      if (file.endsWith(".png")) found.push(`/og/${locale}/${file}`);
+      if (!file.endsWith(".png")) continue;
+      found.push({
+        pathname: `/og/${locale}/${file}`,
+        slug: file.replace(/\.png$/, ""),
+        file: path.join(localeDir, file),
+      });
     }
   }
   return found;
@@ -125,15 +100,8 @@ async function checkPublishedPost(post) {
   if (!fs.existsSync(imagePath)) {
     fail(`${label}: missing OG image out${pathname}`);
   } else {
-    const bytes = fs.statSync(imagePath).size;
-    const { width, height, format } = await sharp(imagePath).metadata();
-    if (format !== "png" || width !== OG_IMAGE_WIDTH || height !== OG_IMAGE_HEIGHT) {
-      fail(
-        `${label}: out${pathname} is ${width}x${height} ${format}, expected ${OG_IMAGE_WIDTH}x${OG_IMAGE_HEIGHT} png`
-      );
-    }
-    if (bytes >= MAX_BYTES) {
-      fail(`${label}: out${pathname} is ${bytes} bytes, over the ${MAX_BYTES} byte budget`);
+    for (const problem of ogImageProblems(await inspectOgPng(imagePath))) {
+      fail(`${label}: out${pathname} ${problem}`);
     }
   }
 
@@ -153,13 +121,13 @@ async function checkPublishedPost(post) {
     }
   }
 
-  const articles = jsonLdBlocks(html, label).filter((block) => block["@type"] === "Article");
-  if (articles.length === 0) {
-    fail(`${label}: no Article JSON-LD block found`);
-  }
+  const { blocks, invalid } = parseJsonLdBlocks(html);
+  if (invalid > 0) fail(`${label}: ${invalid} application/ld+json block(s) are not valid JSON`);
+
+  const articles = articleImageSets(blocks);
+  if (articles.length === 0) fail(`${label}: no Article JSON-LD block found`);
   for (const article of articles) {
-    const images = Array.isArray(article.image) ? article.image : [article.image];
-    if (!images.includes(expectedUrl)) {
+    if (!article.urls.includes(expectedUrl)) {
       fail(
         `${label}: Article JSON-LD image is ${JSON.stringify(article.image)}, expected ${expectedUrl}`
       );
@@ -184,6 +152,29 @@ function checkDraftPage(page) {
   }
 }
 
+/**
+ * Two posts sharing a card would make them indistinguishable when shared. The
+ * visual axes in `resolveOgLook` are what prevent it; this is the check that
+ * the prevention still works on the shipped bytes. (Grouping — including the
+ * "same slug in several locales is one translated post" exception — lives in
+ * `lib/og/output-probe.ts`, where it is unit tested.)
+ */
+function checkImagesAreDistinct(images) {
+  const hashed = images.map((image) => ({
+    pathname: image.pathname,
+    slug: image.slug,
+    digest: crypto.createHash("sha256").update(fs.readFileSync(image.file)).digest("hex"),
+  }));
+
+  for (const group of findSharedImageGroups(hashed)) {
+    fail(
+      `different posts share a byte-identical OG image: ${group
+        .map((pathname) => `out${pathname}`)
+        .join(", ")}`
+    );
+  }
+}
+
 async function main() {
   const published = readSitemapPosts();
   if (errors.length === 0 && published.length === 0) {
@@ -195,18 +186,21 @@ async function main() {
   }
 
   const publishedKeys = new Set(published.map((post) => `${post.locale}/${post.slug}`));
-  for (const page of blogPageFiles()) {
+  const pages = blogPageFiles();
+  for (const page of pages) {
     if (!publishedKeys.has(`${page.locale}/${page.slug}`)) checkDraftPage(page);
   }
 
+  const images = listGeneratedImages();
   const expectedImages = new Set(
     published.map((post) => ogImagePathname(post.locale, post.slug))
   );
-  for (const pathname of listGeneratedImages()) {
-    if (!expectedImages.has(pathname)) {
-      fail(`out${pathname} does not belong to any published post (stale image)`);
+  for (const image of images) {
+    if (!expectedImages.has(image.pathname)) {
+      fail(`out${image.pathname} does not belong to any published post (stale image)`);
     }
   }
+  checkImagesAreDistinct(images);
 
   if (errors.length > 0) {
     console.error(`check-og-images: ${errors.length} problem(s)`);
@@ -214,9 +208,8 @@ async function main() {
     process.exit(1);
   }
 
-  const draftCount = blogPageFiles().length - publishedKeys.size;
   console.log(
-    `check-og-images: ${published.length} published post(s) with a ${OG_IMAGE_WIDTH}x${OG_IMAGE_HEIGHT} image wired into og:image, twitter:image and JSON-LD; ${draftCount} draft page(s) with none`
+    `check-og-images: ${published.length} published post(s) with a distinct ${OG_IMAGE_WIDTH}x${OG_IMAGE_HEIGHT} image wired into og:image, twitter:image and JSON-LD; ${pages.length - publishedKeys.size} draft page(s) with none`
   );
 }
 
