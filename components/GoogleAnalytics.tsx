@@ -6,6 +6,7 @@ export function GoogleAnalytics() {
     <>
       <Script id="ga4-init" strategy="afterInteractive">{ga4InitScript(GA4_MEASUREMENT_ID)}</Script>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`} strategy="afterInteractive" />
+      <Script src="https://growth-control-tower.resonace-zorba.workers.dev/beacon.js" strategy="afterInteractive" />
     </>
   );
 }
