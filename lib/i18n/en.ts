@@ -374,7 +374,7 @@ const en: Translations = {
     metaTitle: "Privacy Policy",
     metaDescription: "The privacy policy for ContextVoca.",
     title: "Privacy Policy",
-    lastUpdated: "Last updated: February 7, 2026",
+    lastUpdated: "Last updated: October [deploy day], 2026",
     sections: [
       {
         title: "1. Overview",
@@ -387,6 +387,7 @@ const en: Translations = {
         items: [
           "Account information: email address and name (collected from your social login provider)",
           "Learning data: saved sentences, words, tags, quiz results, and learning statistics",
+          "Captured photos: photos you take or select for word extraction, along with the resulting OCR text",
           "Purchase history: in-app subscription information (payments are processed by the Apple App Store or Google Play; the Service never collects your payment card details directly)",
           "Device information: device type, OS version, app version (for error diagnostics)",
           "Error data: crash logs and error stack traces (collected via Sentry)",
@@ -398,6 +399,7 @@ const en: Translations = {
         items: [
           "Creating and managing your Service account",
           "Providing vocabulary, quiz, and learning features",
+          "Improving text-recognition quality (analyzing captured photos)",
           "Verifying and managing subscription status",
           "Improving app performance and resolving errors",
           "Responding to user inquiries",
@@ -418,7 +420,7 @@ const en: Translations = {
       {
         title: "5. Data retention and deletion",
         content:
-          "When you delete your account, your related personal information is deleted immediately, except where the law requires us to retain certain records for a specified period.",
+          "When you delete your account, your related personal information is deleted immediately, except where the law requires us to retain certain records for a specified period. Captured photos and OCR results are retained for 90 days and then automatically deleted; if you delete your account, they are deleted within 1 day. Photos taken during a pre-signup trial are also deleted after 90 days in the same way.",
       },
       {
         title: "6. Your rights",
@@ -428,6 +430,7 @@ const en: Translations = {
           "Request correction of your personal information",
           "Request account deletion and destruction of your personal information",
           "Request data portability",
+          "Turn off photo retention under Settings > Keep photos to improve recognition, which stops retaining new photos and lets you delete previously stored photos from the same screen. This setting is available after signing in.",
         ],
       },
       {
