@@ -355,7 +355,7 @@ const zhHant: Translations = {
     "metaTitle": "隱私政策",
     "metaDescription": "語境詞彙（ContextVoca）的隱私政策。",
     "title": "隱私政策",
-    "lastUpdated": "最後更新：2026年10月[發布日]日",
+    "lastUpdated": "最後更新：2026年9月30日",
     "sections": [
       {
         "title": "1. 概述",

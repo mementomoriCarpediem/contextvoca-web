@@ -355,7 +355,7 @@ const zh: Translations = {
     metaTitle: "隐私政策",
     metaDescription: "语境词汇（ContextVoca）的隐私政策。",
     title: "隐私政策",
-    lastUpdated: "最后更新：2026年10月[发布日]日",
+    lastUpdated: "最后更新：2026年9月30日",
     sections: [
       {
         title: "1. 概述",

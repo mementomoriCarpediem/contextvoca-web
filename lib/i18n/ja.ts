@@ -373,7 +373,7 @@ const ja: Translations = {
     metaTitle: "プライバシーポリシー",
     metaDescription: "文脈単語帳（ContextVoca）のプライバシーポリシーです。",
     title: "プライバシーポリシー",
-    lastUpdated: "最終更新：2026年10月[配信日]日",
+    lastUpdated: "最終更新：2026年9月30日",
     sections: [
       {
         title: "1. 概要",

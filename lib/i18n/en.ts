@@ -374,7 +374,7 @@ const en: Translations = {
     metaTitle: "Privacy Policy",
     metaDescription: "The privacy policy for ContextVoca.",
     title: "Privacy Policy",
-    lastUpdated: "Last updated: October [deploy day], 2026",
+    lastUpdated: "Last updated: September 30, 2026",
     sections: [
       {
         title: "1. Overview",

@@ -373,7 +373,7 @@ const ko: Translations = {
     metaTitle: "개인정보처리방침",
     metaDescription: "문맥보카(ContextVoca)의 개인정보처리방침입니다.",
     title: "개인정보처리방침",
-    lastUpdated: "최종 업데이트: 2026년 10월 [배포일]일",
+    lastUpdated: "최종 업데이트: 2026년 9월 30일",
     sections: [
       {
         title: "1. 개요",
