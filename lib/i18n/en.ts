@@ -430,7 +430,7 @@ const en: Translations = {
           "Request correction of your personal information",
           "Request account deletion and destruction of your personal information",
           "Request data portability",
-          "Turn off photo retention under Settings > Keep photos to improve recognition, which stops retaining new photos and lets you delete previously stored photos from the same screen. This setting is available after signing in.",
+          "Turn off Settings > Keep photos to improve recognition to stop retaining new photos, and use Delete stored photos on the same screen to remove photos already saved. This setting is available after signing in.",
         ],
       },
       {
