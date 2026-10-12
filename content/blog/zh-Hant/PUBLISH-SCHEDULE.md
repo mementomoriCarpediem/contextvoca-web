@@ -5,7 +5,7 @@
 
 | 발행일 | slug | 상태 |
 |---|---|---|
-| 2026-09-30 | gsat-vocab-method | draft:true 이관 완료 |
+| ~~2026-09-30~~ → **2026-10-12** | gsat-vocab-method | 발행 완료 — 예정일 누락, 10-12 집행(date도 10-12로) |
 | 2026-10-14 | gept-intermediate-vocab-method | draft:true 이관 완료(승인 2026-09-19) |
 | 2026-10-28 | photo-vocabulary-guide | draft:true 이관 완료(승인 2026-09-19) |
 

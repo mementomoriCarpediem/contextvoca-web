@@ -7,6 +7,7 @@ import { getDictionary, resolveLocale } from "@/lib/i18n";
 import { buildAlternates } from "@/lib/seo/site";
 import { getPostsMetaByLocale, localeHasPublishedPosts } from "@/lib/blog/posts";
 import { buildBlogListRobots } from "@/lib/blog/list-robots";
+import { rssUrl } from "@/lib/blog/rss";
 
 export async function generateMetadata({
   params,
@@ -19,7 +20,11 @@ export async function generateMetadata({
   return {
     title: t.blog.metaTitle,
     description: t.blog.metaDescription,
-    alternates: buildAlternates(locale, "/blog"),
+    alternates: {
+      ...buildAlternates(locale, "/blog"),
+      // 발행 글이 있는 언어만 피드가 있다(app/[locale]/rss.xml).
+      ...(localeHasPublishedPosts(locale) ? { types: { "application/rss+xml": rssUrl(locale) } } : {}),
+    },
     robots: buildBlogListRobots(localeHasPublishedPosts(locale)),
   };
 }

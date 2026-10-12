@@ -7,8 +7,8 @@
 |---|---|---|
 | 2026-09-23 | novel-reading-photo-vocabulary | 발행 완료 |
 | ~~2026-09-25~~ → **2026-09-23** | civil-service-exam-vocab | 발행 완료 — 대표님 지시로 앞당김(2026-09-23). frontmatter `date`도 발행일에 맞춰 09-25→09-23으로 고쳤다(미래 날짜 `datePublished` 방지) |
-| 2026-09-30 | middle-school-vocab-method | 대기 |
-| 2026-10-02 | transfer-exam-vocab | 대기 |
+| ~~2026-09-30~~ → **2026-10-12** | middle-school-vocab-method | 발행 완료 — 예정일 누락, 10-12 집행(date도 10-12로) |
+| ~~2026-10-02~~ → **2026-10-12** | transfer-exam-vocab | 발행 완료 — 예정일 누락, 10-12 집행(date도 10-12로) |
 
 발행일 절차(편별):
 1. `sed -i 's/^draft: true$/draft: false/' content/blog/ko/<slug>.mdx` → `corepack yarn build` → `grep -c noindex out/ko/blog/<slug>/index.html` = 0, `out/sitemap.xml` URL 수 +1 확인
