@@ -19,6 +19,30 @@ describe("markdownToRssHtml", () => {
     expect(html).toContain("<p>끝</p>");
   });
 
+  // 리뷰 C1(2026-10-12): 페이지(compileMDX)는 MDX 주석·표현식·import/export를 지우는데, 일반 마크다운으로
+  // 읽으면 글자 그대로 피드에 실렸다 — 작성자의 제작 메모가 외부로 나가는 경로.
+  it.each([
+    ["{/* 내부 메모: 경쟁사 대비 전략 */}\n\n본문", "내부 메모"],
+    ["값은 {1 + 1} 입니다", "{1 + 1}"],
+    ["import Foo from '../x'\nexport const meta = { a: 1 }\n\n본문", "import Foo"],
+    ["import Foo from '../x'\nexport const meta = { a: 1 }\n\n본문", "export const"],
+  ])("drops MDX-only syntax (%j) that the page also hides", (md, leaked) => {
+    const html = markdownToRssHtml(md);
+    expect(html).not.toContain(leaked);
+  });
+
+  it("keeps the text inside JSX wrappers while dropping the tags", () => {
+    const html = markdownToRssHtml("<Callout>\n\n중요한 내용\n\n</Callout>");
+    expect(html).toContain("중요한 내용");
+    expect(html).not.toContain("Callout");
+  });
+
+  it("makes image paths absolute and leaves protocol-relative URLs alone", () => {
+    const html = markdownToRssHtml("![그림](/images/a.png)\n\n[x](//other.example/y)");
+    expect(html).toContain('src="https://contextvoca.app/images/a.png"');
+    expect(html).toContain('href="//other.example/y"');
+  });
+
   it("makes site-relative links absolute (feed readers have no base URL)", () => {
     const html = markdownToRssHtml("[다른 글](/ko/blog/other/) 과 [외부](https://example.com/x)");
     expect(html).toContain('href="https://contextvoca.app/ko/blog/other/"');

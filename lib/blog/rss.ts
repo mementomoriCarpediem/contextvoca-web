@@ -1,5 +1,6 @@
 import { unified } from "unified";
 import remarkParse from "remark-parse";
+import remarkMdx from "remark-mdx";
 import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
@@ -18,15 +19,42 @@ interface HastNode {
   children?: HastNode[];
 }
 
-/** 사이트 내부 링크(/ko/...)를 절대 주소로 — 피드 리더에는 기준 주소가 없다. */
-function absolutizeLinks() {
+interface MdastNode {
+  type: string;
+  children?: MdastNode[];
+}
+
+const MDX_DROPPED = new Set(["mdxjsEsm", "mdxFlowExpression", "mdxTextExpression"]);
+const MDX_JSX = new Set(["mdxJsxFlowElement", "mdxJsxTextElement"]);
+
+/**
+ * MDX 전용 노드 정리 — 페이지(compileMDX)가 화면에 내지 않는 것은 피드에도 내지 않는다(리뷰 C1).
+ * import/export·표현식·주석({/* … *\/})은 지우고, JSX 요소는 태그만 벗겨 안의 내용을 남긴다
+ * (<StoreCta />처럼 내용이 없으면 통째로 사라진다).
+ */
+function stripMdx() {
+  return (tree: MdastNode) => {
+    const clean = (node: MdastNode) => {
+      if (!node.children) return;
+      node.children = node.children.flatMap((child) => {
+        if (MDX_DROPPED.has(child.type)) return [];
+        clean(child);
+        return MDX_JSX.has(child.type) ? (child.children ?? []) : [child];
+      });
+    };
+    clean(tree);
+  };
+}
+
+/** 사이트 내부 주소(/ko/…)를 절대 주소로 — 피드 리더에는 기준 주소가 없다. `//host`는 그대로 둔다. */
+function absolutizeUrls() {
+  const fix = (value: unknown) =>
+    typeof value === "string" && value.startsWith("/") && !value.startsWith("//") ? `${SITE_URL}${value}` : value;
   return (tree: HastNode) => {
     const visit = (node: HastNode) => {
-      if (node.type === "element" && node.tagName === "a") {
-        const href = node.properties?.href;
-        if (typeof href === "string" && href.startsWith("/")) {
-          node.properties = { ...node.properties, href: `${SITE_URL}${href}` };
-        }
+      if (node.type === "element" && node.properties) {
+        if (node.tagName === "a") node.properties = { ...node.properties, href: fix(node.properties.href) };
+        if (node.tagName === "img") node.properties = { ...node.properties, src: fix(node.properties.src) };
       }
       node.children?.forEach(visit);
     };
@@ -35,16 +63,17 @@ function absolutizeLinks() {
 }
 
 /**
- * 글 본문(MDX)을 피드용 HTML로. 일반 마크다운으로 읽으므로 `<StoreCta />` 같은 MDX 컴포넌트는
- * raw HTML로 취급돼 버려진다(allowDangerousHtml 없음) — 피드에 날 태그가 새지 않는다.
+ * 글 본문(MDX)을 피드용 HTML로. 페이지와 같은 MDX 문법으로 읽은 뒤 MDX 전용 노드를 정리한다(stripMdx).
  */
 export function markdownToRssHtml(markdown: string): string {
   return String(
     unified()
       .use(remarkParse)
+      .use(remarkMdx)
       .use(remarkGfm)
+      .use(stripMdx)
       .use(remarkRehype)
-      .use(absolutizeLinks)
+      .use(absolutizeUrls)
       .use(rehypeStringify)
       .processSync(markdown)
   );
