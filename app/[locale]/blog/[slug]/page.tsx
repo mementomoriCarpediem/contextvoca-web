@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import { rssUrl } from "@/lib/blog/rss";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
@@ -72,7 +73,8 @@ export async function generateMetadata({
   return {
     title: meta.title,
     description: meta.description,
-    alternates,
+    // 발행 글이면 그 언어에는 피드가 있다(app/[locale]/rss.xml).
+    alternates: { ...alternates, types: { "application/rss+xml": rssUrl(meta.locale) } },
     openGraph: {
       type: "article",
       title: meta.title,
