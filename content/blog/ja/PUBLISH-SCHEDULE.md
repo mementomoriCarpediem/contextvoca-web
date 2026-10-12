@@ -6,7 +6,7 @@
 
 | 발행일 | 파일 | 제목 |
 |---|---|---|
-| 2026-10-06 | `content/blog/ja/eiken-2kyu-vocab-method.mdx` | 英検2級の単語の覚え方 |
+| ~~2026-10-06~~ → **2026-10-12 발행 완료**(예정일 누락 후 집행) | `content/blog/ja/eiken-2kyu-vocab-method.mdx` | 英検2級の単語の覚え方 |
 | 2026-10-13 | `content/blog/ja/photo-vocabulary-guide.mdx` | 写真で英単語帳を作る3つの方法 |
 | 2026-10-20 | `content/blog/ja/forgetting-curve-2015-replication.mdx` | 忘却曲線は本当にあるのか |
 
@@ -39,3 +39,4 @@ node scripts/indexnow-submit.mjs https://contextvoca.app/ja/blog/$SLUG/ https://
 note 계정은 보유(https://note.com/contextvoca). X는 계정 미보유로 이번 배치 대상이 아니다.
 
 근거 문서: 앱 레포 `content/20260912-jp-batch2/`(01-proposal · 02-research · 03-review).
+
