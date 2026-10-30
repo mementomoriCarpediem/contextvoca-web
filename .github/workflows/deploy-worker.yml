@@ -3,9 +3,13 @@
 # 보안: 액션은 커밋 SHA로 고정(공개 레포). 시크릿 CLOUDFLARE_API_TOKEN은 Workers 배포에만 쓰이며
 # main 브랜치 push에서만 실행된다(포크 PR에는 시크릿이 노출되지 않음).
 name: Deploy to Cloudflare Worker
+# 대표님 전역 규칙(2026-10-30, 전 프로젝트): GitHub Actions는 배포만. 시험(i18n 키 검사·단위 시험)은 로컬 `local-gate`
+# (전체 = `yarn gate`, 아니면 영향 범위만 --cmd/--why)에서 돌리고, push 전 훅이 기록 없는 main push를 막는다. 여기서는 설치·빌드·
+# 빌드 산출물(OG 이미지) 확인·배포만 한다. 문서·일지만 바뀐 push는 배포하지 않는다(본문은 content/**의 .md라 *.md 전체를 빼지 않는다).
 on:
   push:
     branches: [main]
+    paths-ignore: ["docs/**", ".resonance/**", "README.md"]
   workflow_dispatch:
 permissions:
   contents: read
@@ -27,10 +31,7 @@ jobs:
           package-manager-cache: false
       - run: corepack enable
       - run: yarn install --immutable
-      - run: node scripts/check-i18n-keys.mjs
-      # 순수 로직 단위 테스트 — OG 카드의 slug별 유일성·팔레트 고정값·글리프
-      # 부재가 여기서만 검증된다. 빠지면 해시 구현이 바뀌어도 조용히 통과한다.
-      - run: yarn test
+      # i18n 키 검사와 단위 시험(OG 카드 slug별 유일성·팔레트·글리프)은 로컬 관문(`yarn gate`)으로 옮겼다(2026-10-30).
       - run: yarn build
       # 빌드 산출물(out/) 대조 — 발행 글마다 1200x675 OG 이미지가 존재하고
       # og:image/twitter:image/JSON-LD가 그 URL을 가리키는지, draft 페이지에는

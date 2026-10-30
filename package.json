@@ -8,7 +8,8 @@
     "start": "npx serve@latest out",
     "lint": "next lint",
     "check:i18n": "node scripts/check-i18n-keys.mjs",
-    "test": "vitest run"
+    "test": "vitest run",
+    "gate": "node scripts/check-i18n-keys.mjs && vitest run && next lint && yarn build && node scripts/check-og-images.mjs"
   },
   "dependencies": {
     "next": "^15.3.0",
