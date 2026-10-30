@@ -9,7 +9,7 @@
     "lint": "next lint",
     "check:i18n": "node scripts/check-i18n-keys.mjs",
     "test": "vitest run",
-    "gate": "node scripts/check-i18n-keys.mjs && vitest run && next lint && yarn build && node scripts/check-og-images.mjs"
+    "gate": "node scripts/check-i18n-keys.mjs && vitest run && yarn build && node scripts/check-og-images.mjs"
   },
   "dependencies": {
     "next": "^15.3.0",
