@@ -374,7 +374,7 @@ const en: Translations = {
     metaTitle: "Privacy Policy",
     metaDescription: "The privacy policy for ContextVoca.",
     title: "Privacy Policy",
-    lastUpdated: "Last updated: September 30, 2026",
+    lastUpdated: "Last updated: November 7, 2026",
     sections: [
       {
         title: "1. Overview",
@@ -414,7 +414,10 @@ const en: Translations = {
           "Sentry: error monitoring (United States)",
           "RevenueCat: subscription management (United States)",
           "Google Cloud: OCR text recognition (United States)",
+          "Groq: AI word extraction and quiz generation (United States)",
+          "OpenRouter: preparing AI quizzes in advance, adding example sentences, translating word meanings, and a backup route for AI processing (United States). The processing itself is done by US companies that OpenRouter connects to (Morph, DeepInfra, Inference.net, CoreWeave, Google)",
           "Apple / Google: social login and in-app payment processing",
+          "AI processing providers receive only the English sentences, words, and meanings needed to extract words and create questions. Account information such as your name or email address is never sent to them. Processing through OpenRouter is configured to go only to providers that do not collect input data.",
         ],
       },
       {

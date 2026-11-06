@@ -355,7 +355,7 @@ const zhHant: Translations = {
     "metaTitle": "隱私政策",
     "metaDescription": "語境詞彙（ContextVoca）的隱私政策。",
     "title": "隱私政策",
-    "lastUpdated": "最後更新：2026年9月30日",
+    "lastUpdated": "最後更新：2026年11月7日",
     "sections": [
       {
         "title": "1. 概述",
@@ -393,7 +393,10 @@ const zhHant: Translations = {
           "Sentry：錯誤監控（美國）",
           "RevenueCat：訂閱管理（美國）",
           "Google Cloud：OCR文字識別（美國）",
-          "Apple / Google：社交登入和應用內支付處理"
+          "Groq：AI單字提取與測驗生成（美國）",
+          "OpenRouter：AI測驗預先生成、例句補充、詞義翻譯，以及AI處理的備用路徑（美國）。實際處理由OpenRouter連線的美國企業（Morph、DeepInfra、Inference.net、CoreWeave、Google）完成",
+          "Apple / Google：社交登入和應用內支付處理",
+          "我們只向AI處理企業傳送提取單字和生成題目所需的英文句子、單字和詞義，不會發送姓名、電子郵件等帳號資訊。經由OpenRouter的處理已設定為只發送給不收集輸入資料的企業。"
         ]
       },
       {

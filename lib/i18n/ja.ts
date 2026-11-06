@@ -373,7 +373,7 @@ const ja: Translations = {
     metaTitle: "プライバシーポリシー",
     metaDescription: "文脈単語帳（ContextVoca）のプライバシーポリシーです。",
     title: "プライバシーポリシー",
-    lastUpdated: "最終更新：2026年9月30日",
+    lastUpdated: "最終更新：2026年11月7日",
     sections: [
       {
         title: "1. 概要",
@@ -413,7 +413,10 @@ const ja: Translations = {
           "Sentry：エラーモニタリング（米国）",
           "RevenueCat：サブスクリプション管理（米国）",
           "Google Cloud：OCRテキスト認識（米国）",
+          "Groq：AIによる単語抽出・クイズ作成（米国）",
+          "OpenRouter：AIクイズの事前作成・例文の補強・意味の翻訳、AI処理の予備経路（米国）。実際の処理は、OpenRouterが接続する米国の事業者（Morph、DeepInfra、Inference.net、CoreWeave、Google）が行います",
           "Apple / Google：ソーシャルログインとアプリ内決済処理",
+          "AI処理事業者には、単語抽出と問題作成に必要な英語の文・単語・意味のみを送信し、氏名やメールアドレスなどのアカウント情報は送信しません。OpenRouterを経由する処理は、入力データを収集しない事業者にのみ送信するよう設定されています。",
         ],
       },
       {

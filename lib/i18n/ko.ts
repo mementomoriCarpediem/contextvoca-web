@@ -373,7 +373,7 @@ const ko: Translations = {
     metaTitle: "개인정보처리방침",
     metaDescription: "문맥보카(ContextVoca)의 개인정보처리방침입니다.",
     title: "개인정보처리방침",
-    lastUpdated: "최종 업데이트: 2026년 9월 30일",
+    lastUpdated: "최종 업데이트: 2026년 11월 7일",
     sections: [
       {
         title: "1. 개요",
@@ -413,7 +413,10 @@ const ko: Translations = {
           "Sentry: 오류 모니터링 (미국)",
           "RevenueCat: 구독 관리 (미국)",
           "Google Cloud: OCR 텍스트 인식 (미국)",
+          "Groq: AI 단어 추출·퀴즈 생성 (미국)",
+          "OpenRouter: AI 퀴즈 미리 만들기·예문 보강·뜻 번역, AI 처리 예비 경로 (미국). 실제 처리는 OpenRouter가 연결하는 미국 업체(Morph, DeepInfra, Inference.net, CoreWeave, Google)가 맡습니다",
           "Apple / Google: 소셜 로그인 및 인앱결제 처리",
+          "AI 처리 업체에는 단어 추출과 문제 생성에 필요한 영어 문장·단어·뜻만 보내며, 이름·이메일 같은 계정 정보는 보내지 않습니다. OpenRouter를 거치는 처리는 입력 데이터를 수집하지 않는 업체로만 보내도록 설정되어 있습니다.",
         ],
       },
       {

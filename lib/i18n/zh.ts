@@ -355,7 +355,7 @@ const zh: Translations = {
     metaTitle: "隐私政策",
     metaDescription: "语境词汇（ContextVoca）的隐私政策。",
     title: "隐私政策",
-    lastUpdated: "最后更新：2026年9月30日",
+    lastUpdated: "最后更新：2026年11月7日",
     sections: [
       {
         title: "1. 概述",
@@ -395,7 +395,10 @@ const zh: Translations = {
           "Sentry：错误监控（美国）",
           "RevenueCat：订阅管理（美国）",
           "Google Cloud：OCR文字识别（美国）",
+          "Groq：AI单词提取与测验生成（美国）",
+          "OpenRouter：AI测验预先生成、例句补充、词义翻译，以及AI处理的备用路径（美国）。实际处理由OpenRouter连接的美国企业（Morph、DeepInfra、Inference.net、CoreWeave、Google）完成",
           "Apple / Google：社交登录和应用内支付处理",
+          "我们只向AI处理企业发送提取单词和生成题目所需的英文句子、单词和词义，不会发送姓名、邮箱等账号信息。经由OpenRouter的处理已设置为只发送给不收集输入数据的企业。",
         ],
       },
       {
